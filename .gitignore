@@ -1,0 +1,12 @@
+# secrets
+.env
+.env.*
+
+# deps / build
+node_modules/
+.next/
+dist/
+out/
+
+# os
+.DS_Store
