@@ -49,4 +49,24 @@ describe("ContextClient", () => {
     if (!r.ok) expect(r.failure.reason).toBe("budget_exceeded");
     expect(fetchFn).not.toHaveBeenCalled();
   });
+
+  it("exhausts all attempts on 429 every time → returns http_429", async () => {
+    const fetchFn = vi.fn().mockResolvedValue(
+      json({}, 429, { "retry-after": "0" })
+    );
+    const c = new ContextClient(deps(fetchFn as unknown as typeof fetch));
+    const r = await c.scrapeMarkdown("u");
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.failure.reason).toBe("http_429");
+    expect(fetchFn).toHaveBeenCalledTimes(4);
+  });
+
+  it("exhausts all attempts on network error → returns network_error: prefix", async () => {
+    const fetchFn = vi.fn().mockRejectedValue(new Error("ECONNREFUSED"));
+    const c = new ContextClient(deps(fetchFn as unknown as typeof fetch));
+    const r = await c.scrapeMarkdown("u");
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.failure.reason.startsWith("network_error:")).toBe(true);
+    expect(fetchFn).toHaveBeenCalledTimes(4);
+  });
 });

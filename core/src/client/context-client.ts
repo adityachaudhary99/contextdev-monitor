@@ -30,20 +30,16 @@ export class ContextClient {
   }
 
   async webSearch(query: string): Promise<Result<{ results: { title: string; url: string }[] }>> {
-    return this.call("webSearch", PATHS.webSearch, { query }, query) as Promise<
-      Result<{ results: { title: string; url: string }[] }>
-    >;
+    return this.call<{ results: { title: string; url: string }[] }>("webSearch", PATHS.webSearch, { query }, query);
   }
   async scrapeMarkdown(url: string): Promise<Result<{ url: string; markdown: string }>> {
-    return this.call("scrapeMarkdown", PATHS.scrapeMarkdown, { url }, url) as Promise<
-      Result<{ url: string; markdown: string }>
-    >;
+    return this.call<{ url: string; markdown: string }>("scrapeMarkdown", PATHS.scrapeMarkdown, { url }, url);
   }
   async extractStructured(url: string, jsonSchema: unknown): Promise<Result<unknown>> {
-    return this.call("extractStructured", PATHS.extractStructured, { url, schema: jsonSchema }, url);
+    return this.call<unknown>("extractStructured", PATHS.extractStructured, { url, schema: jsonSchema }, url);
   }
 
-  private async call(endpoint: Endpoint, path: string, body: unknown, sourceUrl: string): Promise<Result<unknown>> {
+  private async call<T>(endpoint: Endpoint, path: string, body: unknown, sourceUrl: string): Promise<Result<T>> {
     const cost = CREDIT_COST[endpoint];
     if (!(await this.d.budget.tryConsume(cost, this.d.day))) {
       return fail(sourceUrl, "budget_exceeded");
@@ -62,7 +58,7 @@ export class ContextClient {
           continue;
         }
         if (!res.ok) return fail(sourceUrl, `http_${res.status}`);
-        return { ok: true, value: await res.json() };
+        return { ok: true, value: (await res.json()) as T };
       } catch (e) {
         if (attempt < this.maxAttempts) {
           await this.sleep(computeBackoffMs(attempt, { rng: this.rng }));
