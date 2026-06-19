@@ -1,6 +1,7 @@
 # secrets
 .env
 .env.*
+!.env.example
 
 # deps / build
 node_modules/
@@ -10,3 +11,6 @@ out/
 
 # os
 .DS_Store
+
+# build info
+*.tsbuildinfo
