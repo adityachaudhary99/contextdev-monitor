@@ -14,9 +14,9 @@ Enter a competitor domain. The app:
 1. Locates the pricing page via web search.
 2. Extracts a **typed pricing snapshot** (tiers, prices, feature bullets) through the [context.dev](https://context.dev?utm_source=contextdev-monitor&utm_medium=readme&utm_campaign=oss) API.
 3. Content-hashes the snapshot and diffs it against the prior one stored in-session.
-4. Returns an **evidence-cited report** — what changed, what stayed the same — plus a panel showing credits used, latency, confidence score, and any extraction failures.
+4. Shows the **full extracted pricing table** — captured as a *baseline* on the first run, then an evidence-cited **diff** ("what changed since last check", price moves flagged) on later runs — plus a panel showing credits used, latency, confidence, and any extraction failures.
 
-No accounts. No scrapers to maintain. No cron jobs.
+Clean dashboard UI with a **light / dark theme toggle** (light by default). No accounts. No scrapers to maintain. No cron jobs.
 
 ---
 
