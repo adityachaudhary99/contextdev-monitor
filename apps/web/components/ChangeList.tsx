@@ -45,7 +45,7 @@ export default function ChangeList({ changes, citations }: ChangeListProps) {
               href={citationUrl(citations, change.citation)}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1 font-mono text-sm text-primary underline hover:text-blue-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="inline-flex items-center gap-1 font-mono text-sm text-primary underline hover:text-primary-strong transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               [{change.citation}]
               <ExternalLink size={10} aria-hidden="true" />

@@ -18,7 +18,6 @@ export default function ModeToggle({ value, onChange }: ModeToggleProps) {
     >
       <button
         type="button"
-        role="button"
         aria-pressed={value === "demo"}
         onClick={() => onChange("demo")}
         className={[
@@ -34,7 +33,6 @@ export default function ModeToggle({ value, onChange }: ModeToggleProps) {
       </button>
       <button
         type="button"
-        role="button"
         aria-pressed={value === "byo"}
         onClick={() => onChange("byo")}
         className={[

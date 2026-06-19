@@ -11,7 +11,13 @@ import {
   type Report,
   type SnapshotStore,
 } from "@contextdev/core";
-import { demoBudget, snapshotStore } from "./budget.js";
+import {
+  demoBudget,
+  sessionBudget,
+  snapshotStore,
+  DEMO_DAILY_CAP,
+  SESSION_DAILY_CAP,
+} from "./budget.js";
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -57,6 +63,7 @@ export interface TrackActionDeps {
   runTracker: typeof coreRunTracker;
   maintainerKey: string | undefined;
   budget: BudgetStore;
+  sessionBudget: BudgetStore;
   store: SnapshotStore;
 }
 
@@ -64,6 +71,7 @@ const defaultDeps: TrackActionDeps = {
   runTracker: coreRunTracker,
   maintainerKey: process.env.CONTEXTDEV_API_KEY,
   budget: demoBudget,
+  sessionBudget: sessionBudget,
   store: snapshotStore,
 };
 
@@ -75,8 +83,8 @@ export async function runPricingReport(
   input: RunPricingReportInput,
   deps: TrackActionDeps = defaultDeps,
 ): Promise<RunPricingReportResult> {
-  const { domain, byoKey, day } = input;
-  const { runTracker, maintainerKey, budget, store } = deps;
+  const { domain, byoKey, sessionId, day } = input;
+  const { runTracker, maintainerKey, budget, sessionBudget: sessionBudgetDep, store } = deps;
 
   // 1. Validate domain
   if (!isValidHostname(domain)) {
@@ -91,20 +99,31 @@ export async function runPricingReport(
 
   // 3. Budget gate (demo mode only — no byoKey means we use the shared cap)
   if (!byoKey) {
-    const allowed = await budget.tryConsume(ESTIMATED_MAX_COST, day);
-    if (!allowed) {
+    const sessionKey = `${sessionId}::${day}`;
+    const [sessionSpent, globalSpent] = await Promise.all([
+      sessionBudgetDep.spent(sessionKey),
+      budget.spent(day),
+    ]);
+    if (
+      sessionSpent + ESTIMATED_MAX_COST > SESSION_DAILY_CAP ||
+      globalSpent + ESTIMATED_MAX_COST > DEMO_DAILY_CAP
+    ) {
       return { ok: false, error: "demo_cap_reached" };
     }
+    // Both have room — consume both
+    await Promise.all([
+      sessionBudgetDep.tryConsume(ESTIMATED_MAX_COST, sessionKey),
+      budget.tryConsume(ESTIMATED_MAX_COST, day),
+    ]);
   }
 
   // 4. Build fresh dependencies for this request
   const ledger = new CreditLedger();
   const tracker = new PricingTracker();
 
-  // BYO mode gets a fresh high-cap budget so the shared demo cap is not touched
-  const clientBudget = byoKey
-    ? new InMemoryBudgetStore(BYO_DAILY_CAP)
-    : budget;
+  // Always use a fresh high-cap budget for ContextClient so per-call debits
+  // do NOT touch the shared demo cap (the gate above is the sole enforcer).
+  const clientBudget = new InMemoryBudgetStore(BYO_DAILY_CAP);
 
   const client = new ContextClient({
     apiKey: key, // NEVER returned, logged, or exposed
