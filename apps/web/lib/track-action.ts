@@ -5,13 +5,13 @@ import {
   ContextClient,
   CreditLedger,
   InMemoryBudgetStore,
-  InMemorySnapshotStore,
   PricingTracker,
   runTracker as coreRunTracker,
   type BudgetStore,
   type Report,
+  type SnapshotStore,
 } from "@contextdev/core";
-import { demoBudget } from "./budget.js";
+import { demoBudget, snapshotStore } from "./budget.js";
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -57,12 +57,14 @@ export interface TrackActionDeps {
   runTracker: typeof coreRunTracker;
   maintainerKey: string | undefined;
   budget: BudgetStore;
+  store: SnapshotStore;
 }
 
 const defaultDeps: TrackActionDeps = {
   runTracker: coreRunTracker,
   maintainerKey: process.env.CONTEXTDEV_API_KEY,
   budget: demoBudget,
+  store: snapshotStore,
 };
 
 // ---------------------------------------------------------------------------
@@ -74,7 +76,7 @@ export async function runPricingReport(
   deps: TrackActionDeps = defaultDeps,
 ): Promise<RunPricingReportResult> {
   const { domain, byoKey, day } = input;
-  const { runTracker, maintainerKey, budget } = deps;
+  const { runTracker, maintainerKey, budget, store } = deps;
 
   // 1. Validate domain
   if (!isValidHostname(domain)) {
@@ -97,7 +99,6 @@ export async function runPricingReport(
 
   // 4. Build fresh dependencies for this request
   const ledger = new CreditLedger();
-  const store = new InMemorySnapshotStore();
   const tracker = new PricingTracker();
 
   // BYO mode gets a fresh high-cap budget so the shared demo cap is not touched
