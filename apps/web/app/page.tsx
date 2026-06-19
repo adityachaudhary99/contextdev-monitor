@@ -6,6 +6,7 @@ import { CONTEXT_DEV_UTM } from "../lib/constants.js";
 import DomainForm from "../components/DomainForm.js";
 import ReportView from "../components/ReportView.js";
 import Footer from "../components/Footer.js";
+import ThemeToggle from "../components/ThemeToggle.js";
 
 export default function Page() {
   const { status, report, error, errorCode, stage, track, reset } = useTrack();
@@ -17,13 +18,18 @@ export default function Page() {
       {/* Header */}
       <header className="border-b border-border bg-bg">
         <div className="mx-auto max-w-5xl px-6 py-5">
-          <h1 className="font-mono text-2xl font-semibold text-fg">
-            Context.dev{" "}
-            <span className="text-primary">Intelligence Monitor</span>
-          </h1>
-          <p className="mt-1 font-sans text-sm text-muted">
-            Track a competitor&apos;s pricing — evidence-linked diffs, on demand.
-          </p>
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <h1 className="font-mono text-2xl font-semibold text-fg">
+                Context.dev{" "}
+                <span className="text-primary">Intelligence Monitor</span>
+              </h1>
+              <p className="mt-1 font-sans text-sm text-muted">
+                Track a competitor&apos;s pricing — evidence-linked diffs, on demand.
+              </p>
+            </div>
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 

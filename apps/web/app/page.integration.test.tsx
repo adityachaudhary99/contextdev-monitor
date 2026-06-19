@@ -6,6 +6,7 @@ import Page from "./page.js";
 const fixtureReport = {
   domain: "stripe.com",
   trackerId: "pricing",
+  status: "changed" as const,
   headline: "1 change detected for stripe.com",
   changes: [{ detail: "$99 → $129/mo", confidence: 0.95, citation: 1 }],
   citations: [{ n: 1, title: "Stripe Pricing", url: "https://stripe.com/pricing" }],

@@ -1,61 +1,24 @@
-import { describe, it, expect, afterEach } from "vitest";
-import { render, screen, cleanup } from "@testing-library/react";
-import type { Report } from "@contextdev/core";
+import { describe, it, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
 import ReportView from "./ReportView.js";
-
-afterEach(() => cleanup());
-
-const fixtureReport: Report = {
-  domain: "acme.com",
-  trackerId: "pricing",
-  status: "changed",
-  headline: "1 change detected for acme.com",
-  changes: [
-    { detail: "2000 → 2500", confidence: 1.0, citation: 1 },
-  ],
-  citations: [{ n: 1, title: "Pricing", url: "https://example.com/pricing" }],
-  creditsUsed: 5,
-  latencyMs: 800,
-  failures: [],
-};
-
-const noChangeReport: Report = {
-  domain: "acme.com",
-  trackerId: "pricing",
-  status: "no_change",
-  headline: "No change detected for acme.com",
-  changes: [],
-  citations: [{ n: 1, title: "Pricing", url: "https://example.com/pricing" }],
-  creditsUsed: 5,
-  latencyMs: 800,
-  failures: [],
-};
+const pricing = { plans: [{ name: "Pro", amountMinor: 9900, currency: "USD", period: "mo" as const, features: ["api"], limits: {} }] };
+const baseline = { domain:"x.com", trackerId:"pricing", status:"baseline" as const, headline:"Baseline captured for x.com — 1 plan tracked", pricing, changes:[], citations:[{n:1,title:"x.com pricing",url:"https://x.com/pricing"}], creditsUsed:11, latencyMs:1200, failures:[] };
+const changed = { ...baseline, status:"changed" as const, headline:"1 change detected for x.com",
+  changes:[{ detail:"Pro: 2000 → 9900 USD/mo", confidence:1, citation:1 }] };
 
 describe("ReportView", () => {
-  it("renders headline, change detail, citation link, and credits", () => {
-    render(<ReportView report={fixtureReport} />);
-
-    // Headline renders
-    expect(screen.getByText("1 change detected for acme.com")).toBeInTheDocument();
-
-    // Change detail renders
-    expect(screen.getByText("2000 → 2500")).toBeInTheDocument();
-
-    // Citation link has correct href
-    const citationLink = screen.getByRole("link", { name: /\[1\]/i });
-    expect(citationLink).toHaveAttribute("href", "https://example.com/pricing");
-
-    // Credits number renders
-    expect(screen.getByText("5")).toBeInTheDocument();
+  it("baseline: shows the pricing table, no changes block", () => {
+    render(<ReportView report={baseline} />);
+    expect(screen.getAllByText(/baseline captured/i).length).toBeGreaterThan(0);
+    expect(screen.getByText("Pro")).toBeInTheDocument();
+    expect(screen.getByText(/\$99/)).toBeInTheDocument();
+    expect(screen.queryByText(/changes since last check/i)).not.toBeInTheDocument();
   });
-
-  it("shows no-change message when changes is empty and no change details appear", () => {
-    render(<ReportView report={noChangeReport} />);
-
-    // No-change copy renders
-    expect(screen.getByText("No pricing changes detected")).toBeInTheDocument();
-
-    // No change detail items
-    expect(screen.queryByRole("listitem")).toBeNull();
+  it("changed: shows the changes block + flags the plan + cites the source", () => {
+    render(<ReportView report={changed} />);
+    expect(screen.getByText(/changes since last check/i)).toBeInTheDocument();
+    expect(screen.getByText(/2000 → 9900/)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /\[1\]/ })).toHaveAttribute("href", "https://x.com/pricing");
+    expect(screen.getByText(/updated/i)).toBeInTheDocument();
   });
 });

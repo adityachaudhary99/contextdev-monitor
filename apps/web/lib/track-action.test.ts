@@ -3,7 +3,7 @@ import { InMemorySnapshotStore, InMemoryBudgetStore, type BudgetStore } from "@c
 import { runPricingReport } from "./track-action.js";
 import { SESSION_DAILY_CAP } from "./budget.js";
 
-const fakeReport = { domain: "x.com", trackerId: "pricing", headline: "No change detected for x.com", changes: [], citations: [{ n: 1, title: "x.com pricing", url: "https://x.com/pricing" }], creditsUsed: 11, latencyMs: 1200, failures: [] };
+const fakeReport = { domain: "x.com", trackerId: "pricing", status: "no_change" as const, headline: "No change detected for x.com", changes: [], citations: [{ n: 1, title: "x.com pricing", url: "https://x.com/pricing" }], creditsUsed: 11, latencyMs: 1200, failures: [] };
 
 describe("runPricingReport", () => {
   it("rejects an invalid domain without spending", async () => {

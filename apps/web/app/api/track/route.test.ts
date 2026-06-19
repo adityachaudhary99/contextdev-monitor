@@ -11,6 +11,7 @@ import { POST } from "./route.js";
 const fakeReport = {
   domain: "stripe.com",
   trackerId: "pricing",
+  status: "no_change" as const,
   headline: "No change detected for stripe.com",
   changes: [],
   citations: [],
