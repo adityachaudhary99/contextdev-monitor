@@ -30,16 +30,63 @@ export class ContextClient {
   }
 
   async webSearch(query: string): Promise<Result<{ results: { title: string; url: string }[] }>> {
-    return this.call<{ results: { title: string; url: string }[] }>("webSearch", PATHS.webSearch, { query }, query);
+    // API returns { results: [{url, title, ...}], query, key_metadata }
+    // The API rejects unknown keys (e.g. "limit") — always sends default 10 results.
+    return this.callPost<{ results: { title: string; url: string }[] }>(
+      "webSearch", PATHS.webSearch, { query }, query,
+    );
   }
   async scrapeMarkdown(url: string): Promise<Result<{ url: string; markdown: string }>> {
-    return this.call<{ url: string; markdown: string }>("scrapeMarkdown", PATHS.scrapeMarkdown, { url }, url);
+    // API is GET /web/scrape/markdown?url=<encoded> — returns { success, markdown, url, ... }
+    return this.callGet<{ url: string; markdown: string }>(
+      "scrapeMarkdown", PATHS.scrapeMarkdown, { url }, url,
+    );
   }
   async extractStructured(url: string, jsonSchema: unknown): Promise<Result<unknown>> {
-    return this.call<unknown>("extractStructured", PATHS.extractStructured, { url, schema: jsonSchema }, url);
+    // API returns { status, url, urls_analyzed, data, metadata } — extracted object is under .data
+    const raw = await this.callPost<{ data: unknown }>(
+      "extractStructured", PATHS.extractStructured, { url, schema: jsonSchema }, url,
+    );
+    if (!raw.ok) return raw;
+    return { ok: true, value: raw.value.data };
   }
 
-  private async call<T>(endpoint: Endpoint, path: string, body: unknown, sourceUrl: string): Promise<Result<T>> {
+  private async callGet<T>(
+    endpoint: Endpoint, path: string, params: Record<string, string>, sourceUrl: string,
+  ): Promise<Result<T>> {
+    const cost = CREDIT_COST[endpoint];
+    if (!(await this.d.budget.tryConsume(cost, this.d.day))) {
+      return fail(sourceUrl, "budget_exceeded");
+    }
+    this.d.ledger.record(endpoint);
+    const qs = new URLSearchParams(params).toString();
+    for (let attempt = 1; attempt <= this.maxAttempts; attempt++) {
+      try {
+        const res = await this.fetchFn(`${BASE_URL}${path}?${qs}`, {
+          method: "GET",
+          headers: { authorization: `Bearer ${this.d.apiKey}` },
+        });
+        if (res.status === 429 && attempt < this.maxAttempts) {
+          const retryAfterMs = retryAfterToMs(res.headers.get("retry-after"));
+          await this.sleep(computeBackoffMs(attempt, { retryAfterMs, rng: this.rng }));
+          continue;
+        }
+        if (!res.ok) return fail(sourceUrl, `http_${res.status}`);
+        return { ok: true, value: (await res.json()) as T };
+      } catch (e) {
+        if (attempt < this.maxAttempts) {
+          await this.sleep(computeBackoffMs(attempt, { rng: this.rng }));
+          continue;
+        }
+        return fail(sourceUrl, `network_error: ${(e as Error).message}`);
+      }
+    }
+    return fail(sourceUrl, "max_attempts_exhausted");
+  }
+
+  private async callPost<T>(
+    endpoint: Endpoint, path: string, body: unknown, sourceUrl: string,
+  ): Promise<Result<T>> {
     const cost = CREDIT_COST[endpoint];
     if (!(await this.d.budget.tryConsume(cost, this.d.day))) {
       return fail(sourceUrl, "budget_exceeded");
