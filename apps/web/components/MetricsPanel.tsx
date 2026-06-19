@@ -18,16 +18,16 @@ export default function MetricsPanel({ creditsUsed, latencyMs, changes, failures
   const hasFailures = failures.length > 0;
 
   // Determine confidence status
-  let confidenceColor = "text-emerald-400";  // success
+  let confidenceColor = "text-success";  // success
   let ConfidenceIcon = CheckCircle;
   let confidenceLabel = "High";
   if (confidence !== null) {
     if (confidence < 0.5) {
-      confidenceColor = "text-red-400";
+      confidenceColor = "text-danger";
       ConfidenceIcon = XCircle;
       confidenceLabel = "Low";
     } else if (confidence < 0.8) {
-      confidenceColor = "text-amber-400";
+      confidenceColor = "text-warn";
       ConfidenceIcon = AlertTriangle;
       confidenceLabel = "Medium";
     }
@@ -36,9 +36,9 @@ export default function MetricsPanel({ creditsUsed, latencyMs, changes, failures
   return (
     <section
       aria-label="Metrics"
-      className="rounded-lg border border-[#1F2A37] bg-[#121821] p-6 flex flex-col gap-4"
+      className="rounded-lg border border-border bg-surface p-6 flex flex-col gap-4"
     >
-      <h2 className="text-sm font-semibold uppercase tracking-wider text-[#8B97A6]">
+      <h2 className="text-sm font-semibold uppercase tracking-wider text-muted">
         Metrics
       </h2>
 
@@ -46,30 +46,30 @@ export default function MetricsPanel({ creditsUsed, latencyMs, changes, failures
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
         {/* Credits used */}
         <div className="flex flex-col gap-1">
-          <span className="inline-flex items-center gap-1.5 text-xs text-[#8B97A6]">
+          <span className="inline-flex items-center gap-1.5 text-xs text-muted">
             <Zap size={12} aria-hidden="true" />
             Credits used
           </span>
-          <span className="font-mono tabular-nums text-lg font-semibold text-[#E6EDF3]">
+          <span className="font-mono tabular-nums text-lg font-semibold text-fg">
             {creditsUsed}
           </span>
         </div>
 
         {/* Latency */}
         <div className="flex flex-col gap-1">
-          <span className="inline-flex items-center gap-1.5 text-xs text-[#8B97A6]">
+          <span className="inline-flex items-center gap-1.5 text-xs text-muted">
             <Clock size={12} aria-hidden="true" />
             Latency
           </span>
-          <span className="font-mono tabular-nums text-lg font-semibold text-[#E6EDF3]">
+          <span className="font-mono tabular-nums text-lg font-semibold text-fg">
             {latencyMs}
-            <span className="text-sm font-normal text-[#8B97A6] ml-0.5">ms</span>
+            <span className="text-sm font-normal text-muted ml-0.5">ms</span>
           </span>
         </div>
 
         {/* Confidence */}
         <div className="flex flex-col gap-1">
-          <span className="inline-flex items-center gap-1.5 text-xs text-[#8B97A6]">
+          <span className="inline-flex items-center gap-1.5 text-xs text-muted">
             <Activity size={12} aria-hidden="true" />
             Avg confidence
           </span>
@@ -80,22 +80,22 @@ export default function MetricsPanel({ creditsUsed, latencyMs, changes, failures
               <span className="text-sm font-normal ml-0.5">{confidenceLabel}</span>
             </span>
           ) : (
-            <span className="font-mono tabular-nums text-lg font-semibold text-[#8B97A6]">—</span>
+            <span className="font-mono tabular-nums text-lg font-semibold text-muted">—</span>
           )}
         </div>
 
         {/* Failures */}
         <div className="flex flex-col gap-1">
-          <span className="inline-flex items-center gap-1.5 text-xs text-[#8B97A6]">
+          <span className="inline-flex items-center gap-1.5 text-xs text-muted">
             {hasFailures ? (
-              <AlertTriangle size={12} aria-hidden="true" className="text-amber-400" />
+              <AlertTriangle size={12} aria-hidden="true" className="text-warn" />
             ) : (
-              <CheckCircle size={12} aria-hidden="true" className="text-emerald-400" />
+              <CheckCircle size={12} aria-hidden="true" className="text-success" />
             )}
             Failures
           </span>
           <span
-            className={`inline-flex items-center gap-1.5 font-mono tabular-nums text-lg font-semibold ${hasFailures ? "text-amber-400" : "text-emerald-400"}`}
+            className={`inline-flex items-center gap-1.5 font-mono tabular-nums text-lg font-semibold ${hasFailures ? "text-warn" : "text-success"}`}
           >
             {failures.length}
             <span className="text-sm font-normal ml-0.5">
@@ -108,19 +108,19 @@ export default function MetricsPanel({ creditsUsed, latencyMs, changes, failures
       {/* Failures detail section */}
       {hasFailures && (
         <div
-          className="rounded-md border border-amber-400/30 bg-amber-400/5 p-4"
+          className="rounded-md border border-warn/30 bg-warn/5 p-4"
           role="alert"
           aria-label="Failure details"
         >
-          <p className="mb-2 inline-flex items-center gap-1.5 text-sm font-semibold text-amber-400">
+          <p className="mb-2 inline-flex items-center gap-1.5 text-sm font-semibold text-warn">
             <AlertTriangle size={14} aria-hidden="true" />
             Source failures
           </p>
           <ul className="flex flex-col gap-1.5">
             {failures.map((f, idx) => (
               <li key={idx} className="flex flex-col gap-0.5 text-sm">
-                <span className="font-mono text-[#E6EDF3]">{f.url}</span>
-                <span className="text-[#8B97A6]">{f.reason}</span>
+                <span className="font-mono text-fg">{f.url}</span>
+                <span className="text-muted">{f.reason}</span>
               </li>
             ))}
           </ul>

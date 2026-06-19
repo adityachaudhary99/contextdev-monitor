@@ -10,16 +10,16 @@ export default function ReportView({ report }: ReportViewProps) {
   const { headline, changes, citations, creditsUsed, latencyMs, failures } = report;
 
   return (
-    <article className="flex flex-col gap-6 rounded-lg border border-[#1F2A37] bg-black p-6">
+    <article className="flex flex-col gap-6 rounded-lg border border-border bg-bg p-6">
       {/* Headline */}
-      <h1 className="font-sans text-2xl font-semibold leading-tight text-[#E6EDF3]">
+      <h1 className="font-sans text-2xl font-semibold leading-tight text-fg">
         {headline}
       </h1>
 
       {/* Changes section */}
       <section aria-label="Changes">
         {changes.length === 0 ? (
-          <p className="rounded-md border border-[#1F2A37] bg-[#0A0E14] px-4 py-3 font-sans text-base text-[#8B97A6]">
+          <p className="rounded-md border border-border bg-bg px-4 py-3 font-sans text-base text-muted">
             No pricing changes detected
           </p>
         ) : (
@@ -38,18 +38,18 @@ export default function ReportView({ report }: ReportViewProps) {
       {/* Citations list */}
       {citations.length > 0 && (
         <section aria-label="Citations">
-          <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-[#8B97A6]">
+          <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-muted">
             Sources
           </h2>
           <div className="flex flex-col gap-1.5">
             {citations.map((c) => (
               <div key={c.n} className="flex items-baseline gap-2 font-mono text-sm">
-                <span className="text-[#8B97A6]">[{c.n}]</span>
+                <span className="text-muted">[{c.n}]</span>
                 <a
                   href={c.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-blue-500 underline hover:text-blue-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                  className="text-primary underline hover:text-blue-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
                   {c.title}
                 </a>

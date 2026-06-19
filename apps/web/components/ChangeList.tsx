@@ -23,21 +23,21 @@ export default function ChangeList({ changes, citations }: ChangeListProps) {
       {changes.map((change, idx) => (
         <li
           key={idx}
-          className="flex flex-col gap-1.5 rounded-lg border border-[#1F2A37] bg-[#121821] p-4"
+          className="flex flex-col gap-1.5 rounded-lg border border-border bg-surface p-4"
         >
           {/* Change detail */}
-          <p className="font-mono text-base text-[#E6EDF3]">{change.detail}</p>
+          <p className="font-mono text-base text-fg">{change.detail}</p>
 
           {/* Confidence badge + citation link row */}
           <div className="flex items-center gap-3 flex-wrap">
             {/* Confidence badge — always icon + text (never color alone) */}
             <span
-              className="inline-flex items-center gap-1 rounded-full border border-[#1F2A37] bg-[#0A0E14] px-2.5 py-0.5 font-mono tabular-nums text-sm text-[#E6EDF3]"
+              className="inline-flex items-center gap-1 rounded-full border border-border bg-bg px-2.5 py-0.5 font-mono tabular-nums text-sm text-fg"
               aria-label={`confidence ${change.confidence}`}
             >
-              <TrendingUp size={12} aria-hidden="true" className="text-blue-500" />
-              <span className="text-[#8B97A6] mr-0.5">confidence</span>
-              <span className="text-[#E6EDF3]">{change.confidence.toFixed(1)}</span>
+              <TrendingUp size={12} aria-hidden="true" className="text-primary" />
+              <span className="text-muted mr-0.5">confidence</span>
+              <span className="text-fg">{change.confidence.toFixed(1)}</span>
             </span>
 
             {/* Citation link */}
@@ -45,7 +45,7 @@ export default function ChangeList({ changes, citations }: ChangeListProps) {
               href={citationUrl(citations, change.citation)}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1 font-mono text-sm text-blue-500 underline hover:text-blue-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              className="inline-flex items-center gap-1 font-mono text-sm text-primary underline hover:text-blue-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               [{change.citation}]
               <ExternalLink size={10} aria-hidden="true" />
