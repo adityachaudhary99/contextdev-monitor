@@ -1,0 +1,7 @@
+{
+  "name": "contextdev-monitor",
+  "private": true,
+  "type": "module",
+  "workspaces": ["core", "apps/*"],
+  "license": "MIT"
+}
