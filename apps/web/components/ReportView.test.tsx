@@ -8,6 +8,7 @@ afterEach(() => cleanup());
 const fixtureReport: Report = {
   domain: "acme.com",
   trackerId: "pricing",
+  status: "changed",
   headline: "1 change detected for acme.com",
   changes: [
     { detail: "2000 → 2500", confidence: 1.0, citation: 1 },
@@ -21,6 +22,7 @@ const fixtureReport: Report = {
 const noChangeReport: Report = {
   domain: "acme.com",
   trackerId: "pricing",
+  status: "no_change",
   headline: "No change detected for acme.com",
   changes: [],
   citations: [{ n: 1, title: "Pricing", url: "https://example.com/pricing" }],
