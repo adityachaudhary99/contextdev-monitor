@@ -5,7 +5,7 @@ import type { NormalizedSnapshot } from "./pricing/normalize.js";
 
 export interface Tracker<T> {
   id: string;
-  locate(domain: string, client: ContextClient): Promise<Result<string>>;
+  locate(domain: string, client: ContextClient): Promise<Result<{ url: string; markdown: string }>>;
   jsonSchema: unknown;
   parse(raw: unknown): T;
   normalize(raw: T): NormalizedSnapshot<T>;

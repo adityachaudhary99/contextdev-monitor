@@ -15,14 +15,19 @@ describe("PricingTracker.locate", () => {
       scrapeMarkdown: async () => ({ ok: true, value: { url: "https://x.com/pricing", markdown: "# Pricing" } }),
     });
     const r = await new PricingTracker().locate("x.com", client);
-    expect(r).toEqual({ ok: true, value: "https://x.com/pricing" });
+    expect(r).toEqual({ ok: true, value: { url: "https://x.com/pricing", markdown: "# Pricing" } });
   });
   it("falls back to web search when /pricing fails", async () => {
     const client = fakeClient({
-      scrapeMarkdown: async () => ({ ok: false, failure: { url: "https://x.com/pricing", reason: "http_404" } }),
+      scrapeMarkdown: async (url: string) => {
+        if (url === "https://x.com/pricing") {
+          return { ok: false, failure: { url: "https://x.com/pricing", reason: "http_404" } };
+        }
+        return { ok: true, value: { url, markdown: "# Plans" } };
+      },
       webSearch: async () => ({ ok: true, value: { results: [{ title: "Plans", url: "https://x.com/plans" }] } }),
     });
     const r = await new PricingTracker().locate("x.com", client);
-    expect(r).toEqual({ ok: true, value: "https://x.com/plans" });
+    expect(r).toEqual({ ok: true, value: { url: "https://x.com/plans", markdown: "# Plans" } });
   });
 });

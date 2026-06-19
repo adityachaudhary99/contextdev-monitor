@@ -1,4 +1,4 @@
-import type { NormalizedSnapshot, NormalizedPlan } from "../trackers/pricing/normalize.js";
+import type { NormalizedSnapshot } from "../trackers/pricing/normalize.js";
 import type { Pricing } from "../trackers/pricing/schema.js";
 
 export type PriceChange = {

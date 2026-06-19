@@ -74,6 +74,7 @@ export class ContextClient {
 function fail(url: string, reason: string): { ok: false; failure: SourceFailure } {
   return { ok: false, failure: { url, reason } };
 }
+// HTTP-date Retry-After values are not supported and fall back to 0ms (jittered backoff) by design.
 function retryAfterToMs(header: string | null): number {
   if (!header) return 0;
   const secs = Number(header);

@@ -11,13 +11,15 @@ export class PricingTracker implements Tracker<Pricing> {
   id = "pricing";
   jsonSchema = pricingJsonSchema;
 
-  async locate(domain: string, client: ContextClient): Promise<Result<string>> {
+  async locate(domain: string, client: ContextClient): Promise<Result<{ url: string; markdown: string }>> {
     const guess = `https://${domain}/pricing`;
     const direct = await client.scrapeMarkdown(guess);
-    if (direct.ok) return { ok: true, value: guess };
+    if (direct.ok) return { ok: true, value: { url: guess, markdown: direct.value.markdown } };
     const search = await client.webSearch(`${domain} pricing`);
     if (search.ok && search.value.results.length > 0) {
-      return { ok: true, value: search.value.results[0].url };
+      const found = await client.scrapeMarkdown(search.value.results[0].url);
+      if (found.ok) return { ok: true, value: { url: search.value.results[0].url, markdown: found.value.markdown } };
+      return found;
     }
     return { ok: false, failure: { url: guess, reason: "pricing_page_not_found" } };
   }

@@ -27,11 +27,8 @@ export async function runTracker<T>(args: {
 
   const located = await tracker.locate(domain, client);
   if (!located.ok) return finish({ failures: [located.failure] });
-  const sourceUrl = located.value;
-
-  const scraped = await client.scrapeMarkdown(sourceUrl);
-  if (!scraped.ok) return finish({ sourceUrl, failures: [scraped.failure] });
-  const sourceHash = hashContent(scraped.value.markdown);
+  const sourceUrl = located.value.url;
+  const sourceHash = hashContent(located.value.markdown);
 
   const prior = await store.latest<T>(tracker.id, domain);
 
@@ -45,6 +42,7 @@ export async function runTracker<T>(args: {
 
   const normalized = tracker.normalize(tracker.parse(extracted.value));
   const diff = prior
+    // v1 limitation: SnapshotStore is keyed by tracker.id but typed opaquely, so the generic Tracker<T> seam isn't enforced across the store boundary. Safe for the single pricing tracker (run-tracker tests lock this wiring); a second tracker in Plan 2 should parameterize runTracker<T,N> to remove these casts.
     ? tracker.diff(prior.data as never, normalized as never)
     : { changed: false as const, changes: [] };
 

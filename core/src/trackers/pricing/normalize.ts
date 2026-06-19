@@ -18,7 +18,7 @@ export function normalizePricing(raw: Pricing): NormalizedSnapshot<Pricing> {
       currency: p.price.currency,
       period: p.price.period,
       features: [...p.features].sort(),
-      limits: p.limits,
+      limits: Object.fromEntries(Object.keys(p.limits).sort().map((k) => [k, p.limits[k]])),
     }))
     .sort((a, b) => a.name.localeCompare(b.name));
   return { plans };

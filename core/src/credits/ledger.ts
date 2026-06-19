@@ -9,6 +9,6 @@ export class CreditLedger {
     return this.log.reduce((sum, e) => sum + e.cost, 0);
   }
   entries(): ReadonlyArray<{ endpoint: Endpoint; cost: number }> {
-    return this.log;
+    return [...this.log];
   }
 }
