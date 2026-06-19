@@ -2,19 +2,15 @@
 
 import { AlertCircle, Loader2, RefreshCw, ExternalLink } from "lucide-react";
 import { useTrack } from "../lib/useTrack.js";
+import { CONTEXT_DEV_UTM } from "../lib/constants.js";
 import DomainForm from "../components/DomainForm.js";
 import ReportView from "../components/ReportView.js";
 import Footer from "../components/Footer.js";
 
-const UTM_URL =
-  "https://context.dev?utm_source=contextdev-monitor&utm_medium=app&utm_campaign=oss";
-
-const CAP_MESSAGE = "Demo daily limit reached. Bring your own key to continue.";
-
 export default function Page() {
-  const { status, report, error, stage, track } = useTrack();
+  const { status, report, error, errorCode, stage, track, reset } = useTrack();
 
-  const isCapError = error === CAP_MESSAGE;
+  const isCapError = errorCode === "demo_cap_reached";
 
   return (
     <div className="flex min-h-screen flex-col bg-bg">
@@ -79,10 +75,7 @@ export default function Page() {
             <div className="flex flex-wrap items-center gap-3">
               <button
                 type="button"
-                onClick={() => {
-                  // Re-run by clearing state — user can resubmit the form
-                  window.location.reload();
-                }}
+                onClick={reset}
                 className={[
                   "flex items-center gap-2 rounded-md border border-border bg-bg px-4 py-2",
                   "font-sans text-sm text-fg hover:bg-surface transition-colors duration-200",
@@ -109,12 +102,12 @@ export default function Page() {
                   the request and are never stored.
                 </p>
                 <a
-                  href={UTM_URL}
+                  href={CONTEXT_DEV_UTM}
                   target="_blank"
                   rel="noreferrer"
                   className={[
                     "inline-flex items-center gap-2 self-start rounded-md bg-primary px-4 py-2",
-                    "font-sans text-sm font-semibold text-white",
+                    "font-sans text-sm font-semibold text-fg",
                     "hover:bg-primary-strong transition-colors duration-200",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
                   ].join(" ")}

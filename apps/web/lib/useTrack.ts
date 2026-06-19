@@ -33,11 +33,13 @@ export interface TrackState {
   status: TrackStatus;
   report?: Report;
   error?: string;
+  errorCode?: string;
   stage?: string;
 }
 
 export interface UseTrackReturn extends TrackState {
   track: (domain: string, byoKey?: string) => Promise<void>;
+  reset: () => void;
 }
 
 export function useTrack(): UseTrackReturn {
@@ -51,6 +53,11 @@ export function useTrack(): UseTrackReturn {
       stageTimerRef.current = null;
     }
   }, []);
+
+  const reset = useCallback(() => {
+    stopStageTimer();
+    setState({ status: "idle" });
+  }, [stopStageTimer]);
 
   const track = useCallback(
     async (domain: string, byoKey?: string) => {
@@ -86,9 +93,11 @@ export function useTrack(): UseTrackReturn {
           setState({ status: "done", report: data.report });
         } else {
           const data = (await res.json()) as { error?: string };
+          const code = data.error ?? "";
           setState({
             status: "error",
-            error: friendlyError(data.error ?? ""),
+            error: friendlyError(code),
+            errorCode: code || undefined,
           });
         }
       } catch (err) {
@@ -96,11 +105,12 @@ export function useTrack(): UseTrackReturn {
         setState({
           status: "error",
           error: err instanceof Error ? err.message : "Network error.",
+          errorCode: "network_error",
         });
       }
     },
     [stopStageTimer],
   );
 
-  return { ...state, track };
+  return { ...state, track, reset };
 }

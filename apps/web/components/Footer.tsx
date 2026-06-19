@@ -1,5 +1,4 @@
-const UTM_URL =
-  "https://context.dev?utm_source=contextdev-monitor&utm_medium=app&utm_campaign=oss";
+import { CONTEXT_DEV_UTM } from "../lib/constants.js";
 
 export default function Footer() {
   return (
@@ -8,7 +7,7 @@ export default function Footer() {
         <p className="font-sans text-sm text-muted">
           Powered by{" "}
           <a
-            href={UTM_URL}
+            href={CONTEXT_DEV_UTM}
             target="_blank"
             rel="noreferrer"
             className="text-primary underline hover:text-primary-strong transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
