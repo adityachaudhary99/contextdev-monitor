@@ -10,7 +10,7 @@ export default function ReportView({ report }: ReportViewProps) {
   const { headline, changes, citations, creditsUsed, latencyMs, failures } = report;
 
   return (
-    <article className="flex flex-col gap-6 rounded-lg border border-[#1F2A37] bg-[#121821] p-6">
+    <article className="flex flex-col gap-6 rounded-lg border border-[#1F2A37] bg-black p-6">
       {/* Headline */}
       <h1 className="font-sans text-2xl font-semibold leading-tight text-[#E6EDF3]">
         {headline}

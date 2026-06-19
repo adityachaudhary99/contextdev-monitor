@@ -35,7 +35,7 @@ export default function ChangeList({ changes, citations }: ChangeListProps) {
               className="inline-flex items-center gap-1 rounded-full border border-[#1F2A37] bg-[#0A0E14] px-2.5 py-0.5 font-mono tabular-nums text-sm text-[#E6EDF3]"
               aria-label={`confidence ${change.confidence}`}
             >
-              <TrendingUp size={12} aria-hidden="true" className="text-[#3B82F6]" />
+              <TrendingUp size={12} aria-hidden="true" className="text-blue-500" />
               <span className="text-[#8B97A6] mr-0.5">confidence</span>
               <span className="text-[#E6EDF3]">{change.confidence.toFixed(1)}</span>
             </span>

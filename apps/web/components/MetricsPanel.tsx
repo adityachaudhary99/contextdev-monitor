@@ -18,16 +18,16 @@ export default function MetricsPanel({ creditsUsed, latencyMs, changes, failures
   const hasFailures = failures.length > 0;
 
   // Determine confidence status
-  let confidenceColor = "text-[#16A34A]";  // success
+  let confidenceColor = "text-emerald-400";  // success
   let ConfidenceIcon = CheckCircle;
   let confidenceLabel = "High";
   if (confidence !== null) {
     if (confidence < 0.5) {
-      confidenceColor = "text-[#DC2626]";
+      confidenceColor = "text-red-400";
       ConfidenceIcon = XCircle;
       confidenceLabel = "Low";
     } else if (confidence < 0.8) {
-      confidenceColor = "text-[#D97706]";
+      confidenceColor = "text-amber-400";
       ConfidenceIcon = AlertTriangle;
       confidenceLabel = "Medium";
     }
@@ -88,14 +88,14 @@ export default function MetricsPanel({ creditsUsed, latencyMs, changes, failures
         <div className="flex flex-col gap-1">
           <span className="inline-flex items-center gap-1.5 text-xs text-[#8B97A6]">
             {hasFailures ? (
-              <AlertTriangle size={12} aria-hidden="true" className="text-[#D97706]" />
+              <AlertTriangle size={12} aria-hidden="true" className="text-amber-400" />
             ) : (
-              <CheckCircle size={12} aria-hidden="true" className="text-[#16A34A]" />
+              <CheckCircle size={12} aria-hidden="true" className="text-emerald-400" />
             )}
             Failures
           </span>
           <span
-            className={`inline-flex items-center gap-1.5 font-mono tabular-nums text-lg font-semibold ${hasFailures ? "text-[#D97706]" : "text-[#16A34A]"}`}
+            className={`inline-flex items-center gap-1.5 font-mono tabular-nums text-lg font-semibold ${hasFailures ? "text-amber-400" : "text-emerald-400"}`}
           >
             {failures.length}
             <span className="text-sm font-normal ml-0.5">
@@ -108,11 +108,11 @@ export default function MetricsPanel({ creditsUsed, latencyMs, changes, failures
       {/* Failures detail section */}
       {hasFailures && (
         <div
-          className="rounded-md border border-[#D97706]/30 bg-[#D97706]/5 p-4"
+          className="rounded-md border border-amber-400/30 bg-amber-400/5 p-4"
           role="alert"
           aria-label="Failure details"
         >
-          <p className="mb-2 inline-flex items-center gap-1.5 text-sm font-semibold text-[#D97706]">
+          <p className="mb-2 inline-flex items-center gap-1.5 text-sm font-semibold text-amber-400">
             <AlertTriangle size={14} aria-hidden="true" />
             Source failures
           </p>
