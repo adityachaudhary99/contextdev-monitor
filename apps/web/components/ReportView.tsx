@@ -1,4 +1,5 @@
 import type { Report } from "@contextdev/core";
+import { CheckCircle, TrendingUp, MinusCircle, AlertTriangle } from "lucide-react";
 import { Badge } from "./ui/badge.js";
 import { Card, CardHeader, CardContent } from "./ui/card.js";
 import ChangeList from "./ChangeList.js";
@@ -12,13 +13,33 @@ interface ReportViewProps {
 function statusBadge(report: Report) {
   switch (report.status) {
     case "baseline":
-      return <Badge variant="success">✓ Baseline captured</Badge>;
+      return (
+        <Badge variant="success">
+          <CheckCircle size={12} aria-hidden="true" />
+          Baseline captured
+        </Badge>
+      );
     case "changed":
-      return <Badge variant="change">▲ {report.changes.length} change{report.changes.length === 1 ? "" : "s"}</Badge>;
+      return (
+        <Badge variant="change">
+          <TrendingUp size={12} aria-hidden="true" />
+          {report.changes.length} change{report.changes.length === 1 ? "" : "s"}
+        </Badge>
+      );
     case "no_change":
-      return <Badge variant="neutral">No change</Badge>;
+      return (
+        <Badge variant="neutral">
+          <MinusCircle size={12} aria-hidden="true" />
+          No change
+        </Badge>
+      );
     case "error":
-      return <Badge variant="danger">Error</Badge>;
+      return (
+        <Badge variant="danger">
+          <AlertTriangle size={12} aria-hidden="true" />
+          Couldn&apos;t read pricing
+        </Badge>
+      );
     default:
       return null;
   }
