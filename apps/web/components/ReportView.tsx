@@ -49,7 +49,7 @@ export default function ReportView({ report }: ReportViewProps) {
                   href={c.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-[#3B82F6] underline hover:text-blue-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3B82F6]"
+                  className="text-blue-500 underline hover:text-blue-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 >
                   {c.title}
                 </a>
