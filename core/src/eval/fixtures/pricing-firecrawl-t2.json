@@ -1,0 +1,4 @@
+{ "plans": [
+  { "name": "Hobby", "price": { "amount": 0, "currency": "USD", "period": "mo" }, "features": ["500 credits"], "limits": {}, "cta": "Start" },
+  { "name": "Standard", "price": { "amount": 19, "currency": "USD", "period": "mo" }, "features": ["3000 credits"], "limits": {}, "cta": "Buy" }
+] }
