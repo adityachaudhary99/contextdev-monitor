@@ -8,5 +8,5 @@ export default defineConfig({
       "server-only": new URL("./lib/__mocks__/server-only.ts", import.meta.url).pathname,
     },
   },
-  test: { environment: "jsdom", include: ["app/**/*.test.tsx", "app/**/*.test.ts", "lib/**/*.test.ts"], setupFiles: [] },
+  test: { environment: "jsdom", include: ["app/**/*.test.tsx", "app/**/*.test.ts", "lib/**/*.test.ts", "components/**/*.test.tsx", "components/**/*.test.ts"], setupFiles: ["./vitest.setup.ts"] },
 });
