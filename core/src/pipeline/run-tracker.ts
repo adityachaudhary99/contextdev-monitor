@@ -3,6 +3,8 @@ import type { Tracker } from "../trackers/tracker.js";
 import type { ContextClient } from "../client/context-client.js";
 import type { SnapshotStore } from "../cache/snapshot-store.js";
 import type { CreditLedger } from "../credits/ledger.js";
+import type { NormalizedSnapshot } from "../trackers/pricing/normalize.js";
+import type { Pricing } from "../trackers/pricing/schema.js";
 import { hashContent } from "../cache/content-hash.js";
 import { assembleReport, type Report } from "../report/report.js";
 import { validateCitations } from "../report/citation-validator.js";
@@ -20,13 +22,14 @@ export async function runTracker<T>(args: {
       sourceTitle: extra.sourceTitle ?? `${domain} ${tracker.id}`,
       diff: extra.diff ?? { changed: false, changes: [] },
       creditsUsed: ledger.total(), latencyMs: now() - start, failures: extra.failures ?? [],
+      pricing: extra.pricing, priorExisted: extra.priorExisted ?? false,
     });
     validateCitations(report);
     return report;
   };
 
   const located = await tracker.locate(domain, client);
-  if (!located.ok) return finish({ failures: [located.failure] });
+  if (!located.ok) return finish({ failures: [located.failure], priorExisted: false });
   const sourceUrl = located.value.url;
   const sourceHash = hashContent(located.value.markdown);
 
@@ -34,11 +37,11 @@ export async function runTracker<T>(args: {
 
   // Content-hash gate: identical source ⇒ no extraction, no diff.
   if (prior && prior.sourceHash === sourceHash) {
-    return finish({ sourceUrl, sourceTitle: `${domain} ${tracker.id}` });
+    return finish({ sourceUrl, sourceTitle: `${domain} ${tracker.id}`, pricing: prior.data as NormalizedSnapshot<Pricing>, priorExisted: true });
   }
 
   const extracted = await client.extractStructured(sourceUrl, tracker.jsonSchema);
-  if (!extracted.ok) return finish({ sourceUrl, failures: [extracted.failure] });
+  if (!extracted.ok) return finish({ sourceUrl, failures: [extracted.failure], priorExisted: prior != null });
 
   const normalized = tracker.normalize(tracker.parse(extracted.value));
   const diff = prior
@@ -47,5 +50,5 @@ export async function runTracker<T>(args: {
     : { changed: false as const, changes: [] };
 
   await store.save({ trackerId: tracker.id, domain, capturedDay: day, sourceUrl, sourceHash, data: normalized });
-  return finish({ sourceUrl, sourceTitle: `${domain} ${tracker.id}`, diff });
+  return finish({ sourceUrl, sourceTitle: `${domain} ${tracker.id}`, diff, pricing: normalized as NormalizedSnapshot<Pricing>, priorExisted: prior != null });
 }

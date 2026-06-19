@@ -21,7 +21,9 @@ describe("runTracker", () => {
       tracker: new PricingTracker(), domain: "x.com", client: clientFor("# Pricing v1", pricing(20)),
       ledger: new CreditLedger(), store, day: "2026-06-19", now: () => 1000,
     });
-    expect(report.headline).toMatch(/no change/i);
+    expect(report.headline).toMatch(/baseline captured/i);
+    expect(report.status).toBe("baseline");
+    expect(report.pricing?.plans).toHaveLength(1);
     expect(await store.latest("pricing", "x.com")).not.toBeNull();
   });
 
@@ -31,6 +33,8 @@ describe("runTracker", () => {
     await runTracker({ ...common, client: clientFor("# Pricing v1", pricing(20)), ledger: new CreditLedger() });
     const second = await runTracker({ ...common, client: clientFor("# Pricing v2 CHANGED", pricing(25)), ledger: new CreditLedger() });
     expect(second.headline).toMatch(/1 change/i);
+    expect(second.status).toBe("changed");
+    expect(second.pricing?.plans[0].amountMinor).toBe(2500);
     expect(second.changes[0].detail).toContain("2500");
   });
 
@@ -39,7 +43,9 @@ describe("runTracker", () => {
     const c1 = clientFor("# Pricing SAME", pricing(20));
     await runTracker({ tracker: new PricingTracker(), domain: "x.com", client: c1, ledger: new CreditLedger(), store, day: "2026-06-19", now: () => 1000 });
     const c2 = clientFor("# Pricing SAME", pricing(20));
-    await runTracker({ tracker: new PricingTracker(), domain: "x.com", client: c2, ledger: new CreditLedger(), store, day: "2026-06-19", now: () => 1000 });
+    const gateReport = await runTracker({ tracker: new PricingTracker(), domain: "x.com", client: c2, ledger: new CreditLedger(), store, day: "2026-06-19", now: () => 1000 });
     expect((c2 as unknown as { extractStructured: { mock: { calls: unknown[] } } }).extractStructured.mock.calls).toHaveLength(0);
+    expect(gateReport.status).toBe("no_change");
+    expect(gateReport.pricing?.plans).toHaveLength(1);
   });
 });

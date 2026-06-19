@@ -9,3 +9,5 @@ export { PricingTracker } from "./trackers/pricing/pricing-tracker.js";
 export type { Pricing } from "./trackers/pricing/schema.js";
 export { runTracker } from "./pipeline/run-tracker.js";
 export type { Report } from "./report/report.js";
+export type { NormalizedSnapshot, NormalizedPlan } from "./trackers/pricing/normalize.js";
+export type { ReportStatus } from "./report/report.js";
