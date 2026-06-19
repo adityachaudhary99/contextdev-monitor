@@ -9,7 +9,7 @@ const changed = { ...baseline, status:"changed" as const, headline:"1 change det
 describe("ReportView", () => {
   it("baseline: shows the pricing table, no changes block", () => {
     render(<ReportView report={baseline} />);
-    expect(screen.getAllByText(/baseline captured/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/baseline captured/i)).toHaveLength(2);
     expect(screen.getByText("Pro")).toBeInTheDocument();
     expect(screen.getByText(/\$99/)).toBeInTheDocument();
     expect(screen.queryByText(/changes since last check/i)).not.toBeInTheDocument();

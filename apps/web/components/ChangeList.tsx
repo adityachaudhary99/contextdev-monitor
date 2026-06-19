@@ -10,7 +10,7 @@ interface ChangeListProps {
 }
 
 function citationUrl(citations: Citation[], n: number): string {
-  return citations[n - 1]?.url ?? "#";
+  return citations.find((c) => c.n === n)?.url ?? "#";
 }
 
 export default function ChangeList({ changes, citations }: ChangeListProps) {

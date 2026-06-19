@@ -17,7 +17,6 @@ function avgConfidence(changes: Report["changes"]): number | null {
 export default function MetricsPanel({ creditsUsed, latencyMs, changes, failures, pricing }: MetricsPanelProps) {
   const confidence = avgConfidence(changes);
   const hasFailures = failures.length > 0;
-  const planCount = pricing?.plans.length ?? 0;
 
   return (
     <section
@@ -53,16 +52,18 @@ export default function MetricsPanel({ creditsUsed, latencyMs, changes, failures
           </span>
         </div>
 
-        {/* Plans count */}
-        <div className="flex flex-col gap-1">
-          <span className="inline-flex items-center gap-1.5 text-xs text-muted">
-            <LayoutGrid size={12} aria-hidden="true" />
-            Plans
-          </span>
-          <span className="font-mono tabular-nums text-lg font-semibold text-fg">
-            {planCount}
-          </span>
-        </div>
+        {/* Plans count — only when pricing is present */}
+        {pricing && (
+          <div className="flex flex-col gap-1">
+            <span className="inline-flex items-center gap-1.5 text-xs text-muted">
+              <LayoutGrid size={12} aria-hidden="true" />
+              Plans
+            </span>
+            <span className="font-mono tabular-nums text-lg font-semibold text-fg">
+              {pricing.plans.length}
+            </span>
+          </div>
+        )}
 
         {/* Avg confidence — only when changes.length > 0 */}
         {changes.length > 0 && confidence !== null && (

@@ -84,8 +84,8 @@ export default function ReportView({ report }: ReportViewProps) {
         pricing={pricing}
       />
 
-      {/* Error state — show failure reasons */}
-      {status === "error" && failures.length > 0 && (
+      {/* Error state — always show retry note; list failures when present */}
+      {status === "error" && (
         <Card>
           <CardHeader>
             <h2 className="text-sm font-semibold uppercase tracking-wider text-danger">
@@ -93,17 +93,47 @@ export default function ReportView({ report }: ReportViewProps) {
             </h2>
           </CardHeader>
           <CardContent>
-            <ul className="flex flex-col gap-2">
-              {failures.map((f, idx) => (
-                <li key={idx} className="flex flex-col gap-0.5 text-sm">
-                  <span className="font-mono text-fg">{f.url}</span>
-                  <span className="text-muted">{f.reason}</span>
+            <p className="text-sm text-muted mb-3">
+              Couldn&apos;t read the pricing — try again.
+            </p>
+            {failures.length > 0 && (
+              <ul className="flex flex-col gap-2">
+                {failures.map((f, idx) => (
+                  <li key={idx} className="flex flex-col gap-0.5 text-sm">
+                    <span className="font-mono text-fg">{f.url}</span>
+                    <span className="text-muted">{f.reason}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Sources / citations — shown for any status when citations exist */}
+      {citations.length > 0 && (
+        <Card>
+          <CardHeader>
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-muted">
+              Sources
+            </h2>
+          </CardHeader>
+          <CardContent>
+            <ol className="flex flex-col gap-2">
+              {citations.map((c) => (
+                <li key={c.n} className="flex items-baseline gap-2 text-sm">
+                  <span className="font-mono text-muted shrink-0">[{c.n}]</span>
+                  <a
+                    href={c.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-primary underline hover:text-primary-strong transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary break-all"
+                  >
+                    {c.title}
+                  </a>
                 </li>
               ))}
-            </ul>
-            <p className="mt-3 text-sm text-muted">
-              Please try again in a moment.
-            </p>
+            </ol>
           </CardContent>
         </Card>
       )}
