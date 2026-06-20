@@ -20,4 +20,17 @@ describe("profilePlayer", () => {
     expect(r.ok).toBe(false);
     if (!r.ok) expect(r.failure.reason).toBe("http_403");
   });
+  it("derives tags from short features when the extractor returned none", async () => {
+    const client = {
+      scrapeMarkdown: ok({ url: "https://acme.com", markdown: "# Acme" }),
+      extractStructured: ok({ name: "Acme", oneLiner: "x", tags: [], features: ["Proxies", "CAPTCHA solving", "Fully managed headless browser farm"], positioning: "p" }),
+    } as never;
+    const r = await profilePlayer("https://acme.com", client);
+    expect(r.ok).toBe(true);
+    if (r.ok) {
+      expect(r.value.tags).toContain("proxies");
+      expect(r.value.tags).toContain("captcha solving");
+      expect(r.value.tags).not.toContain("fully managed headless browser farm");
+    }
+  });
 });

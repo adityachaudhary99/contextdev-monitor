@@ -3,6 +3,7 @@ import type { Result } from "../client/types.js";
 import type { PlayerProfile } from "./types.js";
 import { ProfileSchema, profileJsonSchema } from "./profile-schema.js";
 import { rootDomain } from "./discovery.js";
+import { resolveTags } from "./tags.js";
 
 export async function profilePlayer(url: string, client: ContextClient): Promise<Result<PlayerProfile>> {
   const scraped = await client.scrapeMarkdown(url);
@@ -15,7 +16,7 @@ export async function profilePlayer(url: string, client: ContextClient): Promise
   const confidence = ([p.oneLiner !== "", p.features.length > 0, p.positioning !== ""].filter(Boolean).length) / 3;
   return { ok: true, value: {
     name: p.name, domain: rootDomain(url) ?? url, oneLiner: p.oneLiner, tagline: p.tagline,
-    tags: p.tags, features: p.features, positioning: p.positioning, links: p.links,
+    tags: resolveTags(p.tags, p.features), features: p.features, positioning: p.positioning, links: p.links,
     sourceUrl: url, confidence: Math.round(confidence * 100) / 100,
   } };
 }
