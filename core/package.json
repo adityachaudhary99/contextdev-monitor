@@ -15,7 +15,8 @@
     "typecheck": "tsc --noEmit",
     "eval": "tsx src/eval/run-eval.ts",
     "report-card": "tsx src/eval/report-card/run-report-card.ts",
-    "smoke": "tsx src/bin/monitor.ts"
+    "smoke": "tsx src/bin/monitor.ts",
+    "cartographer": "tsx src/bin/cartographer.ts"
   },
   "dependencies": {
     "zod": "^3.23.8"
