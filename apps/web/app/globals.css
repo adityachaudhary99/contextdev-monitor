@@ -2,12 +2,12 @@
 @tailwind base; @tailwind components; @tailwind utilities;
 :root {
   --bg:#ffffff; --surface:#ffffff; --border:#eef0f4; --fg:#1a1f36; --muted:#697386;
-  --primary:#635bff; --primary-strong:#4b45cc; --success:#0a7c42; --warn:#b45309; --danger:#dc2626; --change:#e11d48;
+  --primary:#635bff; --primary-strong:#4b45cc; --primary-fg:#ffffff; --success:#0a7c42; --warn:#b45309; --danger:#dc2626; --change:#e11d48;
   --shadow:0 1px 3px rgba(50,50,93,.14),0 2px 8px rgba(0,0,0,.05);
 }
 .dark {
   --bg:#0b0c0f; --surface:#101216; --border:#20242c; --fg:#e6edf3; --muted:#8b97a6;
-  --primary:#9db2ff; --primary-strong:#7c93f0; --success:#5fd08a; --warn:#f6a96b; --danger:#ff6b6b; --change:#fb7185;
+  --primary:#9db2ff; --primary-strong:#7c93f0; --primary-fg:#ffffff; --success:#5fd08a; --warn:#f6a96b; --danger:#ff6b6b; --change:#fb7185;
   --shadow:0 0 0 1px rgba(255,255,255,.02);
 }
 body { @apply bg-bg text-fg font-sans; font-size:16px; }

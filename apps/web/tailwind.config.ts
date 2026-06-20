@@ -5,7 +5,7 @@ export default {
   theme: { extend: {
     colors: {
       bg:"var(--bg)", surface:"var(--surface)", border:"var(--border)", fg:"var(--fg)", muted:"var(--muted)",
-      primary:"var(--primary)", "primary-strong":"var(--primary-strong)",
+      primary:"var(--primary)", "primary-strong":"var(--primary-strong)", "primary-fg":"var(--primary-fg)",
       success:"var(--success)", warn:"var(--warn)", danger:"var(--danger)", change:"var(--change)",
     },
     boxShadow: { card: "var(--shadow)" },

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import { AlertCircle, Loader2, RefreshCw, ExternalLink, Map, DollarSign, Play } from "lucide-react";
+import { AlertCircle, Loader2, RefreshCw, ExternalLink, Map, DollarSign, Play, TriangleAlert } from "lucide-react";
 import { useTrack } from "../lib/useTrack.js";
 import { useLandscape } from "../lib/useLandscape.js";
 import { CONTEXT_DEV_UTM } from "../lib/constants.js";
@@ -143,7 +143,7 @@ function MapModePanel() {
               aria-label={status === "loading" ? "Loading" : "Run"}
               className={[
                 "flex min-h-[44px] min-w-[88px] items-center justify-center gap-2",
-                "rounded-md bg-primary px-5 py-2 text-sm font-semibold text-white",
+                "rounded-md bg-primary px-5 py-2 text-sm font-semibold text-primary-fg",
                 "hover:bg-primary-strong transition-colors duration-200",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg",
                 "disabled:opacity-50 disabled:cursor-not-allowed",
@@ -184,7 +184,7 @@ function MapModePanel() {
                 ].join(" ")}
               />
               <p className="flex items-start gap-1.5 text-sm text-muted">
-                <span aria-hidden="true" className="mt-0.5 shrink-0 text-warn">⚠</span>
+                <TriangleAlert size={14} aria-hidden="true" className="mt-0.5 shrink-0 text-warn" />
                 Your key is sent to our server to proxy the call and is not stored.
               </p>
             </div>
@@ -318,7 +318,7 @@ export default function Page() {
               "flex min-h-[44px] items-center gap-2 rounded px-4 py-2 text-sm font-medium transition-colors duration-200",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
               primaryMode === "map"
-                ? "bg-primary text-white"
+                ? "bg-primary text-primary-fg"
                 : "text-muted hover:text-fg cursor-pointer",
             ].join(" ")}
           >
@@ -333,7 +333,7 @@ export default function Page() {
               "flex min-h-[44px] items-center gap-2 rounded px-4 py-2 text-sm font-medium transition-colors duration-200",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
               primaryMode === "pricing"
-                ? "bg-primary text-white"
+                ? "bg-primary text-primary-fg"
                 : "text-muted hover:text-fg cursor-pointer",
             ].join(" ")}
           >
