@@ -1,0 +1,67 @@
+{
+  "_note": "EXAMPLE corpus — representative hand-authored extractions for offline/repro testing. Run `npm run report-card -- --collect` (key-gated) to overwrite with real context.dev output before publishing real numbers.",
+  "cases": [
+    {
+      "url": "https://firecrawl.dev",
+      "domain": "firecrawl.dev",
+      "latencyMs": 1900,
+      "credits": 11,
+      "groundTruth": {
+        "name": "Firecrawl",
+        "oneLiner": "Turn any website into clean LLM-ready markdown",
+        "tags": ["api", "markdown", "crawl"],
+        "features": ["Markdown & structured output", "JavaScript rendering", "Recursive crawl"],
+        "positioning": "Developer-friendly scraping for AI workloads",
+        "links": { "site": "https://firecrawl.dev", "docs": "https://docs.firecrawl.dev", "pricing": "https://firecrawl.dev/pricing" }
+      },
+      "extracted": {
+        "name": "Firecrawl",
+        "oneLiner": "Turn websites into clean, LLM-ready markdown data",
+        "tagline": null,
+        "tags": ["api", "markdown"],
+        "features": ["Markdown output for LLMs", "JS rendering", "Website crawling"],
+        "positioning": "Developer-friendly scraping for AI",
+        "links": { "site": "https://firecrawl.dev", "docs": "https://docs.firecrawl.dev", "pricing": null }
+      }
+    },
+    {
+      "url": "https://oxylabs.io",
+      "domain": "oxylabs.io",
+      "latencyMs": 2600,
+      "credits": 11,
+      "groundTruth": {
+        "name": "Oxylabs",
+        "oneLiner": "Premium proxies and a web scraper API at enterprise scale",
+        "tags": ["proxies", "api", "captcha"],
+        "features": ["Residential proxies", "Web Scraper API", "CAPTCHA handling"],
+        "positioning": "Enterprise-grade proxy and scraping infrastructure",
+        "links": { "site": "https://oxylabs.io", "docs": "https://developers.oxylabs.io", "pricing": "https://oxylabs.io/pricing" }
+      },
+      "extracted": {
+        "name": "Oxylabs",
+        "oneLiner": "Industry-leading web intelligence collection platform",
+        "tagline": null,
+        "tags": ["proxies"],
+        "features": ["Proxy network"],
+        "positioning": "",
+        "links": { "site": "https://oxylabs.io", "docs": null, "pricing": null }
+      }
+    },
+    {
+      "url": "https://webscraper.io",
+      "domain": "webscraper.io",
+      "latencyMs": 4200,
+      "credits": 1,
+      "failureReason": "http_403",
+      "groundTruth": {
+        "name": "Web Scraper",
+        "oneLiner": "Point-and-click browser-extension web scraping",
+        "tags": ["no-code", "browser-extension"],
+        "features": ["Visual selector", "Cloud scraping"],
+        "positioning": "No-code scraping for non-developers",
+        "links": { "site": "https://webscraper.io", "docs": null, "pricing": "https://webscraper.io/pricing" }
+      },
+      "extracted": null
+    }
+  ]
+}
