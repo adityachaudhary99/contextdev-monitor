@@ -1,6 +1,7 @@
 import type { Landscape } from "@contextdev/core";
 import { Check, Minus } from "lucide-react";
-import { Table, Thead, Tbody, Tr, Th, Td } from "./ui/table.js";
+import PlayerLogo from "./PlayerLogo.js";
+import { cn } from "../lib/cn.js";
 
 interface ComparisonTableProps {
   landscape: Landscape;
@@ -9,41 +10,53 @@ interface ComparisonTableProps {
 export default function ComparisonTable({ landscape }: ComparisonTableProps) {
   const { players, comparison } = landscape;
   const dims = comparison.dimensions;
+  if (dims.length === 0) return null;
 
   return (
-    <div className="overflow-x-auto">
-      <Table>
-        <Thead>
-          <Tr>
-            <Th>Player</Th>
+    <div className="overflow-x-auto rounded-2xl border border-border bg-surface shadow-card">
+      <table className="w-full border-collapse text-sm">
+        <thead>
+          <tr className="border-b border-border">
+            <th className="sticky left-0 z-10 bg-surface px-4 py-3 text-left text-[11px] font-semibold uppercase tracking-wide text-muted">
+              Player
+            </th>
             {dims.map((dim) => (
-              <Th key={dim}>{dim}</Th>
+              <th key={dim} className="whitespace-nowrap px-3 py-3 text-center text-[11px] font-semibold uppercase tracking-wide text-muted">
+                {dim}
+              </th>
             ))}
-          </Tr>
-        </Thead>
-        <Tbody>
-          {players.map((player) => {
-            const featsLower = player.features.map((f) => f.toLowerCase());
+            <th className="px-3 py-3 text-right text-[11px] font-semibold uppercase tracking-wide text-muted">Conf</th>
+          </tr>
+        </thead>
+        <tbody>
+          {players.map((player, i) => {
+            const tagSet = new Set(player.tags.map((t) => t.toLowerCase()));
             return (
-              <Tr key={player.domain}>
-                <Td className="font-semibold text-fg">
-                  {player.name}
-                  <span className="block text-xs font-mono text-muted">{player.domain}</span>
-                </Td>
+              <tr key={player.domain} className={cn("border-b border-border transition-colors hover:bg-surface-2", i % 2 === 1 && "bg-surface-2/50")}>
+                <th scope="row" className="sticky left-0 z-10 bg-inherit px-4 py-3 text-left font-medium text-fg">
+                  <span className="flex items-center gap-2.5">
+                    <PlayerLogo name={player.name} domain={player.domain} size={22} />
+                    <span className="min-w-0">
+                      <span className="block truncate">{player.name}</span>
+                      <span className="block truncate font-mono text-[11px] font-normal text-muted">{player.domain}</span>
+                    </span>
+                  </span>
+                </th>
                 {dims.map((dim) => (
-                  <Td key={dim}>
-                    {featsLower.includes(dim.toLowerCase()) ? (
-                      <Check size={14} aria-hidden="true" className="text-success" />
+                  <td key={dim} className="px-3 py-3 text-center">
+                    {tagSet.has(dim.toLowerCase()) ? (
+                      <Check size={15} aria-label="yes" className="mx-auto text-success" />
                     ) : (
-                      <Minus size={14} aria-hidden="true" className="text-muted" />
+                      <Minus size={15} aria-label="no" className="mx-auto text-border" />
                     )}
-                  </Td>
+                  </td>
                 ))}
-              </Tr>
+                <td className="px-3 py-3 text-right font-mono text-xs tabular-nums text-muted">{player.confidence.toFixed(2)}</td>
+              </tr>
             );
           })}
-        </Tbody>
-      </Table>
+        </tbody>
+      </table>
     </div>
   );
 }
