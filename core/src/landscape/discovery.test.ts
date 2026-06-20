@@ -36,11 +36,12 @@ describe("discoverPlayers", () => {
       { title: "Acme blog", url: "https://blog.acme.com/scraping" },            // blog subdomain → dropped
       { title: "Shootout", url: "https://scraperx-vs-apify.com/" },             // -vs- → dropped
       { title: "Oxylabs", url: "https://oxylabs.io/" },
+      { title: "Desktop Metrics", url: "https://desktop-metrics.com/" },
     ]), { maxPlayers: 8 });
     expect(r.ok).toBe(true);
     if (r.ok) {
       const domains = r.value.map((p) => rootDomain(p.url));
-      expect(domains).toEqual(["apify.com", "oxylabs.io"]);
+      expect(domains).toEqual(["apify.com", "oxylabs.io", "desktop-metrics.com"]);
     }
   });
 });

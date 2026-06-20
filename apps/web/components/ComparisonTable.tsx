@@ -17,22 +17,22 @@ export default function ComparisonTable({ landscape }: ComparisonTableProps) {
       <table className="w-full border-collapse text-sm">
         <thead>
           <tr className="border-b border-border">
-            <th className="sticky left-0 z-10 bg-surface px-4 py-3 text-left text-[11px] font-semibold uppercase tracking-wide text-muted">
+            <th scope="col" className="sticky left-0 z-10 bg-surface px-4 py-3 text-left text-[11px] font-semibold uppercase tracking-wide text-muted">
               Player
             </th>
             {dims.map((dim) => (
-              <th key={dim} className="whitespace-nowrap px-3 py-3 text-center text-[11px] font-semibold uppercase tracking-wide text-muted">
+              <th key={dim} scope="col" className="whitespace-nowrap px-3 py-3 text-center text-[11px] font-semibold uppercase tracking-wide text-muted">
                 {dim}
               </th>
             ))}
-            <th className="px-3 py-3 text-right text-[11px] font-semibold uppercase tracking-wide text-muted">Conf</th>
+            <th scope="col" className="px-3 py-3 text-right text-[11px] font-semibold uppercase tracking-wide text-muted">Conf</th>
           </tr>
         </thead>
         <tbody>
           {players.map((player, i) => {
             const tagSet = new Set(player.tags.map((t) => t.toLowerCase()));
             return (
-              <tr key={player.domain} className={cn("border-b border-border transition-colors hover:bg-surface-2", i % 2 === 1 && "bg-surface-2/50")}>
+              <tr key={player.domain} className={cn("border-b border-border transition-colors hover:bg-surface-2", i % 2 === 1 ? "bg-surface-2" : "bg-surface")}>
                 <th scope="row" className="sticky left-0 z-10 bg-inherit px-4 py-3 text-left font-medium text-fg">
                   <span className="flex items-center gap-2.5">
                     <PlayerLogo name={player.name} domain={player.domain} size={22} />
@@ -45,9 +45,9 @@ export default function ComparisonTable({ landscape }: ComparisonTableProps) {
                 {dims.map((dim) => (
                   <td key={dim} className="px-3 py-3 text-center">
                     {tagSet.has(dim.toLowerCase()) ? (
-                      <Check size={15} aria-label="yes" className="mx-auto text-success" />
+                      <Check size={15} aria-label={`${dim}: yes`} className="mx-auto text-success" />
                     ) : (
-                      <Minus size={15} aria-label="no" className="mx-auto text-border" />
+                      <Minus size={15} aria-label={`${dim}: no`} className="mx-auto text-border" />
                     )}
                   </td>
                 ))}

@@ -18,7 +18,7 @@ function isAggregator(domain: string): boolean {
   return (
     /(^|\.)(blog|news|reviews?|compare|comparison|alternatives?|vs|versus|listicle|directory|wiki)\./.test(domain) ||
     /\.(medium|substack|wordpress|blogspot|hashnode|tumblr)\.com$/.test(domain) ||
-    domain.includes("best-") || domain.includes("top-") || /-vs-/.test(domain) || /-alternatives?/.test(domain)
+    domain.includes("best-") || /(^|[.-])top-/.test(domain) || /-vs-/.test(domain) || /-alternatives?/.test(domain)
   );
 }
 export async function discoverPlayers(

@@ -70,8 +70,7 @@ describe("Page — Map a market mode", () => {
       expect(screen.getAllByText(/Firecrawl/i).length).toBeGreaterThan(0);
     });
 
-    // Brief paragraph appears (BriefText may split the category across spans, so check
-    // the container paragraph's full textContent instead)
+    // Brief paragraph appears — assert on the container <p>'s full textContent
     const briefPara = screen.getByText((_content, element) => {
       if (!element) return false;
       const tag = element.tagName.toLowerCase();
