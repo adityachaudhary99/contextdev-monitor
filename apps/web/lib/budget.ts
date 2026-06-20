@@ -2,10 +2,10 @@
 import { InMemoryBudgetStore, InMemorySnapshotStore } from "@contextdev/core";
 
 /** Daily global credit cap for demo (no byoKey) requests. */
-export const DEMO_DAILY_CAP = 500;
+export const DEMO_DAILY_CAP = 2000;
 
-/** Max credits one session may use per day (≈3 runs × 21 each). */
-export const SESSION_DAILY_CAP = 63;
+/** Max credits one session may use per day (≈3 landscapes × 130 each). */
+export const SESSION_DAILY_CAP = 400;
 
 /** Singleton InMemoryBudgetStore for the demo path. One instance per server process. */
 export const demoBudget = new InMemoryBudgetStore(DEMO_DAILY_CAP);
