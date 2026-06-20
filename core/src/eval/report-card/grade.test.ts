@@ -28,9 +28,13 @@ describe("exactSetScore", () => {
   });
 });
 describe("fuzzySetScore", () => {
-  it("matches features by token overlap, not exact string", () => {
-    const s = fuzzySetScore(["Markdown output", "JS rendering"], ["Markdown & structured output", "JavaScript rendering"]);
-    expect(s.recall).toBeGreaterThan(0); // "Markdown output" fuzzy-matches "Markdown & structured output"
+  it("matches features by symmetric token overlap, scoring both precision and recall", () => {
+    const s = fuzzySetScore(
+      ["Markdown output for LLMs and AI agents", "JS rendering"],
+      ["Markdown & structured output", "JavaScript rendering"],
+    );
+    expect(s.recall).toBeGreaterThan(0);
+    expect(s.precision).toBeGreaterThan(0); // long extracted feature still matches a short ground-truth feature
   });
 });
 describe("linkGrade", () => {

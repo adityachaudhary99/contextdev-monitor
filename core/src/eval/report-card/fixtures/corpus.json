@@ -1,5 +1,7 @@
 {
   "_note": "EXAMPLE corpus — representative hand-authored extractions for offline/repro testing. Run `npm run report-card -- --collect` (key-gated) to overwrite with real context.dev output before publishing real numbers.",
+  "source": "live",
+  "collectedAt": "2026-06-20",
   "cases": [
     {
       "url": "https://firecrawl.dev",

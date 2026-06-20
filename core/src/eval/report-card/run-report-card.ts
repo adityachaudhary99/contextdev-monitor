@@ -32,12 +32,14 @@ async function main() {
       cases.push({ ...c, extracted: got.extracted, failureReason: got.failureReason, latencyMs: got.latencyMs, credits: got.credits });
       console.log(`collected ${c.domain}: ${got.extracted ? "ok" : `FAILED(${got.failureReason})`} ${got.latencyMs}ms ${got.credits}cr`);
     }
-    writeFileSync(corpusPath, JSON.stringify({ _note: raw._note, cases }, null, 2) + "\n");
+    writeFileSync(corpusPath, JSON.stringify({ _note: raw._note, source: "live", collectedAt: new Date().toISOString().slice(0, 10), cases }, null, 2) + "\n");
   }
 
   const card = buildReportCard({ cases, grades: cases.map(gradeCase) });
-  const provenance = collect
-    ? "Live context.dev run (refreshed via --collect)."
+  const dataSource: "live" | "example" = collect ? "live" : ((raw as { source?: "live" | "example" }).source ?? "example");
+  const collectedAt = collect ? new Date().toISOString().slice(0, 10) : (raw as { collectedAt?: string }).collectedAt;
+  const provenance = dataSource === "live"
+    ? `Live context.dev run${collectedAt ? ` (collected ${collectedAt})` : ""}.`
     : "Committed example corpus — run `npm run report-card -- --collect` to refresh from live context.dev output.";
   writeFileSync(reportPath, renderReportCardMarkdown(card, provenance) + "\n");
   console.log(`headline ${Math.round(card.headlineScore * 100)}% | ${card.gradedCount}/${card.corpusSize} profiled | ${card.creditsPerPage}cr/page | wrote ${reportPath}`);

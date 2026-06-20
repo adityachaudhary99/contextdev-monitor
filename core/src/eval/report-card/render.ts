@@ -27,6 +27,7 @@ export function renderReportCardMarkdown(card: ReportCard, provenance?: string):
   out.push(`| Tags (F1) | ${pct(fa.tagsF1)} |`);
   out.push(`| Features (fuzzy F1) | ${pct(fa.featuresF1)} |`);
   out.push(`| Links (host match) | ${pct(fa.linksCorrect)} |`, "");
+  out.push("> _Tags use **exact-set** matching against terse curated tags — a low tag score reflects vocabulary divergence (free-form vs curated), not missing extraction. Features use fuzzy token-overlap matching._", "");
   out.push("## Failure taxonomy", "");
   if (card.failures.length === 0) {
     out.push("_No extraction failures in this corpus run._", "");
@@ -40,6 +41,6 @@ export function renderReportCardMarkdown(card: ReportCard, provenance?: string):
   for (const f of CONTRACT_FINDINGS) out.push(`- **${f.title}** (\`${f.id}\`) — ${f.found} _Fix:_ ${f.fix}`);
   out.push("");
   out.push("## Methodology", "");
-  out.push("Grading is offline and deterministic against a committed corpus of hand-checked ground-truth profiles. The live `--collect` step calls context.dev to refresh the recorded extractions, timing each call and reading credits from the ledger; grading then runs with no key. Name uses normalized exact match; one-liner/positioning use ground-truth token recall (hit ≥ 0.5); tags use exact-set F1; features use fuzzy (token-overlap) F1; links match on host. Numbers are reported as measured — no cherry-picking.", "");
+  out.push("Grading is offline and deterministic against a committed corpus of hand-authored, best-effort ground-truth profiles (a small corpus — see the summary; treat per-field accuracy as indicative, not authoritative). The live `--collect` step calls context.dev to refresh the recorded extractions, timing each call and reading credits from the ledger; grading then runs with no key. Name uses normalized exact match; one-liner/positioning use ground-truth token recall (hit ≥ 0.5); tags use exact-set F1; features use fuzzy (token-overlap) F1; links match on host. Numbers are reported as measured — no cherry-picking.", "");
   return out.join("\n");
 }

@@ -17,10 +17,11 @@ export function textGrade(extracted: string, truth: string): TextGrade {
 }
 
 function fuzzyMatch(a: string, b: string): boolean {
-  const at = tokens(a);
-  if (at.length === 0) return false;
-  const bt = new Set(tokens(b));
-  return at.filter((w) => bt.has(w)).length / at.length >= 0.5;
+  const at = tokens(a), bt = tokens(b);
+  if (at.length === 0 || bt.length === 0) return false;
+  const bset = new Set(bt);
+  const overlap = at.filter((w) => bset.has(w)).length;
+  return overlap / Math.min(at.length, bt.length) >= 0.5;
 }
 const normSet = (arr: string[]) => [...new Set(arr.map((x) => x.trim().toLowerCase()).filter(Boolean))];
 
