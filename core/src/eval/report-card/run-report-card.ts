@@ -36,7 +36,10 @@ async function main() {
   }
 
   const card = buildReportCard({ cases, grades: cases.map(gradeCase) });
-  writeFileSync(reportPath, renderReportCardMarkdown(card) + "\n");
+  const provenance = collect
+    ? "Live context.dev run (refreshed via --collect)."
+    : "Committed example corpus — run `npm run report-card -- --collect` to refresh from live context.dev output.";
+  writeFileSync(reportPath, renderReportCardMarkdown(card, provenance) + "\n");
   console.log(`headline ${Math.round(card.headlineScore * 100)}% | ${card.gradedCount}/${card.corpusSize} profiled | ${card.creditsPerPage}cr/page | wrote ${reportPath}`);
   // CI floor: a non-empty corpus should grade above a minimal bar.
   if (card.corpusSize > 0 && card.headlineScore < 0.2) { console.error("headline score below floor (0.2)"); process.exit(1); }

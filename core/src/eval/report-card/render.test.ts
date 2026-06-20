@@ -20,4 +20,9 @@ describe("renderReportCardMarkdown", () => {
     expect(md).toContain("/web/");                      // a contract finding fix
     expect(md).toContain("## Methodology");
   });
+
+  it("emits a provenance banner when one is provided, and omits it otherwise", () => {
+    expect(renderReportCardMarkdown(card, "Committed example corpus")).toContain("**Data source:** Committed example corpus");
+    expect(renderReportCardMarkdown(card)).not.toContain("Data source");
+  });
 });
