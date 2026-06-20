@@ -1,0 +1,365 @@
+{
+  "category": "headless CMS",
+  "players": [
+    {
+      "name": "Strapi",
+      "domain": "strapi.io",
+      "oneLiner": "Open-source TypeScript headless CMS enabling API creation, content management, and AI-powered automation for modern websites and apps.",
+      "tagline": "The Open-Source Headless CMS for AI powered Websites and Apps",
+      "tags": [
+        "headless cms",
+        "open-source",
+        "typescript",
+        "api",
+        "content management",
+        "ai",
+        "cloud hosting",
+        "customization"
+      ],
+      "features": [
+        "Design REST and GraphQL Content Delivery APIs to connect to any frontend",
+        "Craft experiences and easily manage editing, publishing, and translation",
+        "Personalize your CMS to meet your project's unique requirements",
+        "Work together easily on code and content",
+        "Host your projects on robust, secure servers in minutes",
+        "Implement robust security measures to protect your information",
+        "Automate Content Modeling, Translations & more with Strapi AI",
+        "Cloud PaaS hosting for Strapi projects",
+        "Enterprise Edition: self-hosted, enterprise-ready",
+        "Marketplace of plugins and integrations",
+        "Internationalization (i18n) for multi-locale content",
+        "Blocks Editor with drag and drop rich text",
+        "Dynamic Zones for flexible page design",
+        "Content History to track changes",
+        "Live Preview before publishing",
+        "Conditional Fields for smarter editing experience",
+        "Content GraphQL API for queries and mutations",
+        "API Tokens for secure access",
+        "Full TypeScript support",
+        "Audit Logs for security monitoring",
+        "Role-Based Access Control (RBAC)",
+        "Single Sign-On (SSO) integration"
+      ],
+      "positioning": "Strapi positions itself as the leading open-source headless CMS that empowers developers with freedom to use preferred tools and frameworks, while providing content managers and business teams with easy-to-use content management and AI-powered automation. It targets modern web and app development requiring customizable, scalable, and secure content infrastructure, suitable for enterprises and digital agencies alike.",
+      "links": {
+        "site": "https://strapi.io/",
+        "docs": "https://docs.strapi.io/cms/intro",
+        "pricing": "https://strapi.io/pricing-cms"
+      },
+      "sourceUrl": "https://strapi.io",
+      "confidence": 1
+    },
+    {
+      "name": "Contentful",
+      "domain": "contentful.com",
+      "oneLiner": "Contentful is a flexible, API-first content platform that enables teams to create, manage, and deliver personalized digital experiences at scale.",
+      "tagline": "Content that scales. Experiences that convert.",
+      "tags": [
+        "content management system",
+        "headless cms",
+        "digital experience platform",
+        "personalization",
+        "ai-driven content",
+        "api-first",
+        "composable architecture",
+        "content personalization"
+      ],
+      "features": [
+        "Modular content architecture for reuse and scalability",
+        "AI-powered content creation, personalization, and workflow automation",
+        "Personalization tools including segmentation, experimentation, and insights",
+        "Extensive integrations and marketplace apps to extend functionality",
+        "Multi-language localization and translation support",
+        "Real-time analytics and agentic analytics within workflow",
+        "Front-end hosting for fast, scalable site delivery",
+        "Role-based permissions and content governance",
+        "Bulk entry operations for efficient content management",
+        "Enterprise-grade security and compliance (ISO 27001, PCI DSS)",
+        "Live preview and taxonomy management for content discoverability",
+        "Comprehensive developer documentation and SDKs"
+      ],
+      "positioning": "Contentful positions itself as a modern, API-first digital experience platform designed for product teams, growth marketers, and developers who need to deliver personalized, scalable, and efficient content experiences across multiple channels and brands. It emphasizes speed, flexibility, and autonomy for non-technical users while providing robust tools and integrations for developers. Contentful targets enterprises and fast-growing companies looking to streamline content workflows, increase engagement, and leverage AI to optimize digital experiences. It competes in the headless CMS and composable commerce space, differentiating through AI capabilities, extensive ecosystem, and enterprise observability features.",
+      "links": {
+        "site": "https://contentful.com/",
+        "docs": "https://contentful.com/developers/docs/",
+        "pricing": "https://contentful.com/pricing/"
+      },
+      "sourceUrl": "https://contentful.com",
+      "confidence": 1
+    },
+    {
+      "name": "Storyblok",
+      "domain": "storyblok.com",
+      "oneLiner": "Headless CMS with Visual Editor that empowers developers, marketers, and agents to collaborate joyfully and deliver content faster.",
+      "tagline": "Your AI is only as good as your content. Make it joyful.",
+      "tags": [
+        "headless cms",
+        "content management",
+        "visual editor",
+        "api-first",
+        "enterprise cms",
+        "developer friendly",
+        "marketer friendly",
+        "agentic experiences"
+      ],
+      "features": [
+        "Visual editing with drag and drop components",
+        "Empowered editors and agents with intuitive workflows",
+        "API-first architecture supporting Next.js, Astro, Nuxt, React, Vue, and more",
+        "MCP Server for agentic experiences connecting agents directly to content",
+        "FlowMotion for orchestrating agent-driven tasks into collaborative workflows",
+        "Global components and flexible content structures",
+        "Multi-language and localization support",
+        "Enterprise-grade security and uptime",
+        "Built-in performance tools and seamless integrations",
+        "Comprehensive APIs: Content Delivery API, Management API, GraphQL API, Image Service API",
+        "Developer blueprints and tutorials for quick start",
+        "Dedicated customer success team"
+      ],
+      "positioning": "Storyblok positions itself as the #1 Enterprise Headless CMS that uniquely serves developers, marketers, and agents without tradeoffs. It emphasizes joyful content management, fast time-to-market, and seamless collaboration through its visual editor and advanced APIs. It targets enterprises and teams seeking scalable, secure, and flexible content infrastructure with strong developer and marketer usability. Storyblok highlights its high ROI, extensive API ecosystem, and customer success focus to differentiate from competitors.",
+      "links": {
+        "site": "https://storyblok.com/",
+        "docs": "https://www.storyblok.com/docs/api",
+        "pricing": "https://storyblok.com/pricing"
+      },
+      "sourceUrl": "https://storyblok.com",
+      "confidence": 1
+    },
+    {
+      "name": "Cosmic",
+      "domain": "cosmicjs.com",
+      "oneLiner": "AI-Powered Headless CMS to build, deploy, and scale content-driven applications 10x faster.",
+      "tagline": "Agents That Help You Build, Ship, and Grow",
+      "tags": [
+        "headless cms",
+        "ai-powered cms",
+        "content management",
+        "ai agents",
+        "cli",
+        "rest api",
+        "workflows",
+        "automation"
+      ],
+      "features": [
+        "AI-native platform with autonomous AI agents for content creation, code generation, and automation",
+        "Integration of CMS into Slack, WhatsApp, and Telegram for team collaboration",
+        "AI-powered CLI for content creation, app generation, and deployment",
+        "RESTful API with sub-100ms response times and TypeScript SDK",
+        "AI Studio for generating text, images, and video",
+        "Flexible content modeling with 20+ field types including repeaters and relationships",
+        "Media management with imgix CDN and AI media generation",
+        "Automated workflows chaining AI agents for complex operations",
+        "Enterprise-grade infrastructure with 99.9% uptime SLA, 256-bit SSL encryption, and auto-scaling",
+        "Granular roles and permissions, 2FA, audit logs, and API key management",
+        "Open source SDKs and full data portability",
+        "Extensive integrations with Vercel, Netlify, AWS, Stripe, Shopify, OpenAI, and more"
+      ],
+      "positioning": "Cosmic positions itself as a modern, AI-powered headless CMS platform designed for teams and enterprises that want to accelerate content creation, app development, and deployment with autonomous AI agents and powerful automation. It targets developers, content teams, and businesses seeking a scalable, secure, and collaborative CMS solution that integrates seamlessly with popular tools and frameworks.",
+      "links": {
+        "site": "https://cosmicjs.com/",
+        "docs": "https://cosmicjs.com/docs",
+        "pricing": "https://cosmicjs.com/pricing"
+      },
+      "sourceUrl": "https://cosmicjs.com",
+      "confidence": 1
+    },
+    {
+      "name": "DatoCMS",
+      "domain": "datocms.com",
+      "oneLiner": "The headless CMS that your team will love — DatoCMS",
+      "tagline": "Simply put, the most complete, user-friendly and performant Headless CMS",
+      "tags": [
+        "headless cms",
+        "content management",
+        "graphql api",
+        "developer-friendly",
+        "editor experience",
+        "localization",
+        "modular content",
+        "visual editing"
+      ],
+      "features": [
+        "GraphQL API for efficient content querying",
+        "Structured text editor for rich content editing",
+        "Localization with built-in i18n support",
+        "Modular content for dynamic page building",
+        "Visual editing interface for easy content updates",
+        "Cache tags for fine-grained cache invalidation",
+        "Plugins to extend and customize CMS capabilities",
+        "AI & Automation features for enhanced workflows",
+        "Worldwide CDN for fast content delivery",
+        "Content integrity and workflow management"
+      ],
+      "positioning": "DatoCMS is positioned as a modern, developer-friendly headless CMS designed to empower teams of all sizes to create and distribute content efficiently at scale. It emphasizes performance, scalability, and flexibility, offering a comprehensive API-first platform with strong developer tools, including GraphQL and REST APIs, SDKs, and integration guides. It targets web developers, digital marketers, content creators, and enterprises seeking a future-proof content infrastructure that supports fast iteration, global delivery, and seamless collaboration across teams.",
+      "links": {
+        "site": "https://datocms.com/",
+        "docs": "https://datocms.com/docs",
+        "pricing": "https://datocms.com/pricing"
+      },
+      "sourceUrl": "https://datocms.com",
+      "confidence": 1
+    },
+    {
+      "name": "Contentstack",
+      "domain": "contentstack.com",
+      "oneLiner": "The industry's first Agentic Experience Platform (AXP) combining CMS, real-time data, and agentic AI for hyper-relevant digital experiences at scale.",
+      "tagline": "CMS plus real-time data and agentic AI",
+      "tags": [
+        "headless cms",
+        "agentic ai",
+        "content management",
+        "personalization",
+        "real-time data",
+        "digital experience platform",
+        "enterprise cms",
+        "automation"
+      ],
+      "features": [
+        "Agentic Experience Platform unifies content, data, and intelligent agents",
+        "API-first, cloud-based headless CMS for flexibility",
+        "Real-time customer data activation and personalization",
+        "No-code agents and automations with brand-aware AI",
+        "Visual editor and timeline previewing",
+        "Integrated front-end hosting, asset management, and personalization engine",
+        "Granular permissions and custom workflows",
+        "Developer tools including SDKs, APIs, CLI, and marketplace apps",
+        "Automation hub and AI-powered content generation",
+        "Enterprise-grade security and compliance"
+      ],
+      "positioning": "Contentstack positions itself as a leading enterprise-grade, AI-ready headless CMS and digital experience platform that empowers businesses to deliver personalized, scalable, and secure digital experiences. It targets enterprises seeking agility, innovation, and integration of AI and real-time data into their content workflows. The platform emphasizes flexibility, developer empowerment, and no-code automation to accelerate time-to-market and improve customer engagement across industries including financial services, retail, and technology.",
+      "links": {
+        "site": "https://contentstack.com/",
+        "docs": "https://contentstack.com/docs",
+        "pricing": "https://contentstack.com/pricing"
+      },
+      "sourceUrl": "https://contentstack.com",
+      "confidence": 1
+    },
+    {
+      "name": "Sanity",
+      "domain": "sanity.io",
+      "oneLiner": "The Content Operating System for the AI era",
+      "tagline": "The only platform powering content operations",
+      "tags": [
+        "content management system",
+        "headless cms",
+        "content operations",
+        "ai content operations",
+        "content backend",
+        "developer platform",
+        "content automation",
+        "structured content"
+      ],
+      "features": [
+        "Schema as code for content modeling",
+        "Fully customizable content studio",
+        "Content Lake: managed database optimized for content",
+        "Multiplayer editing for teams",
+        "Content agent for AI-powered content operations at scale",
+        "Programmable automation with event-driven functions",
+        "Agent actions for schema-aware AI automations",
+        "Power web, mobile, and agentic applications with one API",
+        "Content releases with precision scheduling",
+        "Media library for asset management",
+        "App SDK for building custom content applications",
+        "Live CDN for fast content delivery",
+        "Enterprise-grade security and compliance (SOC 2 Type II, GDPR, CCPA)",
+        "24/7 support and 99.95% uptime SLA"
+      ],
+      "positioning": "Sanity positions itself as a modern, developer-friendly content operating system designed for the AI era, enabling teams to model, automate, and power content operations at scale. It targets businesses and developers who need a flexible, programmable, and scalable platform to manage structured content and integrate AI-driven workflows. Sanity emphasizes customization, automation, and powering any application or AI agent with a single API, appealing to enterprises and innovative digital teams seeking to accelerate content release cycles and reduce manual work.",
+      "links": {
+        "site": "https://sanity.io/",
+        "docs": "https://sanity.io/docs",
+        "pricing": "https://sanity.io/pricing"
+      },
+      "sourceUrl": "https://sanity.io",
+      "confidence": 1
+    },
+    {
+      "name": "Jamstack",
+      "domain": "jamstack.org",
+      "oneLiner": "An architectural approach for building fast, secure, and scalable websites by decoupling the web experience from backend logic.",
+      "tagline": "For fast and secure sites",
+      "tags": [
+        "web development",
+        "architecture",
+        "static site",
+        "api",
+        "performance",
+        "scalability",
+        "security",
+        "jamstack"
+      ],
+      "features": [
+        "Decouples web experience layer from data and business logic",
+        "Improves flexibility, scalability, performance, and maintainability",
+        "Enables composable architecture using APIs and third-party services",
+        "Removes need for business logic to dictate web experience"
+      ],
+      "positioning": "Jamstack is positioned as a modern web architecture that enhances website speed, security, and scalability by separating frontend from backend logic, ideal for developers seeking performant and maintainable web solutions.",
+      "links": {
+        "site": "https://jamstack.org/",
+        "docs": "https://jamstack.org/glossary/",
+        "pricing": null
+      },
+      "sourceUrl": "https://jamstack.org",
+      "confidence": 1
+    }
+  ],
+  "failures": [],
+  "comparison": {
+    "dimensions": [
+      "headless cms",
+      "content management",
+      "api",
+      "api-first",
+      "automation",
+      "content management system"
+    ]
+  },
+  "brief": "Mapped 8 players in \"headless CMS\". Most common capabilities: headless cms, content management, api. Players: Strapi, Contentful, Storyblok, Cosmic, DatoCMS, Contentstack, Sanity, Jamstack.",
+  "citations": [
+    {
+      "n": 1,
+      "title": "Strapi — strapi.io",
+      "url": "https://strapi.io"
+    },
+    {
+      "n": 2,
+      "title": "Contentful — contentful.com",
+      "url": "https://contentful.com"
+    },
+    {
+      "n": 3,
+      "title": "Storyblok — storyblok.com",
+      "url": "https://storyblok.com"
+    },
+    {
+      "n": 4,
+      "title": "Cosmic — cosmicjs.com",
+      "url": "https://cosmicjs.com"
+    },
+    {
+      "n": 5,
+      "title": "DatoCMS — datocms.com",
+      "url": "https://datocms.com"
+    },
+    {
+      "n": 6,
+      "title": "Contentstack — contentstack.com",
+      "url": "https://contentstack.com"
+    },
+    {
+      "n": 7,
+      "title": "Sanity — sanity.io",
+      "url": "https://sanity.io"
+    },
+    {
+      "n": 8,
+      "title": "Jamstack — jamstack.org",
+      "url": "https://jamstack.org"
+    }
+  ],
+  "creditsUsed": 108,
+  "latencyMs": 52362
+}

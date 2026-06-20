@@ -11,9 +11,9 @@ describe("getOrGenerateLandscape", () => {
   it("generates + caches an uncurated slug, then serves from cache", async () => {
     let calls = 0;
     const generate = async (c: string) => { calls++; return { ok: true as const, landscape: ls(c) as never }; };
-    const r1 = await getOrGenerateLandscape("headless-cms", { generate });
-    expect(r1?.category).toBe("headless cms");
-    await getOrGenerateLandscape("headless-cms", { generate });
+    const r1 = await getOrGenerateLandscape("vector-databases", { generate });
+    expect(r1?.category).toBe("vector databases");
+    await getOrGenerateLandscape("vector-databases", { generate });
     expect(calls).toBe(1); // second call served from the store cache
   });
   it("returns null when generation fails", async () => {
