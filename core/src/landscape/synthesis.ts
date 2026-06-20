@@ -3,11 +3,15 @@ import type { PlayerProfile, ProfileFailure, Landscape } from "./types.js";
 
 function topDimensions(players: PlayerProfile[], k: number): string[] {
   const freq = new Map<string, number>();
-  for (const p of players) for (const f of p.features) {
-    const key = f.trim().toLowerCase();
+  for (const p of players) for (const t of p.tags) {
+    const key = t.trim().toLowerCase();
     if (key) freq.set(key, (freq.get(key) ?? 0) + 1);
   }
-  return [...freq.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, k).map(([d]) => d);
+  const byRank = (a: [string, number], b: [string, number]) => b[1] - a[1] || a[0].localeCompare(b[0]);
+  const all = [...freq.entries()].sort(byRank);
+  const shared = all.filter(([, c]) => c >= 2);
+  // Prefer capabilities shared by >=2 players (discriminating); fall back to top tags otherwise.
+  return (shared.length >= 2 ? shared : all).slice(0, k).map(([d]) => d);
 }
 function buildBrief(category: string, players: PlayerProfile[], failures: ProfileFailure[], dims: string[]): string {
   const n = players.length, m = failures.length;
