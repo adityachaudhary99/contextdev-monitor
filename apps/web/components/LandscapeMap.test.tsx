@@ -14,7 +14,7 @@ describe("LandscapeMap", () => {
     render(<LandscapeMap landscape={landscape as never} />);
     expect(screen.getAllByAltText(/logo/i)).toHaveLength(2);
     expect(screen.getByText("capability breadth →")).toBeInTheDocument();
-    expect(screen.getByText("confidence ↑")).toBeInTheDocument();
-    expect(screen.getByText("Players by capability breadth and confidence")).toBeInTheDocument();
+    expect(screen.getByText("feature depth ↑")).toBeInTheDocument();
+    expect(screen.getByText("Players by capability breadth and feature depth")).toBeInTheDocument();
   });
 });

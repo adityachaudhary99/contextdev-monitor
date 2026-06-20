@@ -16,6 +16,7 @@ export default function LandscapeMap({ landscape }: LandscapeMapProps) {
   const players = landscape.players;
   if (players.length === 0) return null;
   const maxB = Math.max(1, dims.length);
+  const maxF = Math.max(1, ...players.map((p) => p.features.length));
 
   return (
     <figure className="flex flex-col gap-3">
@@ -29,17 +30,18 @@ export default function LandscapeMap({ landscape }: LandscapeMapProps) {
           </div>
           {/* axis labels */}
           <span className="absolute bottom-3 left-1/2 -translate-x-1/2 font-mono text-[11px] text-muted" aria-hidden="true">capability breadth →</span>
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 -rotate-90 font-mono text-[11px] text-muted" aria-hidden="true">confidence ↑</span>
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 -rotate-90 font-mono text-[11px] text-muted" aria-hidden="true">feature depth ↑</span>
           <span className="absolute right-3 top-3 font-mono text-[10px] uppercase tracking-wide text-muted/70" aria-hidden="true">leaders</span>
           {/* markers */}
           <div className="absolute inset-10">
             {players.map((p) => {
               const x = (breadth(p, dims) / maxB) * 100;
-              const y = p.confidence * 100;
-              const tone = p.confidence >= 0.67 ? "ring-accent" : p.confidence >= 0.34 ? "ring-primary" : "ring-muted";
+              const depth = p.features.length / maxF;
+              const y = depth * 100;
+              const tone = depth >= 0.67 ? "ring-accent" : depth >= 0.34 ? "ring-primary" : "ring-muted";
               return (
                 <div key={p.domain} className="group absolute -translate-x-1/2 translate-y-1/2" style={{ left: `${x}%`, bottom: `${y}%` }}>
-                  <span className={cn("block rounded-lg ring-2", tone)} title={`${p.name} — breadth ${breadth(p, dims)}/${maxB}, confidence ${p.confidence.toFixed(2)}`}>
+                  <span className={cn("block rounded-lg ring-2", tone)} title={`${p.name} — breadth ${breadth(p, dims)}/${maxB}, ${p.features.length} features`}>
                     <PlayerLogo name={p.name} domain={p.domain} size={28} />
                   </span>
                   <span className="pointer-events-none absolute left-1/2 top-full mt-1 -translate-x-1/2 whitespace-nowrap rounded bg-fg px-1.5 py-0.5 text-[10px] font-medium text-bg opacity-0 transition-opacity group-hover:opacity-100">
@@ -52,11 +54,11 @@ export default function LandscapeMap({ landscape }: LandscapeMapProps) {
         </div>
       </div>
       <table className="sr-only">
-        <caption>Players by capability breadth and confidence</caption>
-        <thead><tr><th>Player</th><th>Breadth</th><th>Confidence</th></tr></thead>
+        <caption>Players by capability breadth and feature depth</caption>
+        <thead><tr><th>Player</th><th>Breadth</th><th>Features</th></tr></thead>
         <tbody>
           {players.map((p) => (
-            <tr key={p.domain}><td>{p.name}</td><td>{breadth(p, dims)}/{maxB}</td><td>{p.confidence.toFixed(2)}</td></tr>
+            <tr key={p.domain}><td>{p.name}</td><td>{breadth(p, dims)}/{maxB}</td><td>{p.features.length}</td></tr>
           ))}
         </tbody>
       </table>
