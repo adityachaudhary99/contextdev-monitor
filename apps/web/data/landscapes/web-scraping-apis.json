@@ -1,0 +1,16 @@
+{
+  "category": "web scraping APIs",
+  "players": [
+    { "name": "Firecrawl", "domain": "firecrawl.dev", "oneLiner": "Turn any website into clean, LLM-ready markdown.", "tagline": null, "tags": ["api", "markdown", "crawl", "javascript rendering"], "features": ["Markdown & structured output", "JS rendering", "Recursive crawl"], "positioning": "Developer-friendly scraping for AI workloads", "links": { "site": "https://firecrawl.dev", "docs": "https://docs.firecrawl.dev", "pricing": "https://firecrawl.dev/pricing" }, "sourceUrl": "https://firecrawl.dev", "confidence": 0.92 },
+    { "name": "Apify", "domain": "apify.com", "oneLiner": "Full-stack platform for web scraping and browser automation.", "tagline": null, "tags": ["api", "no-code", "proxies", "crawl"], "features": ["Actor marketplace", "Scheduling", "Residential proxies"], "positioning": "A marketplace and platform for scrapers", "links": { "site": "https://apify.com", "docs": "https://docs.apify.com", "pricing": null }, "sourceUrl": "https://apify.com", "confidence": 0.85 },
+    { "name": "Oxylabs", "domain": "oxylabs.io", "oneLiner": "Premium proxies and a Web Scraper API at enterprise scale.", "tagline": null, "tags": ["proxies", "api", "javascript rendering", "captcha"], "features": ["100M+ residential proxies", "JS rendering", "CAPTCHA handling"], "positioning": "Enterprise proxy + scraping infrastructure", "links": { "site": "https://oxylabs.io", "docs": "https://developers.oxylabs.io", "pricing": null }, "sourceUrl": "https://oxylabs.io", "confidence": 0.78 },
+    { "name": "ScraperAPI", "domain": "scraperapi.com", "oneLiner": "Handle proxies, browsers and CAPTCHAs with one API call.", "tagline": null, "tags": ["api", "proxies", "captcha", "javascript rendering"], "features": ["Auto proxy rotation", "CAPTCHA bypass", "JS rendering"], "positioning": "Scraping infrastructure as a single API", "links": { "site": "https://scraperapi.com", "docs": "https://docs.scraperapi.com", "pricing": null }, "sourceUrl": "https://scraperapi.com", "confidence": 0.7 },
+    { "name": "ScrapingBee", "domain": "scrapingbee.com", "oneLiner": "A web scraping API that renders JavaScript and rotates proxies.", "tagline": null, "tags": ["api", "javascript rendering", "no-code"], "features": ["Headless Chrome", "Screenshots", "No-code recipes"], "positioning": "Simple JS-rendering scraping API", "links": { "site": "https://scrapingbee.com", "docs": "https://www.scrapingbee.com/documentation", "pricing": null }, "sourceUrl": "https://scrapingbee.com", "confidence": 0.62 }
+  ],
+  "failures": [],
+  "comparison": { "dimensions": ["api", "proxies", "javascript rendering", "captcha", "crawl", "no-code"] },
+  "brief": "Mapped 5 players in \"web scraping APIs\". Most common capabilities: api, proxies, javascript rendering. Players: Firecrawl, Apify, Oxylabs, ScraperAPI, ScrapingBee.",
+  "citations": [],
+  "creditsUsed": 96,
+  "latencyMs": 180000
+}
