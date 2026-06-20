@@ -39,6 +39,10 @@ describe("Page integration", () => {
 
     render(<Page />);
 
+    // Switch to pricing mode (default is map mode)
+    const pricingModeButton = screen.getByRole("button", { name: /track pricing/i });
+    fireEvent.click(pricingModeButton);
+
     const domainInput = screen.getByPlaceholderText(/e\.g\. stripe\.com/i);
     fireEvent.change(domainInput, { target: { value: "stripe.com" } });
 
@@ -60,6 +64,10 @@ describe("Page integration", () => {
     } as unknown as Response);
 
     render(<Page />);
+
+    // Switch to pricing mode (default is map mode)
+    const pricingModeButton = screen.getByRole("button", { name: /track pricing/i });
+    fireEvent.click(pricingModeButton);
 
     const domainInput = screen.getByPlaceholderText(/e\.g\. stripe\.com/i);
     fireEvent.change(domainInput, { target: { value: "acme.com" } });

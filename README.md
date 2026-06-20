@@ -9,6 +9,18 @@ Track a competitor's pricing page — get evidence-linked diffs, on demand.
 
 ## What it does
 
+The app has two modes, switchable from the top of the page:
+
+### Map a market (default)
+
+Enter a market category (e.g. "web scraping APIs"). The app:
+
+1. Discovers the key players via web search and deduplicates them.
+2. Profiles each player (name, positioning, features, pricing tier, confidence) through the [context.dev](https://context.dev?utm_source=contextdev-monitor&utm_medium=readme&utm_campaign=oss) API.
+3. Synthesises a **competitive landscape** — a comparison table across key dimensions, a brief summary, and per-player cards with citations.
+
+### Track pricing
+
 Enter a competitor domain. The app:
 
 1. Locates the pricing page via web search.
@@ -16,7 +28,7 @@ Enter a competitor domain. The app:
 3. Content-hashes the snapshot and diffs it against the prior one stored in-session.
 4. Shows the **full extracted pricing table** — captured as a *baseline* on the first run, then an evidence-cited **diff** ("what changed since last check", price moves flagged) on later runs — plus a panel showing credits used, latency, confidence, and any extraction failures.
 
-Clean dashboard UI with a **light / dark theme toggle** (light by default). No accounts. No scrapers to maintain. No cron jobs.
+Clean dashboard UI with a **light / dark theme toggle** (dark by default). No accounts. No scrapers to maintain. No cron jobs.
 
 ---
 
