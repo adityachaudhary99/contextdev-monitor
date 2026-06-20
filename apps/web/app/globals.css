@@ -1,14 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap');
 @tailwind base; @tailwind components; @tailwind utilities;
 :root {
-  --bg:#ffffff; --surface:#ffffff; --border:#eef0f4; --fg:#1a1f36; --muted:#697386;
-  --primary:#635bff; --primary-strong:#4b45cc; --primary-fg:#ffffff; --success:#0a7c42; --warn:#b45309; --danger:#dc2626; --change:#e11d48;
-  --shadow:0 1px 3px rgba(50,50,93,.14),0 2px 8px rgba(0,0,0,.05);
+  --bg:#f7f8fa; --surface:#ffffff; --surface-2:#f1f4f9; --border:#e3e8ef; --fg:#0f172a; --muted:#5b6472;
+  --primary:#1e40af; --primary-strong:#1e3a8a; --primary-fg:#ffffff;
+  --accent:#d97706; --accent-fg:#ffffff;
+  --success:#0a7c42; --warn:#b45309; --danger:#dc2626; --change:#e11d48;
+  --shadow:0 1px 3px rgba(15,23,42,.08),0 4px 16px rgba(15,23,42,.06);
 }
 .dark {
-  --bg:#0b0c0f; --surface:#101216; --border:#20242c; --fg:#e6edf3; --muted:#8b97a6;
-  --primary:#9db2ff; --primary-strong:#7c93f0; --primary-fg:#0b0c0f; --success:#5fd08a; --warn:#f6a96b; --danger:#ff6b6b; --change:#fb7185;
-  --shadow:0 0 0 1px rgba(255,255,255,.02);
+  --bg:#0a0e1a; --surface:#0f1626; --surface-2:#141d30; --border:#1f2a40; --fg:#e6edf6; --muted:#8a97ab;
+  --primary:#7aa2ff; --primary-strong:#9fbcff; --primary-fg:#0a0e1a;
+  --accent:#f0a945; --accent-fg:#0a0e1a;
+  --success:#5fd08a; --warn:#f6a96b; --danger:#ff6b6b; --change:#fb7185;
+  --shadow:0 0 0 1px rgba(255,255,255,.03),0 8px 24px rgba(0,0,0,.4);
 }
 body { @apply bg-bg text-fg font-sans; font-size:16px; }
-@media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
+@keyframes reveal { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+.reveal { animation:reveal .4s ease-out both; }
+@media (prefers-reduced-motion: reduce) { *, .reveal { transition:none !important; animation:none !important; } }
