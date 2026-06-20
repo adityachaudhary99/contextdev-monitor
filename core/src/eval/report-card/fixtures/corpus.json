@@ -4,64 +4,187 @@
     {
       "url": "https://firecrawl.dev",
       "domain": "firecrawl.dev",
-      "latencyMs": 1900,
+      "latencyMs": 6565,
       "credits": 11,
       "groundTruth": {
         "name": "Firecrawl",
         "oneLiner": "Turn any website into clean LLM-ready markdown",
-        "tags": ["api", "markdown", "crawl"],
-        "features": ["Markdown & structured output", "JavaScript rendering", "Recursive crawl"],
+        "tags": [
+          "api",
+          "markdown",
+          "crawl"
+        ],
+        "features": [
+          "Markdown & structured output",
+          "JavaScript rendering",
+          "Recursive crawl"
+        ],
         "positioning": "Developer-friendly scraping for AI workloads",
-        "links": { "site": "https://firecrawl.dev", "docs": "https://docs.firecrawl.dev", "pricing": "https://firecrawl.dev/pricing" }
+        "links": {
+          "site": "https://firecrawl.dev",
+          "docs": "https://docs.firecrawl.dev",
+          "pricing": "https://firecrawl.dev/pricing"
+        }
       },
       "extracted": {
         "name": "Firecrawl",
-        "oneLiner": "Turn websites into clean, LLM-ready markdown data",
-        "tagline": null,
-        "tags": ["api", "markdown"],
-        "features": ["Markdown output for LLMs", "JS rendering", "Website crawling"],
-        "positioning": "Developer-friendly scraping for AI",
-        "links": { "site": "https://firecrawl.dev", "docs": "https://docs.firecrawl.dev", "pricing": null }
+        "oneLiner": "The context API to search, scrape, and interact with the web at scale.",
+        "tagline": "Power AI agents with clean web data",
+        "tags": [
+          "web scraping",
+          "web search",
+          "AI agents",
+          "data extraction",
+          "web automation",
+          "open source",
+          "API",
+          "LLM-ready data"
+        ],
+        "features": [
+          "Search the web and get full content from results",
+          "Scrape clean, structured data from any page including markdown, JSON, screenshots",
+          "Interact with web pages using AI prompts or code (click, scroll, type, navigate)",
+          "Agent-ready for autonomous data gathering",
+          "JavaScript rendering and smart wait for dynamic content",
+          "Media parsing including PDFs, DOCX, spreadsheets",
+          "Advanced web coverage including JS-heavy pages",
+          "Token-efficient output optimized for LLMs",
+          "Open source with large community and SDKs for multiple languages",
+          "Browser sandbox for secure, managed interactive sessions",
+          "Parallel agents for batch processing at scale",
+          "Zero configuration, handles proxies, rendering, and complex sites automatically"
+        ],
+        "positioning": "Firecrawl is positioned as a comprehensive, developer-first infrastructure layer that enables AI systems and developers to reliably search, scrape, and interact with live web data at scale. It is ideal for AI companies and teams building applications that require clean, structured, and up-to-date web data, including deep research agents, RAG pipelines, lead enrichment, competitive intelligence, and AI-powered chatbots. Firecrawl differentiates itself by combining search, scrape, and interact capabilities with high reliability, speed, token efficiency, and open-source transparency, making it a best-in-class solution for powering AI agents and applications with live web context.",
+        "links": {
+          "site": "https://firecrawl.dev",
+          "docs": "https://docs.firecrawl.dev",
+          "pricing": "https://firecrawl.dev/pricing"
+        }
       }
     },
     {
       "url": "https://oxylabs.io",
       "domain": "oxylabs.io",
-      "latencyMs": 2600,
+      "latencyMs": 5026,
       "credits": 11,
       "groundTruth": {
         "name": "Oxylabs",
         "oneLiner": "Premium proxies and a web scraper API at enterprise scale",
-        "tags": ["proxies", "api", "captcha"],
-        "features": ["Residential proxies", "Web Scraper API", "CAPTCHA handling"],
+        "tags": [
+          "proxies",
+          "api",
+          "captcha"
+        ],
+        "features": [
+          "Residential proxies",
+          "Web Scraper API",
+          "CAPTCHA handling"
+        ],
         "positioning": "Enterprise-grade proxy and scraping infrastructure",
-        "links": { "site": "https://oxylabs.io", "docs": "https://developers.oxylabs.io", "pricing": "https://oxylabs.io/pricing" }
+        "links": {
+          "site": "https://oxylabs.io",
+          "docs": "https://developers.oxylabs.io",
+          "pricing": "https://oxylabs.io/pricing"
+        }
       },
       "extracted": {
         "name": "Oxylabs",
-        "oneLiner": "Industry-leading web intelligence collection platform",
-        "tagline": null,
-        "tags": ["proxies"],
-        "features": ["Proxy network"],
-        "positioning": "",
-        "links": { "site": "https://oxylabs.io", "docs": null, "pricing": null }
+        "oneLiner": "High Quality Proxy Service to Gather Data at Scale",
+        "tagline": "Access Any Public Data. Power Any Workflow.",
+        "tags": [
+          "proxy service",
+          "web scraping",
+          "data extraction",
+          "AI data",
+          "web automation",
+          "residential proxies",
+          "datacenter proxies",
+          "ISP proxies",
+          "mobile proxies",
+          "web scraper API",
+          "headless browser",
+          "AI tools"
+        ],
+        "features": [
+          "175M+ ethically sourced residential IPs for high reliability",
+          "High-speed, cost-effective datacenter proxies",
+          "Premium static residential ISP proxies from trusted ASNs",
+          "Dedicated proxies for data-intensive and demanding scraping tasks",
+          "AI-powered Web Unblocker for optimized scraping performance",
+          "Mobile proxies with 20M+ IPs from real mobile devices",
+          "All-in-one Web Scraper API for every stage of web scraping",
+          "Fast Search API tailored for AI workflows",
+          "Advanced Headless Browser automation",
+          "AI Studio suite for AI-powered scraping projects",
+          "Custom datasets tailored to exact needs",
+          "Free proxy manager tools for Chrome and Android",
+          "Open source community-driven scraping tools",
+          "Success-based pricing model for scraping results",
+          "Comprehensive documentation and developer support"
+        ],
+        "positioning": "Oxylabs positions itself as a premium, reliable, and scalable proxy and web scraping platform designed to serve a wide range of use cases including AI training, e-commerce, marketing intelligence, cybersecurity, and custom data workflows. It emphasizes high-quality, ethically sourced IPs, advanced AI-powered tools, and comprehensive support to enable businesses and developers to access public data efficiently and at scale. The platform targets enterprises and professionals needing robust, maintenance-free scraping solutions with flexible pricing and extensive integrations.",
+        "links": {
+          "site": "https://oxylabs.io/",
+          "docs": "https://developers.oxylabs.io",
+          "pricing": "https://oxylabs.io/products/scraper-api/web/pricing"
+        }
       }
     },
     {
       "url": "https://webscraper.io",
       "domain": "webscraper.io",
-      "latencyMs": 4200,
-      "credits": 1,
-      "failureReason": "http_403",
+      "latencyMs": 14381,
+      "credits": 11,
       "groundTruth": {
         "name": "Web Scraper",
         "oneLiner": "Point-and-click browser-extension web scraping",
-        "tags": ["no-code", "browser-extension"],
-        "features": ["Visual selector", "Cloud scraping"],
+        "tags": [
+          "no-code",
+          "browser-extension"
+        ],
+        "features": [
+          "Visual selector",
+          "Cloud scraping"
+        ],
         "positioning": "No-code scraping for non-developers",
-        "links": { "site": "https://webscraper.io", "docs": null, "pricing": "https://webscraper.io/pricing" }
+        "links": {
+          "site": "https://webscraper.io",
+          "docs": null,
+          "pricing": "https://webscraper.io/pricing"
+        }
       },
-      "extracted": null
+      "extracted": {
+        "name": "Web Scraper",
+        "oneLiner": "Powerful web scraper for regular and professional use with point-and-click interface and cloud automation.",
+        "tagline": "The #1 web scraping extension",
+        "tags": [
+          "web scraping",
+          "data extraction",
+          "automation",
+          "cloud scraping",
+          "browser extension",
+          "API",
+          "data integration"
+        ],
+        "features": [
+          "Point-and-click interface with no coding required",
+          "Extract data from dynamic and multi-level navigation websites",
+          "Handle JavaScript sites with full JS execution and Ajax waiting",
+          "Customize data extraction using sitemaps",
+          "Export data in CSV, XLSX, and JSON formats",
+          "Cloud scraping with scheduler, API, proxy support, and parser",
+          "Integrations with Dropbox, Google Cloud, Google Drive, Google Sheets, Microsoft Azure, Amazon S3",
+          "Captcha and bot protection bypass with automatic retries",
+          "Free browser extension for local use",
+          "Cloud subscription plans for automated scraping and data management"
+        ],
+        "positioning": "Web Scraper is positioned as a versatile and powerful web scraping tool suitable for both regular users and professionals who need to extract large amounts of data efficiently. It offers an easy-to-use interface combined with advanced cloud features for automation, integration, and overcoming anti-scraping measures. It targets users who want to automate data extraction without coding, scale scraping operations, and integrate data into various systems.",
+        "links": {
+          "site": "https://webscraper.io/",
+          "docs": "https://webscraper.io/documentation",
+          "pricing": "https://webscraper.io/pricing"
+        }
+      }
     }
   ]
 }
