@@ -11,3 +11,5 @@ export { runTracker } from "./pipeline/run-tracker.js";
 export type { Report } from "./report/report.js";
 export type { NormalizedSnapshot, NormalizedPlan } from "./trackers/pricing/normalize.js";
 export type { ReportStatus } from "./report/report.js";
+export { runLandscape } from "./landscape/run-landscape.js";
+export type { Landscape, PlayerProfile, ProfileFailure } from "./landscape/types.js";
