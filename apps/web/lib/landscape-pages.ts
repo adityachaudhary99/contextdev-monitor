@@ -9,8 +9,6 @@ export type PagesDeps = { generate?: (category: string) => Promise<RunLandscapeR
 
 const ON_DEMAND_ENABLED = Boolean(process.env.CONTEXTDEV_API_KEY);
 
-export function isCuratedSlug(slug: string): boolean { return getCurated(slug) !== null; }
-
 export async function getOrGenerateLandscape(slug: string, deps: PagesDeps = {}): Promise<Landscape | null> {
   const curated = getCurated(slug);
   if (curated) return curated;
