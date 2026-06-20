@@ -18,6 +18,20 @@ Category in → an **auto-built, cited, structured competitive landscape** out (
 
 Frontend tooling (global rule): `ui-ux-pro-max` skill + 21st.dev community components + getdesign.md DESIGN.md refs.
 
+### v2 shipped (2026-06-20)
+- **Report-card** — reproducible, honest eval of context.dev extraction → `core/REPORT-CARD.md` (`npm -w @contextdev/core run report-card`; `--collect` for a live run).
+- **Public landscape pages + visual map** — static curated + on-demand `/landscape/<slug>` pages with a positioning map; `apps/web/scripts/gen-landscapes.ts` adds curated snapshots.
+- **Agent skill** — see below.
+
+## Agent skill: Landscape Cartographer
+
+`skills/landscape-cartographer/` — a Claude-Code skill (+ portable prompt) that maps a market
+**category** → a cited, structured `Landscape`, over context.dev's MCP server when available,
+with the `cartographer` CLI as the proven fallback (`npm -w @contextdev/core run cartographer -- "<category>"`).
+`SKILL.md` = the skill; `PROMPT.md` = paste-in for Cursor/Cline; `EXAMPLE.md` = a real run +
+honest evaluation. (`.claude/` is git-ignored here, so the skill ships as a plain folder — copy
+it into `~/.claude/skills/` to use.)
+
 ## Stack
 
 Next.js (App Router) · TypeScript · Tailwind · Vercel · Anthropic SDK (default LLM)
