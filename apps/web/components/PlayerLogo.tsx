@@ -10,7 +10,7 @@ interface PlayerLogoProps {
 }
 
 /** Real company logo by domain with a graceful fallback chain:
- *  Clearbit → Google favicon → monogram. */
+ *  DuckDuckGo icons → Google favicon → monogram. */
 export default function PlayerLogo({ name, domain, size = 40, className }: PlayerLogoProps) {
   const sources = [
     `https://icons.duckduckgo.com/ip3/${domain}.ico`,
