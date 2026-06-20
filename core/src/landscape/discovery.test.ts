@@ -28,4 +28,19 @@ describe("discoverPlayers", () => {
     const r = await discoverPlayers("x", client([{ title: "Reddit", url: "https://reddit.com/r/x" }]));
     expect(r).toEqual({ ok: false, failure: { url: "", reason: "no_players_found" } });
   });
+  it("drops blog/publishing/aggregator hosts, keeps real products", async () => {
+    const r = await discoverPlayers("scraping apis", client([
+      { title: "Apify", url: "https://apify.com/" },
+      { title: "Some post", url: "https://someone.substack.com/p/best-tools" }, // publishing → dropped
+      { title: "Dev post", url: "https://dev.to/x/scraping" },                  // dev.to → dropped
+      { title: "Acme blog", url: "https://blog.acme.com/scraping" },            // blog subdomain → dropped
+      { title: "Shootout", url: "https://scraperx-vs-apify.com/" },             // -vs- → dropped
+      { title: "Oxylabs", url: "https://oxylabs.io/" },
+    ]), { maxPlayers: 8 });
+    expect(r.ok).toBe(true);
+    if (r.ok) {
+      const domains = r.value.map((p) => rootDomain(p.url));
+      expect(domains).toEqual(["apify.com", "oxylabs.io"]);
+    }
+  });
 });

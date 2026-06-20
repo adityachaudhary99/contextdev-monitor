@@ -5,12 +5,21 @@ const DENY = new Set([
   "g2.com","capterra.com","getapp.com","trustradius.com","producthunt.com","wikipedia.org",
   "reddit.com","youtube.com","medium.com","quora.com","linkedin.com","twitter.com","x.com",
   "github.com","stackoverflow.com","gartner.com","forbes.com","techcrunch.com",
+  // v1.1: blog / publishing / aggregator / registry / social platforms — not products
+  "dev.to","substack.com","hashnode.com","blogspot.com","wordpress.com","tumblr.com",
+  "notion.site","webflow.io","gitbook.io","npmjs.com","pypi.org","slideshare.net",
+  "glassdoor.com","crunchbase.com","g2crowd.com","softwareadvice.com","sourceforge.net",
+  "slant.co","facebook.com","instagram.com","pinterest.com","tiktok.com",
 ]);
 export function rootDomain(url: string): string | null {
   try { return new URL(url).hostname.toLowerCase().replace(/^www\./, ""); } catch { return null; }
 }
 function isAggregator(domain: string): boolean {
-  return /(^|\.)(blog|reviews?|compare|alternatives?|vs|list|directory)\./.test(domain) || domain.includes("best-");
+  return (
+    /(^|\.)(blog|news|reviews?|compare|comparison|alternatives?|vs|versus|listicle|directory|wiki)\./.test(domain) ||
+    /\.(medium|substack|wordpress|blogspot|hashnode|tumblr)\.com$/.test(domain) ||
+    domain.includes("best-") || domain.includes("top-") || /-vs-/.test(domain) || /-alternatives?/.test(domain)
+  );
 }
 export async function discoverPlayers(
   category: string, client: ContextClient, opts?: { maxPlayers?: number },
