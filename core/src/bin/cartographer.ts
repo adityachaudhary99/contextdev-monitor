@@ -20,6 +20,7 @@ if (!apiKey) { console.error("Set CONTEXTDEV_API_KEY"); process.exit(1); }
 if (!category) { console.error('Usage: npm -w @contextdev/core run cartographer -- "<category>" [--max N] [--json <path>]'); process.exit(1); }
 
 const maxPlayers = Number(flag("--max") ?? 8);
+if (Number.isNaN(maxPlayers) || maxPlayers < 1) { console.error("--max requires a positive number"); process.exit(1); }
 const jsonPath = flag("--json");
 const day = new Date().toISOString().slice(0, 10);
 const ledger = new CreditLedger();
