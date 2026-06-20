@@ -13,8 +13,8 @@ interface PlayerLogoProps {
  *  Clearbit → Google favicon → monogram. */
 export default function PlayerLogo({ name, domain, size = 40, className }: PlayerLogoProps) {
   const sources = [
-    `https://logo.clearbit.com/${domain}`,
-    `https://www.google.com/s2/favicons?domain=${domain}&sz=64`,
+    `https://icons.duckduckgo.com/ip3/${domain}.ico`,
+    `https://www.google.com/s2/favicons?domain=${domain}&sz=128`,
   ];
   const [idx, setIdx] = useState(0);
   const initial = (name.trim()[0] ?? domain[0] ?? "?").toUpperCase();
