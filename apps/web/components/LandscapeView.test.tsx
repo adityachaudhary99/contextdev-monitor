@@ -15,7 +15,7 @@ describe("LandscapeView", () => {
   it("renders the brief, a player card, and the comparison dimensions", () => {
     render(<LandscapeView landscape={landscape} />);
     expect(screen.getByText(/scraping apis/i)).toBeInTheDocument();
-    expect(screen.getByText("Firecrawl")).toBeInTheDocument();
+    expect(screen.getAllByText("Firecrawl").length).toBeGreaterThan(0);
     expect(screen.getByText("Web scraping API")).toBeInTheDocument();
     expect(screen.getAllByText(/markdown/i).length).toBeGreaterThan(0);
     expect(screen.getByRole("link", { name: /firecrawl\.dev/i })).toHaveAttribute("href", "https://firecrawl.dev");

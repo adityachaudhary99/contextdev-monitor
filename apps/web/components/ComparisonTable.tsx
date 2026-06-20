@@ -26,7 +26,10 @@ export default function ComparisonTable({ landscape }: ComparisonTableProps) {
             const featsLower = player.features.map((f) => f.toLowerCase());
             return (
               <Tr key={player.domain}>
-                <Td className="font-mono text-sm">{player.domain}</Td>
+                <Td className="font-semibold text-fg">
+                  {player.name}
+                  <span className="block text-xs font-mono text-muted">{player.domain}</span>
+                </Td>
                 {dims.map((dim) => (
                   <Td key={dim}>
                     {featsLower.includes(dim.toLowerCase()) ? (
