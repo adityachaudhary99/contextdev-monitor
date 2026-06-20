@@ -7,7 +7,7 @@
 }
 .dark {
   --bg:#0b0c0f; --surface:#101216; --border:#20242c; --fg:#e6edf3; --muted:#8b97a6;
-  --primary:#9db2ff; --primary-strong:#7c93f0; --primary-fg:#ffffff; --success:#5fd08a; --warn:#f6a96b; --danger:#ff6b6b; --change:#fb7185;
+  --primary:#9db2ff; --primary-strong:#7c93f0; --primary-fg:#0b0c0f; --success:#5fd08a; --warn:#f6a96b; --danger:#ff6b6b; --change:#fb7185;
   --shadow:0 0 0 1px rgba(255,255,255,.02);
 }
 body { @apply bg-bg text-fg font-sans; font-size:16px; }

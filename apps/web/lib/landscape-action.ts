@@ -12,8 +12,6 @@ import {
 import {
   demoBudget,
   sessionBudget,
-  DEMO_DAILY_CAP,
-  SESSION_DAILY_CAP,
 } from "./budget.js";
 
 // ---------------------------------------------------------------------------

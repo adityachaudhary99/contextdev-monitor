@@ -28,7 +28,7 @@ Enter a competitor domain. The app:
 3. Content-hashes the snapshot and diffs it against the prior one stored in-session.
 4. Shows the **full extracted pricing table** — captured as a *baseline* on the first run, then an evidence-cited **diff** ("what changed since last check", price moves flagged) on later runs — plus a panel showing credits used, latency, confidence, and any extraction failures.
 
-Clean dashboard UI with a **light / dark theme toggle** (dark by default). No accounts. No scrapers to maintain. No cron jobs.
+Clean dashboard UI with a **light / dark theme toggle** (light by default). No accounts. No scrapers to maintain. No cron jobs.
 
 ---
 

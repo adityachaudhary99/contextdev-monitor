@@ -24,7 +24,7 @@ export default function ModeToggle({ value, onChange }: ModeToggleProps) {
           "flex min-h-[44px] items-center gap-1.5 rounded px-3 py-2 text-sm font-medium transition-colors duration-200",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
           value === "demo"
-            ? "bg-primary text-white"
+            ? "bg-primary text-primary-fg"
             : "text-muted hover:text-fg cursor-pointer",
         ].join(" ")}
       >
@@ -39,7 +39,7 @@ export default function ModeToggle({ value, onChange }: ModeToggleProps) {
           "flex min-h-[44px] items-center gap-1.5 rounded px-3 py-2 text-sm font-medium transition-colors duration-200",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
           value === "byo"
-            ? "bg-primary text-white"
+            ? "bg-primary text-primary-fg"
             : "text-muted hover:text-fg cursor-pointer",
         ].join(" ")}
       >
