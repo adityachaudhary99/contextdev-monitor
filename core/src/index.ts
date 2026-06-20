@@ -14,4 +14,5 @@ export type { ReportStatus } from "./report/report.js";
 export { runLandscape } from "./landscape/run-landscape.js";
 export type { Landscape, PlayerProfile, ProfileFailure } from "./landscape/types.js";
 export { slugify, deslugify } from "./landscape/slug.js";
+export { categoryTerms, isRelevant } from "./landscape/relevance.js";
 export { InMemoryLandscapeStore, type LandscapeStore } from "./cache/landscape-store.js";

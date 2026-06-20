@@ -5,6 +5,7 @@ import type { Landscape, PlayerProfile, ProfileFailure } from "./types.js";
 import { discoverPlayers, rootDomain } from "./discovery.js";
 import { profilePlayer } from "./profiler.js";
 import { buildLandscape } from "./synthesis.js";
+import { isRelevant } from "./relevance.js";
 
 async function mapBounded<T, R>(items: T[], limit: number, fn: (item: T) => Promise<R>): Promise<R[]> {
   const out: R[] = new Array(items.length);
@@ -32,8 +33,12 @@ export async function runLandscape(args: {
   const players: PlayerProfile[] = [];
   const failures: ProfileFailure[] = [];
   results.forEach((r, idx) => {
-    if (r.ok) players.push(r.value);
-    else failures.push({ url: disc.value[idx].url, domain: rootDomain(disc.value[idx].url) ?? "", reason: r.failure.reason });
+    if (r.ok) {
+      if (isRelevant(r.value, args.category)) players.push(r.value);
+      else failures.push({ url: disc.value[idx].url, domain: r.value.domain, reason: "off_category" });
+    } else {
+      failures.push({ url: disc.value[idx].url, domain: rootDomain(disc.value[idx].url) ?? "", reason: r.failure.reason });
+    }
   });
   return done(players, failures);
 }

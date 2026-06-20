@@ -16,7 +16,7 @@ describe("runLandscape", () => {
   it("discovers + profiles players, isolating failures", async () => {
     const c = client(
       [{ title: "Firecrawl", url: "https://firecrawl.dev/" }, { title: "Jina", url: "https://jina.ai/" }],
-      { "https://firecrawl.dev": { name: "Firecrawl", oneLiner: "scrape", features: ["markdown"], positioning: "dev" } },
+      { "https://firecrawl.dev": { name: "Firecrawl", oneLiner: "web scraping and crawling", features: ["markdown"], positioning: "scraping dev" } },
       // jina has no profile → extract fails → ProfileFailure
     );
     const ls = await runLandscape({ category: "scraping apis", client: c, ledger: new CreditLedger(), now: () => 1000 });
@@ -29,5 +29,20 @@ describe("runLandscape", () => {
     const ls = await runLandscape({ category: "x", client: c, ledger: new CreditLedger(), now: () => 1000 });
     expect(ls.players).toHaveLength(0);
     expect(ls.failures[0].reason).toBe("no_players_found");
+  });
+  it("drops off-category profiled players into failures (relevance gate)", async () => {
+    const c = {
+      webSearch: async () => ({ ok: true, value: { results: [
+        { title: "CodeRabbit", url: "https://coderabbit.ai/" },
+        { title: "DigitalOcean", url: "https://digitalocean.com/" },
+      ] } }),
+      scrapeMarkdown: async (url: string) => ({ ok: true, value: { url, markdown: "# x" } }),
+      extractStructured: async (url: string) => ({ ok: true, value: url.includes("coderabbit")
+        ? { name: "CodeRabbit", oneLiner: "AI code review for pull requests", tags: ["code review"], features: ["reviews"], positioning: "code review", domain: "coderabbit.ai" }
+        : { name: "DigitalOcean", oneLiner: "Cloud hosting and infrastructure", tags: ["cloud"], features: ["droplets"], positioning: "hosting", domain: "digitalocean.com" } }),
+    } as never;
+    const ls = await runLandscape({ category: "AI code review tools", client: c, ledger: new CreditLedger(), maxPlayers: 8, concurrency: 2, now: () => 0 });
+    expect(ls.players.map((p) => p.name)).toEqual(["CodeRabbit"]);
+    expect(ls.failures.some((f) => f.reason === "off_category" && f.domain === "digitalocean.com")).toBe(true);
   });
 });
