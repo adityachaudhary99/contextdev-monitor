@@ -21,14 +21,13 @@ afterEach(() => {
 });
 
 describe("Page integration", () => {
-  it("renders the product wordmark", () => {
+  it("renders the primary mode switch", () => {
     vi.spyOn(globalThis, "fetch").mockResolvedValue({
       ok: true,
       json: async () => ({ report: fixtureReport }),
     } as Response);
-
     render(<Page />);
-    expect(screen.getByText(/Intelligence Monitor/i)).toBeTruthy();
+    expect(screen.getByRole("button", { name: /map a market/i })).toBeInTheDocument();
   });
 
   it("shows report headline and change detail after successful submit", async () => {

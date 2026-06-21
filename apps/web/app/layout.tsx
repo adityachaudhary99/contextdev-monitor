@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "../components/ThemeProvider.js";
+import Header from "../components/Header.js";
+import Footer from "../components/Footer.js";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://contextdev-monitor.vercel.app"),
@@ -27,7 +29,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <div className="flex min-h-screen flex-col bg-bg">
+            <Header />
+            {children}
+            <Footer />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

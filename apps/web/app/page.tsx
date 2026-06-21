@@ -8,8 +8,6 @@ import { CONTEXT_DEV_UTM } from "../lib/constants.js";
 import DomainForm from "../components/DomainForm.js";
 import ReportView from "../components/ReportView.js";
 import LandscapeView from "../components/LandscapeView.js";
-import Footer from "../components/Footer.js";
-import ThemeToggle from "../components/ThemeToggle.js";
 import ModeToggle from "../components/ModeToggle.js";
 import type { Mode as ApiMode } from "../components/ModeToggle.js";
 
@@ -283,70 +281,46 @@ export default function Page() {
   const [primaryMode, setPrimaryMode] = useState<PrimaryMode>("map");
 
   return (
-    <div className="flex min-h-screen flex-col bg-bg">
-      {/* Header */}
-      <header className="border-b border-border bg-bg">
-        <div className="mx-auto max-w-5xl px-6 py-5">
-          <div className="flex items-center justify-between gap-4">
-            <div>
-              <h1 className="font-mono text-2xl font-semibold text-fg">
-                Context.dev{" "}
-                <span className="text-primary">Intelligence Monitor</span>
-              </h1>
-              <p className="mt-1 font-sans text-sm text-muted">
-                Track a competitor&apos;s pricing — or map an entire market — on demand.
-              </p>
-            </div>
-            <ThemeToggle />
-          </div>
-        </div>
-      </header>
-
-      {/* Main content */}
-      <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-10">
-        {/* Primary mode switch */}
-        <div
-          role="group"
-          aria-label="App mode"
-          className="mb-6 inline-flex rounded-md border border-border bg-surface p-0.5"
+    <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-10">
+      <p className="mb-6 max-w-2xl text-sm text-muted">
+        Map an entire market into a cited competitive landscape — or track a competitor&apos;s pricing — on demand.
+      </p>
+      {/* Primary mode switch */}
+      <div
+        role="group"
+        aria-label="App mode"
+        className="mb-6 inline-flex rounded-md border border-border bg-surface p-0.5"
+      >
+        <button
+          type="button"
+          aria-pressed={primaryMode === "map"}
+          onClick={() => setPrimaryMode("map")}
+          className={[
+            "flex min-h-[44px] items-center gap-2 rounded px-4 py-2 text-sm font-medium transition-colors duration-200",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+            primaryMode === "map" ? "bg-primary text-primary-fg" : "text-muted hover:text-fg cursor-pointer",
+          ].join(" ")}
         >
-          <button
-            type="button"
-            aria-pressed={primaryMode === "map"}
-            onClick={() => setPrimaryMode("map")}
-            className={[
-              "flex min-h-[44px] items-center gap-2 rounded px-4 py-2 text-sm font-medium transition-colors duration-200",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
-              primaryMode === "map"
-                ? "bg-primary text-primary-fg"
-                : "text-muted hover:text-fg cursor-pointer",
-            ].join(" ")}
-          >
-            <Map size={15} aria-hidden="true" />
-            Map a market
-          </button>
-          <button
-            type="button"
-            aria-pressed={primaryMode === "pricing"}
-            onClick={() => setPrimaryMode("pricing")}
-            className={[
-              "flex min-h-[44px] items-center gap-2 rounded px-4 py-2 text-sm font-medium transition-colors duration-200",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
-              primaryMode === "pricing"
-                ? "bg-primary text-primary-fg"
-                : "text-muted hover:text-fg cursor-pointer",
-            ].join(" ")}
-          >
-            <DollarSign size={15} aria-hidden="true" />
-            Track pricing
-          </button>
-        </div>
+          <Map size={15} aria-hidden="true" />
+          Map a market
+        </button>
+        <button
+          type="button"
+          aria-pressed={primaryMode === "pricing"}
+          onClick={() => setPrimaryMode("pricing")}
+          className={[
+            "flex min-h-[44px] items-center gap-2 rounded px-4 py-2 text-sm font-medium transition-colors duration-200",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+            primaryMode === "pricing" ? "bg-primary text-primary-fg" : "text-muted hover:text-fg cursor-pointer",
+          ].join(" ")}
+        >
+          <DollarSign size={15} aria-hidden="true" />
+          Track pricing
+        </button>
+      </div>
 
-        {/* Mode panels */}
-        {primaryMode === "map" ? <MapModePanel /> : <PricingModePanel />}
-      </main>
-
-      <Footer />
-    </div>
+      {/* Mode panels */}
+      {primaryMode === "map" ? <MapModePanel /> : <PricingModePanel />}
+    </main>
   );
 }
