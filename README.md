@@ -152,9 +152,10 @@ npm run test -w core                                    # core engine
 npm run test -w apps/web -- --poolOptions.threads.maxThreads=1   # web (single-threaded: the default pool can OOM)
 ```
 
-**Deploy to Vercel:** import the repo, set `CONTEXTDEV_API_KEY` as a server-only env var (do **not**
-prefix with `NEXT_PUBLIC_`), and deploy. The monorepo root is the project root; Vercel auto-detects
-the Next.js app under `apps/web`.
+**Deploy to Vercel:** import the GitHub repo, set the project's **Root Directory to `apps/web`**
+(Vercel detects Next.js there and auto-installs the npm workspace from the repo root), add
+`CONTEXTDEV_API_KEY` as a server-only env var (do **not** prefix with `NEXT_PUBLIC_`), and deploy.
+Every push then auto-deploys.
 
 ---
 
