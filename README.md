@@ -74,10 +74,10 @@ cp apps/web/.env.example apps/web/.env.local
 # then edit apps/web/.env.local and set CONTEXTDEV_API_KEY=<your key>
 ```
 
-Start the web app:
+Start the web app (the workspace lives at `apps/web`):
 
 ```bash
-npm -w web dev
+npm run dev -w apps/web
 ```
 
 Open **http://localhost:3000** — "Map a market" is the default mode; curated landscape pages live
@@ -87,20 +87,20 @@ at `/landscape`.
 
 ```bash
 # Map a category from the terminal (the agent-skill's fallback):
-CONTEXTDEV_API_KEY=<key> npm -w @contextdev/core run cartographer -- "web scraping APIs" [--max 8] [--json out.json]
+CONTEXTDEV_API_KEY=<key> npm run cartographer -w core -- "web scraping APIs" --max 8 --json out.json
 
 # Add a curated SEO landscape page (writes apps/web/data/landscapes/<slug>.json):
 CONTEXTDEV_API_KEY=<key> npx tsx apps/web/scripts/gen-landscapes.ts "headless CMS"
 
 # Regenerate the honest extraction report-card from a live run:
-CONTEXTDEV_API_KEY=<key> npm -w @contextdev/core run report-card -- --collect
+CONTEXTDEV_API_KEY=<key> npm run report-card -w core -- --collect
 ```
 
 ### Tests
 
 ```bash
-npm -w @contextdev/core test          # core engine
-npm -w web test -- --poolOptions.threads.maxThreads=1   # web (single-threaded: the default pool can OOM)
+npm run test -w core                                    # core engine
+npm run test -w apps/web -- --poolOptions.threads.maxThreads=1   # web (single-threaded: the default pool can OOM)
 ```
 
 **Deploy to Vercel:** import the repo, set `CONTEXTDEV_API_KEY` as a server-only env var (do **not**
