@@ -4,6 +4,12 @@ export type PlayerProfile = {
   tags: string[]; features: string[]; positioning: string;
   links: { site: string | null; docs: string | null; pricing: string | null };
   sourceUrl: string; confidence: number;
+  pricing?: { free: boolean | null; startingPrice: string | null; model: string | null };
+  targetSegment?: string;
+  differentiators?: string[];
+  socialProof?: string;
+  founded?: string;
+  openSource?: boolean | null;
 };
 export type ProfileFailure = { url: string; domain: string; reason: string };
 export type Landscape = {

@@ -17,6 +17,8 @@ export async function profilePlayer(url: string, client: ContextClient): Promise
   return { ok: true, value: {
     name: p.name, domain: rootDomain(url) ?? url, oneLiner: p.oneLiner, tagline: p.tagline,
     tags: resolveTags(p.tags, p.features), features: p.features, positioning: p.positioning, links: p.links,
+    pricing: p.pricing, targetSegment: p.targetSegment, differentiators: p.differentiators,
+    socialProof: p.socialProof, founded: p.founded, openSource: p.openSource,
     sourceUrl: url, confidence: Math.round(confidence * 100) / 100,
   } };
 }

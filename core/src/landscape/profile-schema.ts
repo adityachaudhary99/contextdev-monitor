@@ -9,6 +9,16 @@ export const ProfileSchema = z.object({
   features: z.array(z.string()).default([]),
   positioning: z.string().default(""),
   links: z.object({ site: LinkStr, docs: LinkStr, pricing: LinkStr }).default({ site: null, docs: null, pricing: null }),
+  pricing: z.object({
+    free: z.boolean().nullable().default(null),
+    startingPrice: z.string().nullable().default(null),
+    model: z.string().nullable().default(null),
+  }).default({ free: null, startingPrice: null, model: null }),
+  targetSegment: z.string().default(""),
+  differentiators: z.array(z.string()).default([]),
+  socialProof: z.string().default(""),
+  founded: z.string().default(""),
+  openSource: z.boolean().nullable().default(null),
 });
 export type ProfileExtract = z.infer<typeof ProfileSchema>;
 
@@ -25,6 +35,16 @@ export const profileJsonSchema = {
     links: { type: "object", properties: {
       site: { type: ["string", "null"] }, docs: { type: ["string", "null"] }, pricing: { type: ["string", "null"] },
     } },
+    pricing: { type: "object", properties: {
+      free: { type: ["boolean", "null"] },
+      startingPrice: { type: ["string", "null"] },
+      model: { type: ["string", "null"] },
+    } },
+    targetSegment: { type: "string" },
+    differentiators: { type: "array", items: { type: "string" } },
+    socialProof: { type: "string" },
+    founded: { type: "string" },
+    openSource: { type: ["boolean", "null"] },
   },
   required: ["name"],
 } as const;
