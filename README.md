@@ -63,6 +63,44 @@ search billing) are documented and handled in `core/`. Full numbers + methodolog
 
 ---
 
+## Architecture
+
+One repo, **npm workspaces** — two real packages plus a couple of plain folders:
+
+```
+contextdev-monitor/              # root: workspace glue only (workspaces: ["core","apps/*"])
+├── core/      →  @contextdev/core   # THE ENGINE — framework-free TypeScript (deps: zod only).
+│   └── src/      context.dev client · credit ledger · landscape pipeline
+│                 (discover → profile → synthesize) · relevance + optional LLM gate ·
+│                 the report-card eval · the `cartographer` CLI.
+├── apps/web/  →  web                 # THE UI — Next.js 15.  A thin shell over the engine;
+│                 the API key is read only in server routes.  depends on it: "@contextdev/core": "*"
+├── skills/landscape-cartographer/    # NOT a package — just SKILL.md / PROMPT.md / EXAMPLE.md
+│                                     # (a Claude-Code agent-skill that points at core's CLI)
+└── docs/                             # the README screenshot
+```
+
+**`core` is the brain; everything else is a face on it.** The web app, the `cartographer` CLI,
+the report-card eval, and the agent-skill all drive the *same* engine — so you can map a category
+from a browser, a terminal, CI, or an AI agent without dragging a web framework along.
+
+**No build step for `core`.** Its `package.json` `exports` points straight at `./src/index.ts`
+(raw TypeScript), and `apps/web/next.config.mjs` sets `transpilePackages: ["@contextdev/core"]`
++ an `extensionAlias` (`.js`→`.ts`), so Next compiles the app **and** core's TS together in one
+pass. The CLI and tests run the TS directly via `tsx`/`vitest`. That's why one `npm install` +
+one `npm run dev` boots everything — the package split is invisible at runtime, it just lets the
+engine be reused outside the UI.
+
+| Command | Runs |
+|---|---|
+| `npm install` (root) | installs both workspaces; symlinks `core` into `apps/web` |
+| `npm run dev -w apps/web` · `next build` | the web UI **+ core's TS inline** (no separate core build) |
+| `npm run cartographer -w core` · `npm run test -w core` | core's TS directly via `tsx`/`vitest` |
+
+Plain npm workspaces — no Turborepo, no extra bundler beyond Next.
+
+---
+
 ## Run locally
 
 Requires Node 20+. Install (npm workspaces — installs `core` + `apps/web`):
