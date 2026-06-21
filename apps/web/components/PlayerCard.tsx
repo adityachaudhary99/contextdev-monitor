@@ -1,5 +1,5 @@
 import type { PlayerProfile } from "@contextdev/core";
-import { ExternalLink, FileText } from "lucide-react";
+import { ExternalLink, FileText, Target, Calendar, GitBranch } from "lucide-react";
 import { Card, CardContent } from "./ui/card.js";
 import { Badge } from "./ui/badge.js";
 import PlayerLogo from "./PlayerLogo.js";
@@ -28,18 +28,42 @@ function ConfidenceBar({ value }: { value: number }) {
 export default function PlayerCard({ player, n }: PlayerCardProps) {
   const topFeatures = player.features.slice(0, 4);
   const topTags = player.tags.slice(0, 5);
+  const pricing = player.pricing;
+  const hasFacts = Boolean(pricing?.free || pricing?.startingPrice || player.targetSegment || player.founded);
   return (
     <Card className="group flex h-full flex-col transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-card">
-      <CardContent className="flex flex-1 flex-col gap-4 p-5">
+      <CardContent className="flex flex-1 flex-col gap-3.5 p-5">
         <div className="flex items-start gap-3">
           <PlayerLogo name={player.name} domain={player.domain} size={40} />
           <div className="min-w-0 flex-1">
-            <h3 className="truncate font-semibold text-fg">{player.name}</h3>
+            <div className="flex items-center gap-2">
+              <h3 className="truncate font-semibold text-fg">{player.name}</h3>
+              {player.openSource && (
+                <span className="inline-flex shrink-0 items-center gap-1 rounded bg-success/10 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-success">
+                  <GitBranch size={10} aria-hidden="true" /> open source
+                </span>
+              )}
+            </div>
             <p className="truncate font-mono text-xs text-muted">{player.domain}</p>
           </div>
         </div>
 
         <p className="line-clamp-2 text-sm text-muted">{player.oneLiner}</p>
+
+        {hasFacts && (
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted">
+            {pricing?.free && <span className="font-semibold text-success">Free tier</span>}
+            {pricing?.startingPrice && (
+              <span>from <span className="font-mono text-fg">{pricing.startingPrice}</span></span>
+            )}
+            {player.targetSegment && (
+              <span className="inline-flex items-center gap-1"><Target size={12} aria-hidden="true" />{player.targetSegment}</span>
+            )}
+            {player.founded && (
+              <span className="inline-flex items-center gap-1"><Calendar size={12} aria-hidden="true" />{player.founded}</span>
+            )}
+          </div>
+        )}
 
         {topTags.length > 0 && (
           <div className="flex flex-wrap gap-1.5">
@@ -58,6 +82,10 @@ export default function PlayerCard({ player, n }: PlayerCardProps) {
               </li>
             ))}
           </ul>
+        )}
+
+        {player.socialProof && (
+          <p className="line-clamp-1 text-xs italic text-muted/80">{player.socialProof}</p>
         )}
 
         <div className="mt-auto flex items-center justify-between gap-3 border-t border-border pt-3">
