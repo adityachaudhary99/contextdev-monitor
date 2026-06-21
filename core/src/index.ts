@@ -18,3 +18,4 @@ export { categoryTerms, isRelevant } from "./landscape/relevance.js";
 export { InMemoryLandscapeStore, type LandscapeStore } from "./cache/landscape-store.js";
 export { AnthropicClient, anthropicFromEnv, type LlmClient } from "./llm/llm-client.js";
 export { judgeCategoryFit } from "./landscape/category-fit.js";
+export { synthesizeAnalystReport, AnalystReportSchema, type AnalystReport } from "./landscape/analyst.js";

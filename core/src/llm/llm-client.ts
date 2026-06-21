@@ -1,13 +1,13 @@
 import type { Result } from "../client/types.js";
 
 export interface LlmClient {
-  complete(prompt: string): Promise<Result<string>>;
+  complete(prompt: string, opts?: { maxTokens?: number }): Promise<Result<string>>;
 }
 
 /** Thin, dependency-free Anthropic Messages client. Never throws. */
 export class AnthropicClient implements LlmClient {
   constructor(private readonly d: { apiKey: string; model?: string; fetchFn?: typeof fetch }) {}
-  async complete(prompt: string): Promise<Result<string>> {
+  async complete(prompt: string, opts?: { maxTokens?: number }): Promise<Result<string>> {
     const fetchFn = this.d.fetchFn ?? fetch;
     try {
       const res = await fetchFn("https://api.anthropic.com/v1/messages", {
@@ -15,7 +15,7 @@ export class AnthropicClient implements LlmClient {
         headers: { "x-api-key": this.d.apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
         body: JSON.stringify({
           model: this.d.model ?? "claude-sonnet-4-6",
-          max_tokens: 512,
+          max_tokens: opts?.maxTokens ?? 512,
           messages: [{ role: "user", content: prompt }],
         }),
       });

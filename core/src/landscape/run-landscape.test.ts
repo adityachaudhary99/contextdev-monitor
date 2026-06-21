@@ -71,4 +71,29 @@ describe("runLandscape", () => {
     expect(ls.players.map((p) => p.name)).toEqual(["CodeRabbit"]);
     expect(ls.failures.some((f) => f.reason === "off_category" && f.domain === "digitalocean.com")).toBe(true);
   });
+  it("attaches analyst report when a stub llm returns valid JSON", async () => {
+    const analystJson = JSON.stringify({
+      overview: "A growing market with two players.",
+      segments: [{ name: "Web scraping", members: ["Firecrawl"], note: "core segment" }],
+      leaders: [{ name: "Firecrawl", why: "most complete" }],
+      tableStakes: ["api access"], differentiators: [], gaps: [],
+      picks: [{ useCase: "scraping at scale", player: "Firecrawl", why: "breadth" }],
+    });
+    const c = client(
+      [{ title: "Firecrawl", url: "https://firecrawl.dev/" }],
+      { "https://firecrawl.dev": { name: "Firecrawl", oneLiner: "web scraping and crawling", tags: ["scraping"], features: ["markdown"], positioning: "scraping dev" } },
+    );
+    const llm = { complete: async () => ({ ok: true as const, value: analystJson }) };
+    const ls = await runLandscape({ category: "scraping apis", client: c, ledger: new CreditLedger(), now: () => 1000, llm });
+    expect(ls.analyst).toBeDefined();
+    expect(ls.analyst?.overview).toMatch(/growing market/);
+  });
+  it("does not attach analyst when llm is omitted", async () => {
+    const c = client(
+      [{ title: "Firecrawl", url: "https://firecrawl.dev/" }],
+      { "https://firecrawl.dev": { name: "Firecrawl", oneLiner: "web scraping and crawling", tags: ["scraping"], features: ["markdown"], positioning: "scraping dev" } },
+    );
+    const ls = await runLandscape({ category: "scraping apis", client: c, ledger: new CreditLedger(), now: () => 1000 });
+    expect(ls.analyst).toBeUndefined();
+  });
 });

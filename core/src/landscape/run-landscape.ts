@@ -8,6 +8,7 @@ import { profilePlayer } from "./profiler.js";
 import { buildLandscape } from "./synthesis.js";
 import { isRelevant } from "./relevance.js";
 import { judgeCategoryFit } from "./category-fit.js";
+import { synthesizeAnalystReport } from "./analyst.js";
 
 async function mapBounded<T, R>(items: T[], limit: number, fn: (item: T) => Promise<R>): Promise<R[]> {
   const out: R[] = new Array(items.length);
@@ -51,5 +52,7 @@ export async function runLandscape(args: {
     if (relevant) players.push(p);
     else failures.push({ url: p.sourceUrl, domain: p.domain, reason: "off_category" });
   }
-  return done(players, failures);
+  const landscape = done(players, failures);
+  const analyst = await synthesizeAnalystReport(args.category, players, landscape.comparison.dimensions, args.llm ?? null);
+  return analyst ? { ...landscape, analyst } : landscape;
 }

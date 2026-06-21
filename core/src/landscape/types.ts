@@ -17,4 +17,5 @@ export type Landscape = {
   comparison: { dimensions: string[] }; brief: string;
   citations: { n: number; title: string; url: string }[];
   creditsUsed: number; latencyMs: number;
+  analyst?: import("./analyst.js").AnalystReport;
 };
