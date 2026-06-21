@@ -60,10 +60,11 @@ If context.dev's MCP tools (web search, scrape markdown, structured extract) are
 2. **Profile each player.** Scrape the site to markdown (evidence), then run a **structured
    extract** against a small fixed schema → `{ name, oneLiner, tagline, tags, features,
    positioning, links }`. Never block on one player — a failed extract becomes a `failure`.
-3. **Filter off-category players.** Keep only players whose profile (name + one-liner + tags +
-   positioning) shares at least one **content word** with the category (drop generic words like
-   "tools"/"platform"/"api"). Off-category players go to `failures` (`reason: "off_category"`),
-   not the player list.
+3. **Filter off-category players.** Prefer an **LLM category-fit judgment** ("which of these
+   genuinely belong in `<category>`?" — strict, respects qualifiers like *open source*); fall
+   back to a heuristic that keeps players sharing ≥ half the category's content-words. Off-category
+   players go to `failures` (`reason: "off_category"`), not the player list. Force-include known
+   players via **seeds** (they bypass discovery + the gate).
 4. **Synthesize.** Comparison `dimensions` = the most common normalized **tags shared by ≥2
    players** (fall back to top tags if none are shared). Build a short templated `brief` from
    the structured data. Attach a citation per player (its `sourceUrl`).
@@ -77,12 +78,13 @@ control cost. Re-running a category reuses unchanged snapshots if a cache is wir
 When MCP tools aren't available, run the proven `core/` pipeline:
 
 ```bash
-CONTEXTDEV_API_KEY=… npm -w @contextdev/core run cartographer -- "<category>" [--max N] [--json out.json]
+CONTEXTDEV_API_KEY=… npm -w @contextdev/core run cartographer -- "<category>" [--max N] [--json out.json] [--seed <domain> ...]
 ```
 
 It prints a cited, human-readable summary (see [EXAMPLE.md](./EXAMPLE.md)) and, with `--json`,
-writes the full typed `Landscape` to disk. This is the reliable path and the reference
-implementation of the workflow above.
+writes the full typed `Landscape` to disk. Setting `ANTHROPIC_API_KEY` too enables the sharper
+LLM category-fit gate; `--seed` (repeatable) force-includes a known player. This is the reliable
+path and the reference implementation of the workflow above.
 
 ## context.dev API contract — gotchas to respect
 

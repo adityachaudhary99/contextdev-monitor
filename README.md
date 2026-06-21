@@ -36,7 +36,7 @@ the API key never leaves the server.
         per player:  scrape markdown  +  structured extract  (context.dev API, server-side only)
                           │
                           ▼
-        relevance gate (drop off-category) ──► synthesize: shared-tag comparison + templated brief + citations
+        relevance gate (LLM category-fit if ANTHROPIC_API_KEY set, else heuristic) ──► synthesize: shared-tag comparison + brief + citations
                           │
                           ▼
         typed Landscape  (@contextdev/core) ──► Next.js 15 UI · /landscape pages · CLI · agent-skill
@@ -52,7 +52,11 @@ is a thin Next.js 15 UI over it — the API key is read only in server routes/ac
 From the reproducible report-card: context.dev extracts **name + links ~100% correctly** and
 captures the gist of one-liners, but its free-form **tags/features diverge from a curated
 vocabulary** — so the comparison is *indicative*, not authoritative. Discovery is keyword-based,
-so a relevance gate trims off-category false positives. The 5 API-contract gotchas we hit
+so a relevance gate trims off-category false positives — and an optional **LLM category-fit gate**
+(set `ANTHROPIC_API_KEY`) is much sharper than the word-overlap heuristic, while `--seed` lets you
+force-include known players. Discovery still can't surface entities that aren't
+companies-with-homepages (e.g. for "open source models" the real players are model *families* on
+Hugging Face / GitHub) — a category-fit limit. The 5 API-contract gotchas we hit
 (`/web/` path prefix, `GET` scrape, `.data` unwrap, no `null` in a JSON-schema enum, per-result
 search billing) are documented and handled in `core/`. Full numbers + methodology:
 [`core/REPORT-CARD.md`](core/REPORT-CARD.md).
@@ -88,6 +92,13 @@ at `/landscape`.
 ```bash
 # Map a category from the terminal (the agent-skill's fallback):
 CONTEXTDEV_API_KEY=<key> npm run cartographer -w core -- "web scraping APIs" --max 8 --json out.json
+
+# Force-include a known player you want in the map (repeatable):
+CONTEXTDEV_API_KEY=<key> npm run cartographer -w core -- "custom agent harness" --seed pi.dev
+
+# Set ANTHROPIC_API_KEY too and an LLM category-fit gate sharpens relevance
+# (drops keyword false positives like a closed vendor in an "open source" category):
+ANTHROPIC_API_KEY=<key> CONTEXTDEV_API_KEY=<key> npm run cartographer -w core -- "open source models"
 
 # Add a curated SEO landscape page (writes apps/web/data/landscapes/<slug>.json):
 CONTEXTDEV_API_KEY=<key> npx tsx apps/web/scripts/gen-landscapes.ts "headless CMS"
