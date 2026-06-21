@@ -14,7 +14,7 @@ export class AnthropicClient implements LlmClient {
         method: "POST",
         headers: { "x-api-key": this.d.apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
         body: JSON.stringify({
-          model: this.d.model ?? "claude-haiku-4-5-20251001",
+          model: this.d.model ?? "claude-sonnet-4-6",
           max_tokens: 512,
           messages: [{ role: "user", content: prompt }],
         }),

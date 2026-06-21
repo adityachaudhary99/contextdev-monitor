@@ -17,7 +17,11 @@ export async function judgeCategoryFit(
     `You are curating a competitive market landscape for the category: "${category}".\n` +
     `For each candidate, decide whether it GENUINELY belongs in that exact category (a direct ` +
     `player in that market) — not merely adjacent or keyword-matching. Be strict: exclude tooling, ` +
-    `infrastructure, benchmarks, and unrelated products.\n\n${list}\n\n` +
+    `infrastructure, benchmarks, and unrelated products.\n` +
+    `If the category contains a qualifier (e.g. "open source", "free", "self-hosted", "no-code"), ` +
+    `the player must actually satisfy it — EXCLUDE closed/proprietary-only or non-matching vendors ` +
+    `even if they are prominent in the broader space (e.g. exclude a closed-source vendor from an ` +
+    `"open source" category).\n\n${list}\n\n` +
     `Reply with ONLY a JSON array of the domains that genuinely belong, e.g. ["a.com","b.com"]. No prose.`;
   const r = await llm.complete(prompt);
   if (!r.ok) return null;
