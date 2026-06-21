@@ -1,52 +1,111 @@
-# Context.dev Intelligence Monitor
+# context.dev Intelligence Monitor
 
-Track a competitor's pricing page — get evidence-linked diffs, on demand.
+Type a **market category** → get an auto-built, **cited, structured competitive landscape**:
+the players in that market, each with a typed profile, a positioning map, a shared-capability
+comparison, and a short brief — every claim evidence-linked to its source. Plus a pricing
+tracker, an honest extraction report-card, and a Claude-Code agent-skill.
 
-![screenshot](docs/screenshot.png)
-<!-- TODO: add a real screenshot once the app is deployed -->
+Built on the [context.dev](https://context.dev?utm_source=contextdev-monitor&utm_medium=readme&utm_campaign=oss)
+web-intelligence API.
+
+![Landscape Cartographer](docs/screenshot.png)
 
 ---
 
-## What it does
+## What's in here
 
-The app has two modes, switchable from the top of the page:
+| Tool | What it does |
+|------|--------------|
+| **Landscape Cartographer** | A category → a cited, structured `Landscape` (discover players → profile each → synthesize a comparison + brief). The web headline ("Map a market"). |
+| **Public landscape pages** | Shareable, indexable `/landscape/<category>` pages with a **positioning map** — statically pre-rendered for a curated set, generated on-demand (and cached) for any other category. |
+| **Pricing tracker** | A competitor domain → a typed pricing snapshot + an evidence-cited diff ("what changed since last check"). |
+| **Extraction report-card** | A reproducible, **honest** evaluation of how well context.dev extracts profiles — accuracy vs hand-checked truth, latency, cost/page, and a failure taxonomy. See [`core/REPORT-CARD.md`](core/REPORT-CARD.md). |
+| **Agent-skill** | A Claude-Code skill (+ portable prompt) that runs the cartographer over context.dev's MCP server, with the `cartographer` CLI as the proven fallback. See [`skills/landscape-cartographer/`](skills/landscape-cartographer/). |
 
-### Map a market (default)
-
-Enter a market category (e.g. "web scraping APIs"). The app:
-
-1. Discovers the key players via web search and deduplicates them.
-2. Profiles each player (name, positioning, features, pricing tier, confidence) through the [context.dev](https://context.dev?utm_source=contextdev-monitor&utm_medium=readme&utm_campaign=oss) API.
-3. Synthesises a **competitive landscape** — a comparison table across key dimensions, a brief summary, and per-player cards with citations.
-
-### Track pricing
-
-Enter a competitor domain. The app:
-
-1. Locates the pricing page via web search.
-2. Extracts a **typed pricing snapshot** (tiers, prices, feature bullets) through the [context.dev](https://context.dev?utm_source=contextdev-monitor&utm_medium=readme&utm_campaign=oss) API.
-3. Content-hashes the snapshot and diffs it against the prior one stored in-session.
-4. Shows the **full extracted pricing table** — captured as a *baseline* on the first run, then an evidence-cited **diff** ("what changed since last check", price moves flagged) on later runs — plus a panel showing credits used, latency, confidence, and any extraction failures.
-
-Clean dashboard UI with a **light / dark theme toggle** (light by default). No accounts. No scrapers to maintain. No cron jobs.
+No accounts. No scrapers to maintain. No cron jobs. Clean dashboard UI with a light/dark toggle;
+the API key never leaves the server.
 
 ---
 
 ## How it works
 
 ```
-Web Search / Scrape
-      ↓
-Extract Structured  (context.dev API — server-side only)
-      ↓
-Content-hash gate  (skip report if nothing changed)
-      ↓
-Typed diff  (@contextdev/core engine)
-      ↓
-Evidence-cited report  (apps/web — Next.js 15 thin UI)
+        web search ──► dedupe to ~8 players (drop aggregators/blogs)
+                          │
+                          ▼
+        per player:  scrape markdown  +  structured extract  (context.dev API, server-side only)
+                          │
+                          ▼
+        relevance gate (drop off-category) ──► synthesize: shared-tag comparison + templated brief + citations
+                          │
+                          ▼
+        typed Landscape  (@contextdev/core) ──► Next.js 15 UI · /landscape pages · CLI · agent-skill
 ```
 
-`packages/core` (`@contextdev/core`) holds the diff engine and types. `apps/web` is a thin Next.js 15 UI that calls a server route — the API key never leaves the server.
+`core/` (`@contextdev/core`) is a framework-free engine: the context.dev client (retry/backoff,
+budget gate, never-throw `Result<T>`), a credit ledger, content-hash cache, the landscape
+pipeline (discover → profile → synthesize), the relevance gate, and the eval harness. `apps/web`
+is a thin Next.js 15 UI over it — the API key is read only in server routes/actions.
+
+### Honest evaluation (it's the point)
+
+From the reproducible report-card: context.dev extracts **name + links ~100% correctly** and
+captures the gist of one-liners, but its free-form **tags/features diverge from a curated
+vocabulary** — so the comparison is *indicative*, not authoritative. Discovery is keyword-based,
+so a relevance gate trims off-category false positives. The 5 API-contract gotchas we hit
+(`/web/` path prefix, `GET` scrape, `.data` unwrap, no `null` in a JSON-schema enum, per-result
+search billing) are documented and handled in `core/`. Full numbers + methodology:
+[`core/REPORT-CARD.md`](core/REPORT-CARD.md).
+
+---
+
+## Run locally
+
+Requires Node 20+. Install (npm workspaces — installs `core` + `apps/web`):
+
+```bash
+npm install
+```
+
+Add your context.dev key (server-only):
+
+```bash
+cp apps/web/.env.example apps/web/.env.local
+# then edit apps/web/.env.local and set CONTEXTDEV_API_KEY=<your key>
+```
+
+Start the web app:
+
+```bash
+npm -w web dev
+```
+
+Open **http://localhost:3000** — "Map a market" is the default mode; curated landscape pages live
+at `/landscape`.
+
+### CLI & evaluation
+
+```bash
+# Map a category from the terminal (the agent-skill's fallback):
+CONTEXTDEV_API_KEY=<key> npm -w @contextdev/core run cartographer -- "web scraping APIs" [--max 8] [--json out.json]
+
+# Add a curated SEO landscape page (writes apps/web/data/landscapes/<slug>.json):
+CONTEXTDEV_API_KEY=<key> npx tsx apps/web/scripts/gen-landscapes.ts "headless CMS"
+
+# Regenerate the honest extraction report-card from a live run:
+CONTEXTDEV_API_KEY=<key> npm -w @contextdev/core run report-card -- --collect
+```
+
+### Tests
+
+```bash
+npm -w @contextdev/core test          # core engine
+npm -w web test -- --poolOptions.threads.maxThreads=1   # web (single-threaded: the default pool can OOM)
+```
+
+**Deploy to Vercel:** import the repo, set `CONTEXTDEV_API_KEY` as a server-only env var (do **not**
+prefix with `NEXT_PUBLIC_`), and deploy. The monorepo root is the project root; Vercel auto-detects
+the Next.js app under `apps/web`.
 
 ---
 
@@ -54,42 +113,26 @@ Evidence-cited report  (apps/web — Next.js 15 thin UI)
 
 | Mode | How |
 |------|-----|
-| **Demo** | Uses the maintainer's context.dev key. Subject to daily caps — when hit, the UI shows a CTA to bring your own key. |
-| **BYO-key** | Paste your own [context.dev](https://context.dev?utm_source=contextdev-monitor&utm_medium=readme&utm_campaign=oss) key in the UI. It is sent to the server route on each request and is **never stored** (not in localStorage, not in a database). |
+| **Demo** | Uses the maintainer's context.dev key, subject to daily caps. On-demand landscape generation flows through this budget (bounded spend); when a cap is hit the UI shows a bring-your-own-key CTA. |
+| **BYO-key** | Paste your own [context.dev](https://context.dev?utm_source=contextdev-monitor&utm_medium=readme&utm_campaign=oss) key in the UI — sent to the server route per request, **never stored** (not in localStorage, not in a database). |
 
 ---
 
-## Run locally
+## Agent-skill
 
-```bash
-npm install
-```
-
-Copy the env example and add your key:
-
-```bash
-cp apps/web/.env.example apps/web/.env.local
-# then edit apps/web/.env.local and set CONTEXTDEV_API_KEY
-```
-
-Start the dev server:
-
-```bash
-npm -w web dev
-```
-
-Open [http://localhost:3000](http://localhost:3000).
-
-**Deploy to Vercel:** Import the repo, set `CONTEXTDEV_API_KEY` as an environment variable (server-only — do NOT prefix with `NEXT_PUBLIC_`), and deploy. The monorepo root is the project root; Vercel auto-detects the Next.js app under `apps/web`.
+[`skills/landscape-cartographer/`](skills/landscape-cartographer/) ships a Claude-Code skill that
+maps a category over context.dev's MCP server (CLI fallback), emitting the same typed `Landscape`.
+Copy the folder into `~/.claude/skills/`, or use the paste-in
+[`PROMPT.md`](skills/landscape-cartographer/PROMPT.md) with Cursor/Cline. A real worked example +
+evaluation is in [`EXAMPLE.md`](skills/landscape-cartographer/EXAMPLE.md).
 
 ---
 
 ## Powered by context.dev
 
-This project is built on the [context.dev](https://context.dev?utm_source=contextdev-monitor&utm_medium=readme&utm_campaign=oss) API for structured web extraction. Get your own key at **context.dev** to run unlimited reports.
-
----
+Built on the [context.dev](https://context.dev?utm_source=contextdev-monitor&utm_medium=readme&utm_campaign=oss)
+API for structured web extraction. Grab your own key at **context.dev** to run unlimited maps.
 
 ## License
 
-[MIT](LICENSE) — 2026 Aditya Chaudhary
+[MIT](LICENSE) — © 2026 Aditya Chaudhary
