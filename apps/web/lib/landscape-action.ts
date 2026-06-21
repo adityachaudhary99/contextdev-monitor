@@ -6,6 +6,7 @@ import {
   CreditLedger,
   InMemoryBudgetStore,
   runLandscape as coreRunLandscape,
+  anthropicFromEnv,
   type BudgetStore,
   type Landscape,
 } from "@contextdev/core";
@@ -111,7 +112,7 @@ export async function runLandscapeReport(
   });
 
   // 5. Run landscape
-  const landscape = await runLandscape({ category: trimmedCategory, client, ledger, maxPlayers: 8 });
+  const landscape = await runLandscape({ category: trimmedCategory, client, ledger, maxPlayers: 8, llm: anthropicFromEnv() });
 
   return { ok: true, landscape };
 }

@@ -6,6 +6,7 @@ import { Users, Coins, Clock, AlertTriangle, Copy, Gauge } from "lucide-react";
 import { Button } from "./ui/button.js";
 import ComparisonTable from "./ComparisonTable.js";
 import PlayerCard from "./PlayerCard.js";
+import AnalystReport from "./AnalystReport.js";
 
 interface LandscapeViewProps {
   landscape: Landscape;
@@ -47,6 +48,8 @@ export default function LandscapeView({ landscape }: LandscapeViewProps) {
         <Kpi icon={<Clock size={16} />} label="latency" value={`${(latencyMs / 1000).toFixed(1)}s`} />
         <Kpi icon={<AlertTriangle size={16} />} label="failures" value={String(failures.length)} />
       </div>
+
+      {landscape.analyst && <AnalystReport report={landscape.analyst} />}
 
       <section className="flex flex-col gap-3">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">Capability matrix</h2>

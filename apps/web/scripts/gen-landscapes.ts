@@ -7,7 +7,7 @@
 import { writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import {
-  runLandscape, slugify, ContextClient, CreditLedger, InMemoryBudgetStore,
+  runLandscape, slugify, ContextClient, CreditLedger, InMemoryBudgetStore, anthropicFromEnv,
 } from "@contextdev/core";
 
 async function main() {
@@ -26,7 +26,7 @@ async function main() {
   for (const category of categories) {
     const ledger = new CreditLedger();
     const client = new ContextClient({ apiKey, ledger, budget: new InMemoryBudgetStore(100_000), day });
-    const landscape = await runLandscape({ category, client, ledger, maxPlayers: 8 });
+    const landscape = await runLandscape({ category, client, ledger, maxPlayers: 8, llm: anthropicFromEnv() });
     const slug = slugify(category);
     const path = fileURLToPath(new URL(`../data/landscapes/${slug}.json`, import.meta.url));
     writeFileSync(path, JSON.stringify(landscape, null, 2) + "\n");
