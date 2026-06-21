@@ -5,7 +5,7 @@
       "name": "Google Shopping Scraper API",
       "domain": "scraperapi.com",
       "oneLiner": "Retrieve product details like names, prices, ranking positions, URLs, sources, and more from Google Shopping in structured JSON format.",
-      "tagline": "Turn Google Shopping data into easy-to-analyze JSON to reduce time to insights.",
+      "tagline": "Turn Google Shopping data into JSON for easier analysis and faster insights.",
       "tags": [
         "web scraping",
         "api",
@@ -17,65 +17,40 @@
         "proxy rotation"
       ],
       "features": [
-        "No-code interface to speed up development",
+        "No-Code interface to speed up development",
         "Convenient scheduling options",
         "Advanced anti-bot detection bypassing",
         "Near 100% success rate from day one",
         "Structured JSON output of Google Shopping search results",
-        "Supports localized data collection with geotargeting",
         "Async scraping for millions of requests",
         "DataPipeline for no-code automation",
-        "Multiple output formats including LLM-ready markdown/text",
-        "40M proxies across 50+ countries",
-        "99.9% uptime guarantee",
-        "Unlimited bandwidth",
-        "Professional support"
+        "Geotargeting with 40M proxies across 50+ countries",
+        "LLM-ready output formats (markdown, text)"
       ],
-      "positioning": "Google Shopping Scraper API by ScraperAPI is designed for businesses and developers needing scalable, reliable, and easy-to-use access to Google Shopping product data. It simplifies complex scraping challenges like proxy management, CAPTCHA handling, and dynamic content rendering, enabling users to focus on data analysis and business insights. Suitable for small projects to enterprise-level data collection, it offers both API integration and low-code/no-code tools to fit various technical skill levels and use cases.",
+      "positioning": "A scalable, reliable API solution for extracting detailed, structured product data from Google Shopping, suitable for businesses needing high-volume, localized, and accurate ecommerce data without managing proxies or scraping infrastructure.",
       "links": {
         "site": "https://www.scraperapi.com/solutions/ecommerce-data-collection/google-shopping-scraper",
         "docs": "https://docs.scraperapi.com/making-requests/structured-data-collection-method/google-shopping-api",
         "pricing": "https://www.scraperapi.com/pricing/"
       },
-      "sourceUrl": "https://scraperapi.com",
-      "confidence": 1
-    },
-    {
-      "name": "Firecrawl",
-      "domain": "firecrawl.dev",
-      "oneLiner": "The context API to search, scrape, and interact with the web at scale.",
-      "tagline": "Power AI agents with clean web data",
-      "tags": [
-        "web scraping",
-        "web search",
-        "ai agents",
-        "data extraction",
-        "web automation",
-        "open source",
-        "api",
-        "llm-ready data"
-      ],
-      "features": [
-        "Search the web and get full content from results",
-        "Scrape clean, structured data from any page including markdown, JSON, screenshots",
-        "Interact with web pages using AI prompts or code (click, scroll, type, navigate)",
-        "Agent-ready for autonomous data gathering",
-        "JavaScript rendering and smart wait for dynamic content",
-        "Media parsing including PDFs, DOCX, spreadsheets",
-        "Advanced web coverage including JS-heavy pages",
-        "Token-efficient output optimized for LLMs",
-        "Open source with large community and SDKs for multiple languages",
-        "Browser sandbox for secure, managed interactive sessions",
-        "Parallel agents for batch processing at scale",
-        "Zero configuration, handles proxies, rendering, and complex sites automatically"
-      ],
-      "positioning": "Firecrawl is positioned as a comprehensive, developer-first infrastructure layer that enables AI systems and developers to reliably search, scrape, and interact with live web data at scale. It is ideal for AI companies and teams building applications that require clean, structured, and up-to-date web data, including deep research agents, RAG pipelines, lead enrichment, competitive intelligence, and AI-powered chatbots. Firecrawl differentiates itself by combining search, scrape, and interact capabilities with high reliability, speed, token efficiency, and open-source transparency, making it a best-in-class solution for powering AI agents and applications with live web context.",
-      "links": {
-        "site": "https://firecrawl.dev",
-        "docs": "https://docs.firecrawl.dev",
-        "pricing": "https://firecrawl.dev/pricing"
+      "pricing": {
+        "free": false,
+        "startingPrice": "$49/month",
+        "model": "Subscription with tiered API credits and concurrency limits"
       },
-      "sourceUrl": "https://firecrawl.dev",
+      "targetSegment": "Ecommerce businesses, market researchers, SEO agencies, AI/ML teams, and enterprises needing scalable Google Shopping product data extraction.",
+      "differentiators": [
+        "Handles proxy rotation, CAPTCHA, and browser rendering automatically",
+        "Offers both API and no-code DataPipeline solutions",
+        "Supports asynchronous scraping for large-scale projects",
+        "Provides geotargeting for localized data",
+        "Delivers data in LLM-friendly formats for AI applications",
+        "Backed by professional support and 99.9% uptime guarantee"
+      ],
+      "socialProof": "Used by over 10,000 companies and developers; over 11 billion requests served in the last 30 days; 100% CCPA & GDPR compliant; positive customer testimonials from industry professionals.",
+      "founded": "",
+      "openSource": false,
+      "sourceUrl": "https://scraperapi.com",
       "confidence": 1
     },
     {
@@ -90,36 +65,55 @@
         "proxy rotation",
         "javascript rendering",
         "ai data extraction",
-        "no-code integration",
-        "market intelligence"
+        "no-code integration"
       ],
       "features": [
         "Easy to integrate",
         "1,000 free scraper API credits",
         "No credit card required",
-        "AI Ready Data with JSON and natural language extraction",
-        "Render JavaScript in a real browser with headless Chrome",
-        "Automate proxy rotation with premium and stealth proxies",
+        "AI Ready Data with JSON/Markdown output",
+        "Natural-language AI extraction",
+        "CLI integration for AI agents",
+        "JavaScript rendering in headless Chrome",
+        "Custom interaction scenarios",
+        "Proxy rotation with premium and stealth proxies",
         "Country-level geolocation",
         "Dedicated scraper APIs for Amazon, Walmart, Google, YouTube, ChatGPT",
-        "Integrations with Zapier, n8n, Make",
-        "CLI for automated workflows",
-        "Screenshots and custom JavaScript scenarios",
-        "SOC 2 Type 2 compliant infrastructure"
+        "No-code integrations with Zapier, Make, n8n",
+        "Compliance-ready platform with SOC 2 Type 2 and GDPR"
       ],
-      "positioning": "ScrapingBee is positioned as a comprehensive, easy-to-use web scraping API designed for developers, founders, and product teams who need reliable, scalable web data extraction without the complexity of managing proxies, browsers, or anti-bot systems. It targets teams scraping at scale across industries such as AI, e-commerce, market intelligence, fintech, cybersecurity, and go-to-market operations. The platform emphasizes compliance, security, and seamless integration with popular no-code and low-code tools, making it accessible even to non-developers. It competes by offering premium proxy management, JavaScript rendering, AI-powered data extraction, and dedicated APIs for major platforms, all with transparent pricing and strong customer support.",
+      "positioning": "ScrapingBee is positioned as a comprehensive, easy-to-use web scraping API designed for developers and teams who need scalable, reliable, and compliant web data extraction without the complexity of managing proxies, browsers, or anti-bot systems. It targets use cases across AI, e-commerce, market intelligence, fintech, cybersecurity, and go-to-market workflows, offering both raw HTML scraping and dedicated structured data APIs.",
       "links": {
         "site": "https://scrapingbee.com/",
         "docs": "https://scrapingbee.com/documentation/",
         "pricing": "https://scrapingbee.com/pricing/"
       },
+      "pricing": {
+        "free": true,
+        "startingPrice": "$49/mo",
+        "model": "subscription with API credits and concurrency limits"
+      },
+      "targetSegment": "Developers, founders, and product teams needing scalable web data extraction for AI, e-commerce, market intelligence, fintech, cybersecurity, and go-to-market applications, including those preferring no-code or low-code integrations.",
+      "differentiators": [
+        "Automatic proxy rotation with premium and stealth proxies",
+        "JavaScript rendering with headless Chrome and custom scenarios",
+        "AI-powered data extraction with natural language queries",
+        "Dedicated scraper APIs for popular platforms (Amazon, Walmart, Google, YouTube, ChatGPT)",
+        "No-code integrations with Zapier, Make, and n8n",
+        "Compliance-ready infrastructure (SOC 2 Type 2, GDPR)",
+        "Transparent pricing with free tier and no credit card required",
+        "Extensive developer support and documentation"
+      ],
+      "socialProof": "Trusted by 4,000+ developers with 100+ reviews on Capterra averaging 5.0 stars. Testimonials highlight reliability, ease of use, and excellent support from founders and CTOs of various companies.",
+      "founded": "",
+      "openSource": false,
       "sourceUrl": "https://scrapingbee.com",
       "confidence": 1
     },
     {
       "name": "Apify",
       "domain": "docs.apify.com",
-      "oneLiner": "A platform for large-scale web scraping, automation, and integration with AI agents and workflows.",
+      "oneLiner": "A platform for web scraping, automation, and integration with AI agents and workflows.",
       "tagline": "Learn how to put the web to work.",
       "tags": [
         "web scraping",
@@ -132,70 +126,46 @@
         "data extraction"
       ],
       "features": [
-        "Actors: Develop, run, and share web scraping and automation tools in the cloud.",
-        "Storage: Store files and results of web scraping jobs with export options.",
-        "Proxy: Smartly rotate datacenter and residential IP addresses to avoid blocking.",
-        "Schedules: Automatically start Actors and saved tasks at specific times.",
-        "Integrations: Connect Actors with web apps, cloud services, AI agents, and workflow platforms.",
-        "Monitoring: Check performance, validate data quality, and receive alerts.",
-        "Collaboration: Share Actors, manage organizations and permissions.",
-        "Security: SOC 2 Type II compliant platform with strong data protection and vulnerability disclosure policy.",
-        "API: REST API with clients for JavaScript and Python.",
-        "SDK: Software toolkits for JavaScript and Python to develop Actors.",
-        "CLI: Command line interface to control the platform.",
-        "Open source tools: Crawlee, Fingerprint Suite, impit, MCP CLI, proxy-chain, and more.",
-        "Apify MCP server: Expose Actors as tools to AI clients via Model Context Protocol (MCP).",
-        "Actor templates: Ready-made templates for various programming languages and scraping libraries.",
-        "Apify Academy: Free practical courses on web scraping and platform usage."
+        "Develop, run, and share web scraping and automation tools (Actors) in the cloud",
+        "Store files and results of web scraping jobs with export options",
+        "Smart proxy rotation to avoid blocking",
+        "Scheduling for automatic Actor runs",
+        "Integrations with web apps, cloud services, and AI agents",
+        "Monitoring and alerts for Actor performance and data quality",
+        "Collaboration tools for teams and organizations",
+        "Security and data protection with SOC 2 Type II compliance",
+        "Open source tools including Crawlee, Fingerprint Suite, impit, proxy-chain",
+        "Apify MCP server for AI agent integration via Model Context Protocol",
+        "API clients for JavaScript and Python",
+        "SDKs for JavaScript and Python",
+        "CLI for platform control",
+        "Apify Academy with free courses on web scraping and platform usage",
+        "Monetize Actors on Apify Store"
       ],
-      "positioning": "Apify positions itself as a comprehensive, scalable, and secure platform for web scraping and automation, designed for developers and organizations needing high-performance data extraction and integration capabilities. It emphasizes ease of use through Actors, extensive integrations with AI and workflow tools, and strong security and compliance standards. The platform supports both beginners and advanced users with educational resources and open-source tools, aiming to be the central hub for web data automation and AI agent integration.",
+      "positioning": "Apify positions itself as a comprehensive cloud platform for scalable web scraping and automation, enabling developers and teams to build, run, and integrate web data extraction workflows easily. It emphasizes integration with AI agents and modern workflow automation tools, providing both no-code and programmatic interfaces.",
       "links": {
         "site": "https://apify.com",
         "docs": "https://docs.apify.com/",
-        "pricing": null
+        "pricing": "https://apify.com/pricing"
       },
+      "pricing": {
+        "free": true,
+        "startingPrice": "$49/month",
+        "model": "Subscription with free tier and paid plans"
+      },
+      "targetSegment": "Developers, data scientists, and businesses needing scalable web scraping, automation, and AI integration capabilities.",
+      "differentiators": [
+        "Comprehensive platform combining web scraping, automation, proxy management, scheduling, and integrations",
+        "Strong focus on AI agent integration via MCP server and connectors",
+        "Open source tools supporting extensibility and customization",
+        "Robust security with SOC 2 Type II compliance and vulnerability disclosure policy",
+        "Free educational resources through Apify Academy",
+        "Marketplace for monetizing and discovering Actors"
+      ],
+      "socialProof": "SOC 2 Type II compliance, active open source projects on GitHub, community on Discord, and usage by AI agents like Claude and integration with LangChain and other AI frameworks.",
+      "founded": "",
+      "openSource": true,
       "sourceUrl": "https://docs.apify.com",
-      "confidence": 1
-    },
-    {
-      "name": "Oxylabs",
-      "domain": "oxylabs.io",
-      "oneLiner": "High Quality Proxy Service to Gather Data at Scale",
-      "tagline": "Access Any Public Data. Power Any Workflow.",
-      "tags": [
-        "proxy service",
-        "web scraping",
-        "data extraction",
-        "ai data",
-        "web automation",
-        "residential proxies",
-        "datacenter proxies",
-        "isp proxies"
-      ],
-      "features": [
-        "175M+ ethically sourced residential IPs for high reliability",
-        "High-speed, cost-effective datacenter proxies",
-        "Premium static residential ISP proxies from trusted ASNs",
-        "Dedicated proxies for data-intensive and demanding scraping tasks",
-        "AI-powered Web Unblocker for optimized scraping performance",
-        "Mobile proxies with 20M+ IPs from real mobile devices",
-        "All-in-one Web Scraper API for every stage of web scraping",
-        "Fast Search API tailored for AI workflows",
-        "Advanced Headless Browser automation",
-        "AI Studio suite for AI-powered scraping projects",
-        "Custom datasets tailored to exact needs",
-        "Free proxy manager tools for Chrome and Android",
-        "Open source community-driven scraping tools",
-        "Success-based pricing model for scraping results",
-        "Comprehensive documentation and developer support"
-      ],
-      "positioning": "Oxylabs positions itself as a premium, reliable, and scalable proxy and web scraping platform designed to serve a wide range of use cases including AI training, e-commerce, marketing intelligence, cybersecurity, and custom data workflows. It emphasizes high-quality, ethically sourced IPs, advanced AI-powered tools, and comprehensive support to enable businesses and developers to access public data efficiently and at scale. The platform targets enterprises and professionals needing robust, maintenance-free scraping solutions with flexible pricing and extensive integrations.",
-      "links": {
-        "site": "https://oxylabs.io/",
-        "docs": "https://developers.oxylabs.io",
-        "pricing": "https://oxylabs.io/products/scraper-api/web/pricing"
-      },
-      "sourceUrl": "https://oxylabs.io",
       "confidence": 1
     },
     {
@@ -205,8 +175,8 @@
       "tagline": "Reliable, Scalable, Unstoppable Web Scraping",
       "tags": [
         "web scraping",
-        "data extraction",
         "api",
+        "data extraction",
         "proxies",
         "anti-bot bypass",
         "headless browser",
@@ -214,6 +184,12 @@
         "proxy rotation"
       ],
       "features": [
+        "Automated Proxy Rotation",
+        "WAF & CAPTCHA Bypass",
+        "JS Rendering and Interactions",
+        "Parsed JSON, No HTML Selectors",
+        "Localization, Pagination, and Filters Built In",
+        "Pay Only for Successful Requests",
         "Anti-Bot Bypass",
         "Headless Browser",
         "CAPTCHA Handling",
@@ -223,12 +199,30 @@
         "Automatic Proxy Rotation",
         "Geo-Targeting"
       ],
-      "positioning": "Scrape.do positions itself as the ultimate, reliable, and scalable web scraping toolkit designed to overcome modern anti-bot defenses and scaling challenges. It offers unmatched speed, unbeatable prices, and unblocked access with a 99.98% success rate. The platform emphasizes ease of use with single-request APIs, pre-built endpoints for major sites, and expert customer support with rapid response times. Its pay-for-success pricing model and extensive proxy network make it cost-effective and scalable for businesses across various industries including e-commerce, AI, travel, real estate, marketing, social media, finance, cryptocurrency, and job boards.",
+      "positioning": "Scrape.do positions itself as the ultimate, hassle-free, and scalable web scraping toolkit offering unmatched speed, unbeatable prices, and unblocked access. It emphasizes a high success rate (99.98%), expert customer support, and a pay-for-success pricing model, targeting users who need reliable, scalable, and cost-effective data scraping solutions that handle anti-bot defenses and complex scraping challenges.",
       "links": {
         "site": "https://scrape.do/",
         "docs": "https://scrape.do/documentation/",
         "pricing": "https://scrape.do/pricing/"
       },
+      "pricing": {
+        "free": true,
+        "startingPrice": "$0",
+        "model": "Pay-for-success API credits with tiered subscription plans"
+      },
+      "targetSegment": "Developers, data scientists, businesses, and enterprises needing scalable, reliable, and cost-effective web scraping solutions across industries such as e-commerce, AI & LLM, travel, real estate, marketing, social media, finance, cryptocurrency, and job boards.",
+      "differentiators": [
+        "High success rate of 99.98% with automated anti-bot bypass and proxy rotation",
+        "Pay only for successful requests pricing model",
+        "Expert developer support with fast response times and no ticket queues",
+        "Pre-built Ready Scraper APIs for major sites returning parsed JSON without HTML parsing",
+        "Wide industry applicability and localization support",
+        "Large proxy pool with 110 million IPs",
+        "Open source local-first API client (Scrapeman) that owns user data"
+      ],
+      "socialProof": "Endorsed by industry leaders and trusted by companies across multiple sectors. Customer testimonial from Rogerio C., CTO, praising powerful tools and excellent customer support. Over 10 billion requests processed every month. 99.98% success rate and +40% faster gateway than closest competitor.",
+      "founded": "",
+      "openSource": false,
       "sourceUrl": "https://scrape.do",
       "confidence": 1
     },
@@ -236,7 +230,7 @@
       "name": "Scrapfly",
       "domain": "scrapfly.io",
       "oneLiner": "Scrape any site, drive any browser, power any agent with one API key and a full-stack web scraping platform.",
-      "tagline": "The ultimate data collection APIs for developers. Scrape, capture, and extract web data with battle-tested tools that scale.",
+      "tagline": "The Best Web Scraping API For Developers.",
       "tags": [
         "web scraping",
         "api",
@@ -244,88 +238,143 @@
         "anti-bot bypass",
         "proxy rotation",
         "javascript rendering",
-        "data extraction",
-        "screenshot"
+        "browser automation",
+        "data extraction"
       ],
       "features": [
         "Anti-bot bypass on 20+ vendors including Cloudflare, DataDome, Akamai, Kasada, F5",
         "190+ countries with residential and datacenter proxies",
         "AI extraction and JavaScript rendering on every request",
-        "Cloud Browser API with stealth Chromium driven over CDP supporting Playwright, Puppeteer, Selenium",
+        "Cloud Browser API with stealth Chromium over CDP supporting Playwright, Puppeteer, Selenium",
         "Persistent sessions with cookies and auth state across calls",
         "Crawler API for full-site crawls with BFS/DFS depth control and webhook streaming",
-        "Data Extraction API with pre-trained models and LLM prompts for structured JSON output",
-        "Screenshot API for pixel-perfect full-page or viewport captures with anti-bot bypass",
-        "AI Browser Agent for browser automation with AI and tool-call interface",
-        "MCP Server to connect any MCP client for scraping, screenshot, extraction, and crawling",
+        "Data Extraction API with pre-trained models and LLM prompts",
+        "Screenshot API with full-page captures and diff monitoring",
+        "AI Browser Agent for browser automation with AI",
+        "MCP Server connecting any MCP client to scrape, screenshot, extract, and crawl",
         "Proxy Saver for smart proxy reuse and bandwidth optimization",
-        "Unblocker for single endpoint anti-bot bypass with pay on success",
-        "Antibot Detector for anti-bot identification with free Chrome extension and REST API",
-        "Multiple SDKs including Python, TypeScript, Go, Rust, and Scrapy",
-        "No-code platform integrations with Zapier, Make, n8n",
-        "LLM & RAG app integrations with LlamaIndex, LangChain, CrewAI",
-        "Full stack ownership including in-house proxy mesh, stealth HTTP engine (Curlium), and stealth browser (Scrapium)",
-        "Transparent usage-based pricing with free tier and pay only for successful requests",
-        "SOC 2, ISO 27001, HIPAA, GDPR compliance and certifications"
+        "Unblocker for anti-bot bypass as a single endpoint",
+        "Antibot Detector for anti-bot identification"
       ],
-      "positioning": "Scrapfly positions itself as a comprehensive, developer-friendly web scraping platform that solves the toughest challenges in web data extraction by owning the entire technology stack. It offers a single API key to access a broad suite of products including scraping, browser automation, screenshots, extraction, crawling, and AI agents. Scrapfly emphasizes high success rates on protected sites, pay-on-success pricing, and seamless integration with popular developer tools and AI frameworks. It targets enterprises and developers needing reliable, scalable, and stealthy web scraping solutions with minimal infrastructure overhead.",
+      "positioning": "Scrapfly positions itself as a comprehensive, full-stack web scraping and browser automation platform that handles all layers from proxies and anti-bot bypass to stealth browsers and AI agents, offering a single API key for all products. It emphasizes high success rates on protected sites, pay-on-success pricing, broad product breadth, and full stack ownership, differentiating from competitors who often have lower success rates, tiered pricing, and fragmented product offerings.",
       "links": {
         "site": "https://scrapfly.io/",
         "docs": "https://scrapfly.io/docs",
         "pricing": "https://scrapfly.io/pricing"
       },
+      "pricing": {
+        "free": true,
+        "startingPrice": "$30 / month",
+        "model": "usage-based, priced per API credit with free tier and multiple paid plans"
+      },
+      "targetSegment": "Developers and enterprises needing reliable, scalable web scraping, browser automation, and data extraction solutions, especially those facing anti-bot protections and requiring stealth browser capabilities.",
+      "differentiators": [
+        "High anti-bot bypass success rate (98%+ on major vendors) with pay-on-success pricing",
+        "Single API key for multiple products including scraping, browser automation, screenshots, extraction, crawling, and AI agents",
+        "Owns entire technology stack including proxy mesh, stealth HTTP engine (Curlium), and stealth browser (Scrapium)",
+        "Persistent browser sessions with geo-located residential proxies in 190+ countries",
+        "Integration with popular automation frameworks (Playwright, Puppeteer, Selenium) and AI agent frameworks",
+        "Transparent billing with no hidden fees and free failed requests",
+        "Extensive SDK support and no-code platform integrations",
+        "Enterprise-grade compliance including SOC 2, ISO 27001, HIPAA, GDPR"
+      ],
+      "socialProof": "Rated 4.9/5 from 235 reviews; Trusted by 30,000+ enterprises; Verified Capterra reviews praising ease of use, anti-bot bypass effectiveness, and value.",
+      "founded": "",
+      "openSource": false,
       "sourceUrl": "https://scrapfly.io",
       "confidence": 1
     },
     {
-      "name": "Proxyway",
-      "domain": "proxyway.com",
-      "oneLiner": "Your Trusted Guide to All Things Proxy",
-      "tagline": "Make the right proxy decisions with our honest provider reviews, data-driven research, and in-depth educational content on everything related to proxy servers.",
+      "name": "Bright Data",
+      "domain": "brightdata.com",
+      "oneLiner": "All in One Platform for Proxies and Web Scraping",
+      "tagline": "The web's data, unlocked",
       "tags": [
-        "proxy reviews",
-        "proxy providers",
         "web scraping",
-        "proxy types",
-        "proxy guides",
-        "scraping services",
-        "proxy tools",
-        "proxy research"
+        "proxies",
+        "data extraction",
+        "api",
+        "datasets",
+        "ai data",
+        "market intelligence",
+        "compliance"
       ],
       "features": [
-        "Comprehensive proxy provider reviews",
-        "Data-driven market research reports",
-        "In-depth educational guides on proxies and web scraping",
-        "Latest news and updates from the proxy server industry",
-        "Comparison and ranking of top web scraping services",
-        "Free online proxy checker tool",
-        "Coverage of various proxy types including residential, datacenter, ISP/static residential, SOCKS5",
-        "Information on proxy use cases and locations",
-        "Resources for web scraping including no-code tools, APIs, and scraping browsers",
-        "Community engagement via YouTube and Discord"
+        "Instant scraper APIs",
+        "Unstoppable browsing infrastructure",
+        "AI-ready and BI-ready datasets",
+        "400M+ proxy IPs from 195 countries",
+        "Automate content extraction from any domain",
+        "Map entire site structures in one request",
+        "Capture static and dynamic web content",
+        "Flexible output formats: Markdown, Text, HTML, JSON",
+        "Integrates with popular dev frameworks and no-code",
+        "Automatically avoid anti-bot measures and CAPTCHAs",
+        "High performance with near-zero downtime",
+        "Full control, visibility and enterprise-grade security",
+        "Integrated Proxy Manager and Management APIs",
+        "Optimized routing for speed and reliability",
+        "99.99% uptime and 99.95% success rate",
+        "Live, ranked source discovery for AI agents",
+        "Ranked for intent, high recall, live retrieval",
+        "Evidence with optional cleaned Markdown source text",
+        "Built for high throughput, parallel agent workloads",
+        "Ethical and compliant web data collection",
+        "Global multilingual compliance and ethics team",
+        "Proactive abuse prevention and privacy adherence"
       ],
-      "positioning": "Proxyway positions itself as an authoritative and trusted resource for individuals and businesses seeking to understand, evaluate, and select proxy services and web scraping tools. It targets both technical users and beginners by providing detailed reviews, market research, and educational content. The site emphasizes unbiased, data-driven insights and practical guidance to help users make informed decisions in the proxy and web scraping markets. It also serves as a platform for proxy-related news and industry developments, appealing to enthusiasts, developers, and enterprises needing reliable proxy and scraping solutions.",
+      "positioning": "Bright Data positions itself as a comprehensive, enterprise-grade platform for web data extraction, proxy services, and AI-ready datasets, emphasizing compliance, reliability, and scalability for diverse industries and use cases.",
       "links": {
-        "site": "https://proxyway.com/",
-        "docs": "https://proxyway.com/guides",
-        "pricing": null
+        "site": "https://brightdata.com/",
+        "docs": "https://docs.brightdata.com/introduction",
+        "pricing": "https://brightdata.com/pricing/crawl-api"
       },
-      "sourceUrl": "https://proxyway.com",
+      "pricing": {
+        "free": true,
+        "startingPrice": "$0.75 / 1K Records",
+        "model": "Pay-as-you-go with volume discounts and enterprise custom packages"
+      },
+      "targetSegment": "Enterprises, developers, data scientists, AI teams, market researchers, and businesses requiring large-scale, compliant web data extraction and proxy services.",
+      "differentiators": [
+        "Largest proxy network with 400M+ residential IPs globally",
+        "Ethical and compliant data collection with transparent peer consent",
+        "Comprehensive suite of APIs and data feeds for various use cases",
+        "Live, intent-ranked source discovery for AI agents",
+        "High uptime and success rates with enterprise-grade security",
+        "Flexible integration options including no-code and developer tools",
+        "Strong support with 24/7 availability and rapid response times",
+        "Partnerships with major cloud providers and security firms"
+      ],
+      "socialProof": "Trusted by over 20,000 customers worldwide; rated #1 by customers on G2; partnerships with security giants like VirusTotal, Avast, and AVG; extensive partner and academic collaborations.",
+      "founded": "",
+      "openSource": false,
+      "sourceUrl": "https://brightdata.com",
       "confidence": 1
     }
   ],
-  "failures": [],
+  "failures": [
+    {
+      "url": "https://oxylabs.io",
+      "domain": "oxylabs.io",
+      "reason": "off_category"
+    },
+    {
+      "url": "https://proxyway.com",
+      "domain": "proxyway.com",
+      "reason": "off_category"
+    }
+  ],
   "comparison": {
     "dimensions": [
-      "web scraping",
       "api",
+      "web scraping",
       "data extraction",
       "proxy rotation",
       "anti-bot bypass",
       "automation"
     ]
   },
-  "brief": "Mapped 8 players in \"web scraping APIs\". Most common capabilities: web scraping, api, data extraction. Players: Google Shopping Scraper API, Firecrawl, ScrapingBee, Apify, Oxylabs, Scrape.do, Scrapfly, Proxyway.",
+  "brief": "Mapped 6 players in \"web scraping APIs\" (2 couldn't be profiled). Most common capabilities: api, web scraping, data extraction. Players: Google Shopping Scraper API, ScrapingBee, Apify, Scrape.do, Scrapfly, Bright Data.",
   "citations": [
     {
       "n": 1,
@@ -334,40 +383,139 @@
     },
     {
       "n": 2,
-      "title": "Firecrawl — firecrawl.dev",
-      "url": "https://firecrawl.dev"
-    },
-    {
-      "n": 3,
       "title": "ScrapingBee — scrapingbee.com",
       "url": "https://scrapingbee.com"
     },
     {
-      "n": 4,
+      "n": 3,
       "title": "Apify — docs.apify.com",
       "url": "https://docs.apify.com"
     },
     {
-      "n": 5,
-      "title": "Oxylabs — oxylabs.io",
-      "url": "https://oxylabs.io"
-    },
-    {
-      "n": 6,
+      "n": 4,
       "title": "Scrape.do — scrape.do",
       "url": "https://scrape.do"
     },
     {
-      "n": 7,
+      "n": 5,
       "title": "Scrapfly — scrapfly.io",
       "url": "https://scrapfly.io"
     },
     {
-      "n": 8,
-      "title": "Proxyway — proxyway.com",
-      "url": "https://proxyway.com"
+      "n": 6,
+      "title": "Bright Data — brightdata.com",
+      "url": "https://brightdata.com"
     }
   ],
   "creditsUsed": 108,
-  "latencyMs": 17835
+  "latencyMs": 51278,
+  "analyst": {
+    "overview": "The web scraping API market is mature and competitive, with at least six established players offering overlapping core capabilities around proxy rotation, anti-bot bypass, and structured data extraction. Pricing has largely converged around a ~$49/month entry point with free tiers becoming table stakes, signaling commoditization of baseline scraping infrastructure. Differentiation is now occurring at the platform layer through AI-powered extraction, browser automation depth, ecosystem integrations, and proprietary anti-bot technology stacks. The market serves a broad range of buyers from solo developers to large enterprises across e-commerce, AI/ML, fintech, and market intelligence verticals.",
+    "segments": [
+      {
+        "name": "Full-Stack Enterprise Platforms",
+        "members": [
+          "Bright Data (brightdata.com)",
+          "Apify (docs.apify.com)",
+          "Scrapfly (scrapfly.io)"
+        ],
+        "note": "These players offer comprehensive, multi-product platforms combining proxies, scraping APIs, browser automation, and data pipelines suited for large-scale enterprise needs."
+      },
+      {
+        "name": "Developer-Focused Scraping APIs",
+        "members": [
+          "ScrapingBee (scrapingbee.com)",
+          "Scrape.do (scrape.do)"
+        ],
+        "note": "These players emphasize ease of integration, transparent pricing, and reliable anti-bot handling targeting developers and small-to-mid-sized teams."
+      },
+      {
+        "name": "Vertical-Specialized Scraping APIs",
+        "members": [
+          "Google Shopping Scraper API (scraperapi.com)"
+        ],
+        "note": "This player focuses on delivering structured, domain-specific data outputs for a defined use case rather than generic scraping infrastructure."
+      }
+    ],
+    "leaders": [
+      {
+        "name": "Bright Data (brightdata.com)",
+        "why": "Operates the largest proxy network with 400M+ IPs across 195 countries and offers the most comprehensive suite of APIs, datasets, and compliance-focused infrastructure."
+      },
+      {
+        "name": "Apify (docs.apify.com)",
+        "why": "Provides a uniquely broad platform combining scraping, automation, cloud storage, scheduling, and deep AI agent integration through an open extensible Actor ecosystem."
+      },
+      {
+        "name": "Scrapfly (scrapfly.io)",
+        "why": "Owns its entire technology stack including a proprietary proxy mesh, stealth HTTP engine, and stealth browser, enabling a 98%+ anti-bot bypass success rate across 20+ major vendors."
+      }
+    ],
+    "tableStakes": [
+      "Proxy rotation",
+      "Anti-bot and CAPTCHA bypass",
+      "JavaScript rendering",
+      "REST API access",
+      "Free tier or trial credits",
+      "Structured/JSON output",
+      "Scheduling and automation",
+      "High success rate guarantees"
+    ],
+    "differentiators": [
+      {
+        "player": "Bright Data (brightdata.com)",
+        "edge": "Largest global proxy network at 400M+ IPs with an ethical, consent-based data collection model and ready-to-use AI/BI datasets."
+      },
+      {
+        "player": "Apify (docs.apify.com)",
+        "edge": "Open Actor ecosystem enabling users to develop, share, and reuse scraping and automation tools with native MCP server integration for AI agent workflows."
+      },
+      {
+        "player": "Scrapfly (scrapfly.io)",
+        "edge": "Owns proprietary stealth infrastructure end-to-end including Curlium HTTP engine and Scrapium browser, plus a single API key spanning scraping, crawling, screenshots, and AI extraction."
+      },
+      {
+        "player": "Scrape.do (scrape.do)",
+        "edge": "Pay-only-for-successful-requests pricing model combined with a 99.98% claimed success rate and direct expert developer support without ticket queues."
+      },
+      {
+        "player": "ScrapingBee (scrapingbee.com)",
+        "edge": "Natural-language AI extraction with CLI integration purpose-built for AI agent pipelines, lowering the barrier for non-technical and AI-native users."
+      },
+      {
+        "player": "Google Shopping Scraper API (scraperapi.com)",
+        "edge": "Purpose-built structured JSON output for Google Shopping data with no-code DataPipeline and async scraping tailored to e-commerce and price intelligence workflows."
+      }
+    ],
+    "gaps": [
+      "Real-time monitoring and alerting on scraped data changes",
+      "Built-in data quality validation and deduplication pipelines",
+      "Transparent compliance tooling for GDPR and regional data privacy regulations beyond ethical proxy sourcing",
+      "Domain-specific pre-built extractors beyond e-commerce and search",
+      "Collaborative team features such as shared workspaces, access controls, and audit logs",
+      "Cost-predictability tools like spending caps and granular usage forecasting"
+    ],
+    "picks": [
+      {
+        "useCase": "Enterprise needing large-scale compliant data collection with maximum proxy coverage",
+        "player": "Bright Data (brightdata.com)",
+        "why": "Its 400M+ IP network, ethical peer-consent model, and ready-made AI/BI datasets make it the most capable and compliant option for enterprise-scale data operations."
+      },
+      {
+        "useCase": "Developer building AI agents that need to browse and extract web data autonomously",
+        "player": "Apify (docs.apify.com)",
+        "why": "Its native MCP server, Actor ecosystem, and deep AI agent integrations make it purpose-built for agentic and automated AI workflows."
+      },
+      {
+        "useCase": "Startup or developer needing reliable scraping of heavily protected sites on a budget",
+        "player": "Scrapfly (scrapfly.io)",
+        "why": "Its proprietary stealth stack delivers a 98%+ anti-bot bypass rate with pay-on-success pricing starting at $30/month, optimizing both reliability and cost."
+      },
+      {
+        "useCase": "E-commerce or market research team tracking Google Shopping prices and rankings",
+        "player": "Google Shopping Scraper API (scraperapi.com)",
+        "why": "Its purpose-built structured JSON output for Google Shopping with no-code scheduling and async scraping is directly optimized for this specific use case."
+      }
+    ]
+  }
 }
