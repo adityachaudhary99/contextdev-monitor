@@ -22,11 +22,16 @@ function isAggregator(domain: string): boolean {
   );
 }
 export async function discoverPlayers(
-  category: string, client: ContextClient, opts?: { maxPlayers?: number },
+  category: string, client: ContextClient, opts?: { maxPlayers?: number; seeds?: string[] },
 ): Promise<Result<{ name: string; url: string }[]>> {
   const max = opts?.maxPlayers ?? 8;
-  const queries = [category, `best ${category} tools`, `${category} alternatives`];
   const seen = new Map<string, { name: string; url: string }>();
+  for (const s of opts?.seeds ?? []) {
+    const d = rootDomain(s.startsWith("http") ? s : `https://${s}`);
+    if (d && !seen.has(d)) seen.set(d, { name: d, url: `https://${d}` });
+    if (seen.size >= max) break;
+  }
+  const queries = [category, `best ${category} tools`, `${category} alternatives`];
   for (const q of queries) {
     const r = await client.webSearch(q);
     if (!r.ok) continue;

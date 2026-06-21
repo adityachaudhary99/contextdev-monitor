@@ -16,3 +16,5 @@ export type { Landscape, PlayerProfile, ProfileFailure } from "./landscape/types
 export { slugify, deslugify } from "./landscape/slug.js";
 export { categoryTerms, isRelevant } from "./landscape/relevance.js";
 export { InMemoryLandscapeStore, type LandscapeStore } from "./cache/landscape-store.js";
+export { AnthropicClient, anthropicFromEnv, type LlmClient } from "./llm/llm-client.js";
+export { judgeCategoryFit } from "./landscape/category-fit.js";

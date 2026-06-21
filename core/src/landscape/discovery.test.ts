@@ -28,6 +28,17 @@ describe("discoverPlayers", () => {
     const r = await discoverPlayers("x", client([{ title: "Reddit", url: "https://reddit.com/r/x" }]));
     expect(r).toEqual({ ok: false, failure: { url: "", reason: "no_players_found" } });
   });
+  it("force-includes seeds first, bypassing the denylist", async () => {
+    const r = await discoverPlayers("x", client([{ title: "Apify", url: "https://apify.com/" }]),
+      { maxPlayers: 8, seeds: ["pi.dev", "https://github.com/foo"] }); // github.com normally denied
+    expect(r.ok).toBe(true);
+    if (r.ok) {
+      const domains = r.value.map((p) => rootDomain(p.url));
+      expect(domains).toContain("pi.dev");
+      expect(domains).toContain("github.com");   // seed bypasses DENY
+      expect(domains).toContain("apify.com");
+    }
+  });
   it("drops blog/publishing/aggregator hosts, keeps real products", async () => {
     const r = await discoverPlayers("scraping apis", client([
       { title: "Apify", url: "https://apify.com/" },
