@@ -19,3 +19,5 @@ export { InMemoryLandscapeStore, type LandscapeStore } from "./cache/landscape-s
 export { AnthropicClient, anthropicFromEnv, type LlmClient } from "./llm/llm-client.js";
 export { judgeCategoryFit } from "./landscape/category-fit.js";
 export { synthesizeAnalystReport, AnalystReportSchema, type AnalystReport } from "./landscape/analyst.js";
+export { computeMarketAnalytics, parsePrice } from "./landscape/analytics.js";
+export type { MarketAnalytics, CapabilityCoverage, PricingStats, CompositionStats } from "./landscape/analytics.js";
