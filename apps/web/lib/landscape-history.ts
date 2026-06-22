@@ -4,6 +4,10 @@ import { diffLandscapes } from "@contextdev/core";
 import webScrapingApisHistory from "../data/landscape-history/web-scraping-apis.json";
 import headlessCmsHistory from "../data/landscape-history/headless-cms.json";
 
+// Keep this map in sync with the curated catalog (lib/landscape-catalog.ts): a slug
+// present there but missing here just hides the monitor panel (getLandscapeMonitor → null),
+// it does not error. Add a `data/landscape-history/<slug>.json` (via scripts/seed-history.ts)
+// and an entry below when adding a curated landscape.
 const HISTORY: Record<string, LandscapeSnapshot[]> = {
   "web-scraping-apis": webScrapingApisHistory as LandscapeSnapshot[],
   "headless-cms": headlessCmsHistory as LandscapeSnapshot[],
