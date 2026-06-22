@@ -1,5 +1,5 @@
 import type { PlayerProfile } from "@contextdev/core";
-import { computeMarketAnalytics } from "@contextdev/core";
+import { computeMarketAnalytics } from "@contextdev/core/analytics";
 import { BarChart3, DollarSign, GitBranch } from "lucide-react";
 import { cn } from "../lib/cn.js";
 
