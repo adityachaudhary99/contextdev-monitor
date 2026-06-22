@@ -1,0 +1,115 @@
+[
+  {
+    "category": "headless CMS",
+    "capturedAt": "2026-06-22T00:00:00.000Z",
+    "players": [
+      {
+        "name": "Contentful",
+        "domain": "contentful.com",
+        "tags": [
+          "content management system",
+          "headless cms",
+          "digital experience platform",
+          "personalization",
+          "ai-driven analytics",
+          "content workflow automation",
+          "api-first",
+          "composable commerce"
+        ],
+        "startingPrice": null,
+        "free": null,
+        "openSource": false,
+        "oneLiner": "Contentful is a flexible, API-first content platform that enables teams to create, manage, and deliver personalized digital experiences at scale."
+      },
+      {
+        "name": "Strapi",
+        "domain": "strapi.io",
+        "tags": [
+          "headless cms",
+          "open-source",
+          "typescript",
+          "api",
+          "content management",
+          "customization",
+          "collaboration",
+          "hosting"
+        ],
+        "startingPrice": null,
+        "free": true,
+        "openSource": true,
+        "oneLiner": "Open-source TypeScript Headless CMS for Next.js, Astro, Tanstack Start, and Nuxt.js"
+      },
+      {
+        "name": "Storyblok",
+        "domain": "storyblok.com",
+        "tags": [
+          "headless cms",
+          "content management",
+          "api-first",
+          "visual editor",
+          "enterprise cms",
+          "developer friendly",
+          "marketer friendly",
+          "agent collaboration"
+        ],
+        "startingPrice": null,
+        "free": true,
+        "openSource": false,
+        "oneLiner": "Headless CMS with Visual Editor that empowers developers, marketers, and agents to collaborate joyfully and deliver content faster."
+      },
+      {
+        "name": "Contentstack",
+        "domain": "contentstack.com",
+        "tags": [
+          "headless cms",
+          "ai",
+          "content management",
+          "personalization",
+          "real-time data",
+          "digital experience platform",
+          "enterprise software"
+        ],
+        "startingPrice": null,
+        "free": true,
+        "openSource": false,
+        "oneLiner": "The industry's first Agentic Experience Platform (AXP) combining CMS, real-time data, and agentic AI for hyper-relevant digital experiences at scale."
+      },
+      {
+        "name": "Payload",
+        "domain": "payloadcms.com",
+        "tags": [
+          "headless cms",
+          "next.js",
+          "open-source",
+          "enterprise app builder",
+          "digital asset management",
+          "headless e-commerce",
+          "typescript",
+          "developer-friendly"
+        ],
+        "startingPrice": null,
+        "free": true,
+        "openSource": true,
+        "oneLiner": "The open-source Next.js backend and headless CMS for building modern web applications with full control and extensibility."
+      },
+      {
+        "name": "Cosmic",
+        "domain": "cosmicjs.com",
+        "tags": [
+          "headless cms",
+          "ai-powered cms",
+          "content management",
+          "api",
+          "cli",
+          "ai agents",
+          "automation",
+          "content collaboration"
+        ],
+        "startingPrice": "$0/mo",
+        "free": true,
+        "openSource": true,
+        "oneLiner": "AI-Powered Headless CMS to build, deploy, and scale digital experiences faster with AI agents, CLI, and workflows."
+      }
+    ]
+  }
+]

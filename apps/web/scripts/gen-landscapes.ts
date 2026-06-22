@@ -4,10 +4,11 @@
 //
 // Writes apps/web/data/landscapes/<slug>.json for each category (real context.dev data).
 // After running, register the new slugs in apps/web/lib/landscape-catalog.ts.
-import { writeFileSync } from "node:fs";
+import { writeFileSync, existsSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import {
-  runLandscape, slugify, ContextClient, CreditLedger, InMemoryBudgetStore, anthropicFromEnv,
+  runLandscape, slugify, snapshotLandscape, type LandscapeSnapshot,
+  ContextClient, CreditLedger, InMemoryBudgetStore, anthropicFromEnv,
 } from "@contextdev/core";
 
 async function main() {
@@ -30,6 +31,10 @@ async function main() {
     const slug = slugify(category);
     const path = fileURLToPath(new URL(`../data/landscapes/${slug}.json`, import.meta.url));
     writeFileSync(path, JSON.stringify(landscape, null, 2) + "\n");
+    const histPath = fileURLToPath(new URL(`../data/landscape-history/${slug}.json`, import.meta.url));
+    const prior: LandscapeSnapshot[] = existsSync(histPath) ? JSON.parse(readFileSync(histPath, "utf8")) : [];
+    prior.push(snapshotLandscape(landscape, day + "T00:00:00.000Z"));
+    writeFileSync(histPath, JSON.stringify(prior, null, 2) + "\n");
     console.log(
       `${slug}: ${landscape.players.length} players, ${landscape.failures.length} failures, ` +
       `${landscape.creditsUsed}cr, ${(landscape.latencyMs / 1000).toFixed(1)}s -> data/landscapes/${slug}.json`,

@@ -1,0 +1,115 @@
+[
+  {
+    "category": "web scraping APIs",
+    "capturedAt": "2026-06-22T00:00:00.000Z",
+    "players": [
+      {
+        "name": "Google Shopping Scraper API",
+        "domain": "scraperapi.com",
+        "tags": [
+          "web scraping",
+          "api",
+          "google shopping",
+          "ecommerce data",
+          "structured data",
+          "data collection",
+          "automation",
+          "proxy rotation"
+        ],
+        "startingPrice": "$49/month",
+        "free": false,
+        "openSource": false,
+        "oneLiner": "Retrieve product details like names, prices, ranking positions, URLs, sources, and more from Google Shopping in structured JSON format."
+      },
+      {
+        "name": "ScrapingBee",
+        "domain": "scrapingbee.com",
+        "tags": [
+          "web scraping",
+          "api",
+          "data extraction",
+          "proxy rotation",
+          "javascript rendering",
+          "ai data extraction",
+          "no-code integration"
+        ],
+        "startingPrice": "$49/mo",
+        "free": true,
+        "openSource": false,
+        "oneLiner": "The Best Web Scraping API to Avoid Getting Blocked"
+      },
+      {
+        "name": "Apify",
+        "domain": "docs.apify.com",
+        "tags": [
+          "web scraping",
+          "automation",
+          "api",
+          "sdk",
+          "actors",
+          "ai integration",
+          "workflow automation",
+          "data extraction"
+        ],
+        "startingPrice": "$49/month",
+        "free": true,
+        "openSource": true,
+        "oneLiner": "A platform for web scraping, automation, and integration with AI agents and workflows."
+      },
+      {
+        "name": "Scrape.do",
+        "domain": "scrape.do",
+        "tags": [
+          "web scraping",
+          "api",
+          "data extraction",
+          "proxies",
+          "anti-bot bypass",
+          "headless browser",
+          "captcha handling",
+          "proxy rotation"
+        ],
+        "startingPrice": "$0",
+        "free": true,
+        "openSource": false,
+        "oneLiner": "Powerful Toolkit for Hassle-Free and Scalable Web Scraping"
+      },
+      {
+        "name": "Scrapfly",
+        "domain": "scrapfly.io",
+        "tags": [
+          "web scraping",
+          "api",
+          "cloud browser",
+          "anti-bot bypass",
+          "proxy rotation",
+          "javascript rendering",
+          "browser automation",
+          "data extraction"
+        ],
+        "startingPrice": "$30 / month",
+        "free": true,
+        "openSource": false,
+        "oneLiner": "Scrape any site, drive any browser, power any agent with one API key and a full-stack web scraping platform."
+      },
+      {
+        "name": "Bright Data",
+        "domain": "brightdata.com",
+        "tags": [
+          "web scraping",
+          "proxies",
+          "data extraction",
+          "api",
+          "datasets",
+          "ai data",
+          "market intelligence",
+          "compliance"
+        ],
+        "startingPrice": "$0.75 / 1K Records",
+        "free": true,
+        "openSource": false,
+        "oneLiner": "All in One Platform for Proxies and Web Scraping"
+      }
+    ]
+  }
+]
