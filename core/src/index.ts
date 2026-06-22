@@ -21,3 +21,5 @@ export { judgeCategoryFit } from "./landscape/category-fit.js";
 export { synthesizeAnalystReport, AnalystReportSchema, type AnalystReport } from "./landscape/analyst.js";
 export { computeMarketAnalytics, parsePrice } from "./landscape/analytics.js";
 export type { MarketAnalytics, CapabilityCoverage, PricingStats, CompositionStats } from "./landscape/analytics.js";
+export { snapshotLandscape, diffLandscapes } from "./landscape/diff.js";
+export type { LandscapeSnapshot, PlayerSnapshot, LandscapeDiff, PricingChange, CapabilityChange } from "./landscape/diff.js";
