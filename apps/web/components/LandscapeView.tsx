@@ -7,6 +7,7 @@ import { Button } from "./ui/button.js";
 import ComparisonTable from "./ComparisonTable.js";
 import PlayerCard from "./PlayerCard.js";
 import AnalystReport from "./AnalystReport.js";
+import MarketAnalytics from "./MarketAnalytics.js";
 
 interface LandscapeViewProps {
   landscape: Landscape;
@@ -50,6 +51,7 @@ export default function LandscapeView({ landscape }: LandscapeViewProps) {
       </div>
 
       {landscape.analyst && <AnalystReport report={landscape.analyst} />}
+      <MarketAnalytics players={players} />
 
       <section className="flex flex-col gap-3">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">Capability matrix</h2>

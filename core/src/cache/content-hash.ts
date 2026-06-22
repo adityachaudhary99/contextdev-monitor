@@ -1,4 +1,4 @@
-import { createHash } from "node:crypto";
+import { createHash } from "crypto";
 
 /** Lowercase sha256 hex of the UTF-8 bytes of `input`. */
 export function hashContent(input: string): string {
