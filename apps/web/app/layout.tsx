@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "../components/ThemeProvider.js";
 import Header from "../components/Header.js";
 import Footer from "../components/Footer.js";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://contextdev-monitor.vercel.app"),
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Footer />
           </div>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
