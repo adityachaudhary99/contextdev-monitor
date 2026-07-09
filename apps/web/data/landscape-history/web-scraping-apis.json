@@ -111,5 +111,115 @@
         "oneLiner": "All in One Platform for Proxies and Web Scraping"
       }
     ]
+  },
+  {
+    "category": "web scraping APIs",
+    "capturedAt": "2026-07-09T00:00:00.000Z",
+    "players": [
+      {
+        "name": "ScraperAPI",
+        "domain": "scraperapi.com",
+        "tags": [
+          "web scraping",
+          "structured data",
+          "proxies",
+          "captcha handling",
+          "geotargeting",
+          "async scraping",
+          "data pipeline",
+          "developer tools"
+        ],
+        "startingPrice": "49",
+        "free": null,
+        "openSource": false,
+        "oneLiner": "Scale Data Collection with a Simple Web Scraping API"
+      },
+      {
+        "name": "ScrapingBee",
+        "domain": "scrapingbee.com",
+        "tags": [
+          "web scraping",
+          "api",
+          "proxies",
+          "headless browser",
+          "ai extraction",
+          "data extraction",
+          "screenshots",
+          "geotargeting"
+        ],
+        "startingPrice": "49",
+        "free": true,
+        "openSource": false,
+        "oneLiner": "Web scraping API that handles proxies, headless browsers, and anti-bot defenses."
+      },
+      {
+        "name": "Scrapfly",
+        "domain": "scrapfly.io",
+        "tags": [
+          "web scraping",
+          "cloud browser",
+          "screenshot",
+          "data extraction",
+          "crawler",
+          "anti-bot bypass",
+          "proxies",
+          "llm"
+        ],
+        "startingPrice": "30",
+        "free": true,
+        "openSource": false,
+        "oneLiner": "Web scraping, cloud browser, screenshot, extraction and crawler APIs — one API key for anti-bot bypass, proxies, rendering and AI extraction."
+      },
+      {
+        "name": "Scrape.do",
+        "domain": "scrape.do",
+        "tags": [
+          "web scraping",
+          "api",
+          "proxies",
+          "headless browser",
+          "anti-bot",
+          "captcha handling",
+          "geo-targeting",
+          "ready-apis"
+        ],
+        "startingPrice": "0",
+        "free": true,
+        "openSource": false,
+        "oneLiner": "Powerful toolkit for hassle-free, scalable web scraping (APIs, Ready Scrapers, proxies, headless/browser tools)"
+      },
+      {
+        "name": "Scrapingdog",
+        "domain": "scrapingdog.com",
+        "tags": [
+          "web scraping",
+          "api",
+          "proxies",
+          "headless browser",
+          "captcha solving",
+          "geotargeting",
+          "google serp",
+          "amazon scraper"
+        ],
+        "startingPrice": "0",
+        "free": true,
+        "openSource": null,
+        "oneLiner": "Scalable web scraping API that delivers parsed JSON, manages proxies, browsers and anti-bot handling."
+      }
+    ],
+    "failed": [
+      {
+        "domain": "firecrawl.dev",
+        "reason": "off_category"
+      },
+      {
+        "domain": "docs.apify.com",
+        "reason": "off_category"
+      },
+      {
+        "domain": "oxylabs.io",
+        "reason": "off_category"
+      }
+    ]
   }
 ]

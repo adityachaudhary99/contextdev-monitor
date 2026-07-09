@@ -4,344 +4,286 @@
     {
       "name": "Contentful",
       "domain": "contentful.com",
-      "oneLiner": "Contentful is a flexible, API-first content platform that enables teams to create, manage, and deliver personalized digital experiences at scale.",
-      "tagline": "Content that scales. Experiences that convert.",
+      "oneLiner": "Composable, API-first content platform to create, manage, personalize, and deliver content across channels at scale",
+      "tagline": "Content that takes you everywhere",
       "tags": [
-        "content management system",
+        "content platform",
         "headless cms",
-        "digital experience platform",
+        "dxp",
         "personalization",
-        "ai-driven analytics",
-        "content workflow automation",
+        "ai",
         "api-first",
-        "composable commerce"
+        "extensibility",
+        "marketplace"
       ],
       "features": [
-        "Modular content architecture for reuse and scalability",
-        "AI-powered content creation, personalization, and workflow automation",
-        "Personalization tools with segmentation, experimentation, and insights",
-        "Extensive ecosystem with apps, integrations, and partner network",
-        "API-first platform with high reliability and security compliance",
-        "Localization and translation management",
-        "Front-end hosting and omnichannel content delivery",
-        "Role-based permissions and customizable content models",
-        "Bulk entry operations for efficient content management",
-        "Integration with leading ecommerce and cloud platforms"
+        "API-first architecture",
+        "Personalization (AI-native)",
+        "AI Actions (automation & workflows)",
+        "Analytics (beta)",
+        "Studio (visual editor)",
+        "Marketplace apps & integrations",
+        "Front-end hosting",
+        "Localization and translation",
+        "Content semantics (semantic / vector access)",
+        "Enterprise Observability (log streaming)",
+        "Bulk entry operations",
+        "AI Content Type Generator",
+        "Role-based permissions",
+        "Live preview",
+        "Taxonomy endpoints",
+        "Extensible App Framework"
       ],
-      "positioning": "Contentful positions itself as a modern, flexible digital experience platform designed to help product, marketing, and content teams deliver personalized, relevant experiences quickly and at scale, leveraging AI and composable architecture to reduce complexity and increase speed to market.",
+      "positioning": "A composable digital experience platform and headless CMS targeting growth, product, content, and web teams — emphasizing API-first architecture, AI-driven personalization, extensibility via marketplace/apps, enterprise reliability, and developer-friendly tooling.",
       "links": {
         "site": "https://contentful.com/",
         "docs": "https://contentful.com/developers/docs/",
         "pricing": "https://contentful.com/pricing/"
       },
       "pricing": {
-        "free": null,
+        "free": true,
         "startingPrice": null,
-        "model": null
+        "model": "SaaS, tiered plans (free tier available)"
       },
-      "targetSegment": "Enterprise and mid-market companies with product, marketing, and content teams seeking a scalable, API-first content platform to deliver personalized digital experiences across multiple channels and regions.",
+      "targetSegment": "Mid-market and enterprise teams (growth marketing, web, product, content teams, and developers) seeking a scalable, API-first content platform and DXP with AI personalization and extensibility.",
       "differentiators": [
-        "Strong AI integration for content creation, personalization, and workflow automation",
-        "Composable, modular content architecture enabling reuse and fast updates",
-        "Extensive ecosystem and marketplace for integrations and custom apps",
-        "High reliability with 99.99% uptime and compliance with ISO 27001 and PCI DSS",
-        "API-first approach allowing easy integration with existing tech stacks",
-        "No-code personalization tools empowering marketers without developer assistance",
-        "Robust analytics and experimentation capabilities embedded in the platform"
+        "Strong API-first developer experience and extensive docs/SDKs",
+        "AI-native personalization and built-in AI Actions with BYOM connectors",
+        "Large ecosystem/marketplace and partner network",
+        "Enterprise-grade features (99.99% uptime SLA, observability, compliance)",
+        "Modular/composable architecture for multi-brand and omnichannel delivery"
       ],
-      "socialProof": "Trusted by leading brands such as Mailchimp, Docusign, KFC, Atlassian, Kraft Heinz, AWS, Notion, Rapha, BigCommerce, and Danone. Case studies show significant improvements like 78% increased conversion rates via personalization, 10x increase in content production, and 50% cost reduction through efficiency gains.",
+      "socialProof": "Logos and case studies from customers including Mailchimp, Docusign, KFC, Atlassian, Kraft Heinz, Notion, Danone, BigCommerce, SumUp, Ruggable; specific case study metrics (e.g., 78% CVR increase via personalization, 10x content production, 5 min release cycles)",
       "founded": "",
       "openSource": false,
       "sourceUrl": "https://contentful.com",
       "confidence": 1
     },
     {
+      "name": "Storyblok",
+      "domain": "storyblok.com",
+      "oneLiner": "Headless CMS with visual editor — API-first, component-based CMS built for developers and marketers",
+      "tagline": "The last CMS you’ll ever buy. And the first one you'll actually enjoy.",
+      "tags": [
+        "headless cms",
+        "visual editor",
+        "api-first",
+        "graphql",
+        "image service",
+        "mcp server",
+        "flowmotion",
+        "enterprise"
+      ],
+      "features": [
+        "Visual editing (on-page visual editor)",
+        "API-first Content Delivery and Management APIs (REST & GraphQL)",
+        "Image Service with on-the-fly image operations",
+        "MCP Server for agent/AI integration",
+        "FlowMotion workflow orchestration",
+        "Component-based (atomic) content models and blueprints",
+        "SDKs and libraries for multiple frameworks (Next.js, Astro, Nuxt, React, Vue, Svelte, Angular, PHP, Swift, Kotlin)",
+        "Preview & integration guides for popular frameworks",
+        "Granular roles and permissions",
+        "Enterprise-grade security (ISO 27001)",
+        "Global CDN and performance tools",
+        "Apps / plugin ecosystem (App Directory)"
+      ],
+      "positioning": "Enterprise-capable headless CMS that balances developer flexibility (API-first, SDKs, component-based) with marketer-friendly visual editing and collaboration; emphasizes agent/AI orchestration and enterprise security.",
+      "links": {
+        "site": "https://storyblok.com/",
+        "docs": "https://www.storyblok.com/docs",
+        "pricing": "https://storyblok.com/pricing"
+      },
+      "pricing": {
+        "free": true,
+        "startingPrice": null,
+        "model": "tiered (Starter free; upgrade for premium/enterprise features)"
+      },
+      "targetSegment": "Developers, marketers, and enterprises seeking a flexible, API-first headless CMS with visual editing and AI/agent orchestration",
+      "differentiators": [
+        "Visual Editor combined with headless architecture",
+        "Native MCP Server for agent-aware content access",
+        "FlowMotion for AI and team workflow orchestration",
+        "Wide framework support with SDKs and detailed guides",
+        "Enterprise features: ISO 27001, 99.99% uptime SLA, granular permissions"
+      ],
+      "socialProof": "Recognized by IDC MarketScape, Forrester Wave, and G2 (over 75 badges); customer case studies with brands like TomTom, Octopus Energy, Oatly, Virgin Media O2, National Retail Federation",
+      "founded": "2017",
+      "openSource": false,
+      "sourceUrl": "https://storyblok.com",
+      "confidence": 1
+    },
+    {
       "name": "Strapi",
       "domain": "strapi.io",
-      "oneLiner": "Open-source TypeScript Headless CMS for Next.js, Astro, Tanstack Start, and Nuxt.js",
-      "tagline": "The Open-Source Headless CMS for AI powered Websites and Apps",
+      "oneLiner": "Open-source TypeScript headless CMS / content framework",
+      "tagline": "Architect your content layer for humans, applications, and AI agents.",
       "tags": [
         "headless cms",
         "open-source",
         "typescript",
-        "api",
-        "content management",
-        "customization",
-        "collaboration",
-        "hosting"
+        "api-first",
+        "graphql",
+        "rest",
+        "pim",
+        "enterprise"
       ],
       "features": [
-        "Design REST and GraphQL Content Delivery APIs to connect to any frontend",
-        "Craft experiences and easily manage editing, publishing, and translation",
-        "Personalize your CMS to meet your project's unique requirements",
-        "Work together easily on code and content",
-        "Host your projects on robust, secure servers in minutes",
-        "Implement robust security measures to protect your information",
-        "Automate Content Modeling, Translations & more with Strapi AI",
-        "Cloud PaaS hosting for Strapi projects",
-        "Enterprise Edition - self hosted, Enterprise-ready",
-        "Marketplace of plugins and integrations",
-        "Internationalization (i18n) for multi-locale content",
-        "Blocks Editor with drag and drop rich text",
-        "Dynamic Zones for flexible page design",
-        "Content History to track changes",
-        "Live Preview before publishing",
-        "Conditional Fields for smarter editing experience",
-        "Content GraphQL API",
-        "API Tokens for secure access",
-        "Full TypeScript support",
-        "Audit Logs for security monitoring",
-        "Role-Based Access Control (RBAC)",
-        "Single Sign-On (SSO) integration"
+        "Create APIs (REST & GraphQL)",
+        "Content Type Builder",
+        "Components and Dynamic Zones",
+        "Custom Fields",
+        "Content History",
+        "Blocks Editor (WYSIWYG)",
+        "Media Library",
+        "Custom Roles & Permissions",
+        "Internationalization",
+        "Audit Logs",
+        "API Tokens",
+        "Releases",
+        "Backups",
+        "Built-in CDN",
+        "Cloud CLI",
+        "Webhooks",
+        "Multi-database support",
+        "Auto-generated documentation",
+        "Plugin Marketplace",
+        "Custom controllers/services/middleware"
       ],
-      "positioning": "Strapi is positioned as the leading open-source headless CMS that offers developers freedom to use their favorite tools and frameworks while providing editors an easy-to-use content management system. It emphasizes customization, AI capabilities, security, and scalability for modern websites, apps, and enterprise needs.",
+      "positioning": "Open-source, fully customizable headless CMS and content framework that gives developers full code ownership and enterprises governance and compliance (SOC 2, GDPR), deployable self-hosted or via Strapi Cloud.",
       "links": {
         "site": "https://strapi.io/",
-        "docs": "https://docs.strapi.io/cms/intro",
+        "docs": "https://docs.strapi.io/",
         "pricing": "https://strapi.io/pricing-cms"
       },
       "pricing": {
         "free": true,
         "startingPrice": null,
-        "model": "Free plan available with scalable paid plans for cloud and enterprise editions"
+        "model": "Open-source (MIT) with Cloud and Enterprise paid offerings"
       },
-      "targetSegment": "Developers, content managers, business leaders, digital agencies, and enterprises looking for a customizable, open-source headless CMS with AI capabilities and robust security for websites, mobile apps, e-commerce, and backend frameworks.",
+      "targetSegment": "Developers, content teams, digital agencies, and enterprises requiring customizable headless CMS, PIM, and API-first content platforms.",
       "differentiators": [
-        "Open-source with MIT license allowing full control and customization",
-        "Full TypeScript support for better code quality and security",
-        "Integrated AI features for content modeling and translations",
-        "Robust security features including SOC 2 certification, GDPR compliance, RBAC, audit logs, and SSO",
-        "Flexible API design with REST and GraphQL support",
-        "Cloud PaaS hosting and enterprise-ready self-hosted editions",
-        "Extensive plugin marketplace and integrations with popular frontend frameworks"
+        "MIT-licensed open-source codebase with full code ownership",
+        "Highly extensible framework-level customization (backend and admin)",
+        "Supports REST and GraphQL with auto-typed APIs",
+        "Deployable self-hosted or managed on Strapi Cloud",
+        "Enterprise features: SOC 2, GDPR, SSO, audit logs, SLA-backed support",
+        "Rich plugin marketplace and community"
       ],
-      "socialProof": "72.4k GitHub stars indicating strong community adoption and contribution.",
+      "socialProof": "72.6k GitHub stars; trusted by 3K+ customers with case studies from companies like Tesco and Airbus; backed by Index Ventures, Accel, and Stride.VC.",
       "founded": "",
       "openSource": true,
       "sourceUrl": "https://strapi.io",
       "confidence": 1
     },
     {
-      "name": "Storyblok",
-      "domain": "storyblok.com",
-      "oneLiner": "Headless CMS with Visual Editor that empowers developers, marketers, and agents to collaborate joyfully and deliver content faster.",
-      "tagline": "Your AI is only as good as your content. Make it joyful.",
+      "name": "Sanity",
+      "domain": "sanity.io",
+      "oneLiner": "The Content Operating System for the AI era — a platform for structured content, automation, and content operations",
+      "tagline": "The only platform powering content operations",
       "tags": [
         "headless cms",
-        "content management",
-        "api-first",
-        "visual editor",
-        "enterprise cms",
-        "developer friendly",
-        "marketer friendly",
-        "agent collaboration"
-      ],
-      "features": [
-        "Visual editing with drag and drop components",
-        "Empowered editors and agents with intuitive workflows",
-        "Composable blocks for flexible content structures",
-        "API-first architecture supporting Next.js, Astro, Nuxt, React, Vue, and more",
-        "MCP Server for agentic experiences with structured content access",
-        "FlowMotion for AI orchestration and collaborative workflows",
-        "Enterprise-grade security with ISO 27001 certification and 99.99% uptime SLA",
-        "Built-in performance tools and seamless integrations for scalability",
-        "Comprehensive APIs: Content Delivery API, Management API, GraphQL API, Image Service API",
-        "Extensive developer resources including blueprints, tutorials, and SDKs"
-      ],
-      "positioning": "Storyblok positions itself as the #1 Enterprise Headless CMS that uniquely serves developers, marketers, and agents without tradeoffs, enabling faster content operations and joyful collaboration through a flexible, API-first platform with enterprise scalability and advanced AI orchestration.",
-      "links": {
-        "site": "https://storyblok.com/",
-        "docs": "https://www.storyblok.com/docs/api",
-        "pricing": "https://storyblok.com/pricing"
-      },
-      "pricing": {
-        "free": true,
-        "startingPrice": null,
-        "model": null
-      },
-      "targetSegment": "Enterprises, developers, marketers, and organizations seeking a scalable, flexible headless CMS with strong collaboration and AI orchestration capabilities.",
-      "differentiators": [
-        "Native MCP Server enabling agents to access and understand structured content",
-        "FlowMotion AI orchestration for consistent, collaborative workflows",
-        "Balanced focus on developers, marketers, and agents without compromise",
-        "Extensive API offerings including REST and GraphQL APIs",
-        "High enterprise-grade security and uptime guarantees",
-        "Proven ROI with 582% in Total Economic Impact study",
-        "Flexible architecture supporting multiple modern frameworks"
-      ],
-      "socialProof": "G2 leader in Headless CMS with over 30 badges as #1 Enterprise Headless CMS; Forrester Consulting Total Economic Impact report showing 582% ROI; Customer testimonials from TomTom, Together Digital, Octopus Energy, Oatly, Virgin Media O2; Recognized as IDC MarketScape leader.",
-      "founded": "",
-      "openSource": false,
-      "sourceUrl": "https://storyblok.com",
-      "confidence": 1
-    },
-    {
-      "name": "Contentstack",
-      "domain": "contentstack.com",
-      "oneLiner": "The industry's first Agentic Experience Platform (AXP) combining CMS, real-time data, and agentic AI for hyper-relevant digital experiences at scale.",
-      "tagline": "CMS plus real-time data and agentic AI",
-      "tags": [
-        "headless cms",
+        "content platform",
+        "content operations",
         "ai",
-        "content management",
-        "personalization",
-        "real-time data",
-        "digital experience platform",
-        "enterprise software"
+        "automation",
+        "content lake",
+        "developer tools",
+        "multiplayer editing"
       ],
       "features": [
-        "API-first, cloud-based headless CMS",
-        "Real-time customer data activation",
-        "Agentic AI with Agent OS and Agent Builder",
-        "Personalization engine",
-        "Visual Editor and Visual Building",
-        "Front-end hosting (MACH-compliant)",
-        "Asset management",
-        "Lytics CDP for customer analytics",
-        "Custom workflows and granular permissions",
-        "Integrated app marketplace and automation library"
+        "Sanity Studio (configurable content studio)",
+        "Content Lake (managed JSON database)",
+        "Content Agent (agent for content operations)",
+        "App SDK (build custom apps)",
+        "Functions (serverless content operations)",
+        "Live CDN",
+        "Media Library",
+        "Content Releases",
+        "Agent Actions / Agent API",
+        "MCP Server",
+        "Sanity Context",
+        "AI & automation integrations"
       ],
-      "positioning": "Contentstack positions itself as an enterprise-grade, AI-ready, flexible and powerful headless CMS and digital experience platform that unifies content, data, and intelligent agents to deliver personalized, compliant, and scalable digital experiences with enterprise-grade safety and consumer-grade magic.",
+      "positioning": "Enterprise-grade, developer-first content platform focused on structured content, AI-enabled automation, and powering web, mobile, and agentic applications at scale.",
       "links": {
-        "site": "https://contentstack.com/",
-        "docs": "https://contentstack.com/docs",
-        "pricing": "https://contentstack.com/pricing"
+        "site": "https://sanity.io/",
+        "docs": "https://sanity.io/docs",
+        "pricing": "https://sanity.io/pricing"
       },
       "pricing": {
         "free": true,
         "startingPrice": null,
-        "model": "Enterprise trial account and free Explorer environment available; contact for detailed pricing"
+        "model": "SaaS (tiered; free tier available)"
       },
-      "targetSegment": "Enterprises and large organizations seeking a flexible, AI-powered headless CMS and digital experience platform for personalized, scalable, and compliant digital experiences across industries including retail, financial services, technology, manufacturing, and e-commerce.",
+      "targetSegment": "Developers, content editors, product owners, and enterprise teams building content-driven web/mobile applications and AI/agentic workflows (including e-commerce, media/publishing, and SaaS)",
       "differentiators": [
-        "First Agentic Experience Platform combining CMS, real-time data, and agentic AI",
-        "AI-powered Agent OS with brand-aware AI and no-code automation",
-        "Highly personalized omnichannel experiences with real-time data activation",
-        "Enterprise-grade security and compliance with flexible integrations",
-        "API-first and modular architecture enabling maximum content reuse and technology choice",
-        "Comprehensive developer resources including SDKs, APIs, and marketplace apps"
+        "Schema-as-code and strongly developer-focused DX",
+        "Structured content optimized for AI and agents",
+        "Agent Actions and Content Agent for automating content workflows",
+        "Fully configurable Studio and App SDK for custom editor experiences",
+        "Managed Content Lake enabling single API for all platforms"
       ],
-      "socialProof": "Trusted by global brands such as Burberry, Air France-KLM, Mattel, MongoDB, Land O'Lakes, ICE, Schroders, and Harbor Capital Advisors with documented case studies showing faster content publishing, increased conversion rates, and improved operational agility.",
+      "socialProof": "Loved by 1M+ users and 6k+ teams; customer stories from PUMA, Morning Brew, Tecovas, Lady Gaga team, loveholidays, Mejuri, Complex, and others",
+      "founded": "",
+      "openSource": null,
+      "sourceUrl": "https://sanity.io",
+      "confidence": 1
+    },
+    {
+      "name": "Hygraph",
+      "domain": "hygraph.com",
+      "oneLiner": "GraphQL-native, API-first headless CMS for enterprise content architecture, developer velocity, and AI workflows",
+      "tagline": "Structure changes everything",
+      "tags": [
+        "headless cms",
+        "graphql",
+        "api-first",
+        "ai automation",
+        "content modeling",
+        "content federation",
+        "omnichannel",
+        "composable"
+      ],
+      "features": [
+        "Relational content models",
+        "Central governance with distributed publishing",
+        "GraphQL Content API (queries & mutations)",
+        "MCP Server for LLM/agent workflows",
+        "Management SDK for schema migrations",
+        "Visual Editor and collaboration workflows",
+        "Reusable components and variants",
+        "Environment management",
+        "Localization and translation workflows",
+        "Taxonomies for personalization",
+        "Marketplace integrations and App Framework",
+        "Webhooks and extensibility",
+        "Scalable hosting and infrastructure",
+        "SOC 2 Type II, GDPR, ISO 27001 hosting"
+      ],
+      "positioning": "Enterprise-targeted headless CMS emphasizing GraphQL-native APIs, structured relational content, developer tooling, and AI/agent integrations to support multibrand, regional, commerce and portal use cases.",
+      "links": {
+        "site": "https://hygraph.com/",
+        "docs": "https://hygraph.com/docs",
+        "pricing": "https://hygraph.com/pricing"
+      },
+      "pricing": {
+        "free": true,
+        "startingPrice": null,
+        "model": "SaaS with free tier, paid enterprise plans and demo/contact for larger projects"
+      },
+      "targetSegment": "Enterprises and development teams building multichannel digital experiences (brands, commerce, portals) and teams integrating AI/LLM workflows",
+      "differentiators": [
+        "GraphQL-native CMS (auto-generated GraphQL queries/mutations)",
+        "MCP Server to securely connect LLMs/agents to content",
+        "Management SDK for programmatic schema migrations",
+        "Agentic workflows and AI automation features",
+        "Strong focus on structured, relational content and multi-environment management"
+      ],
+      "socialProof": "Customer testimonials (e.g., Luigi van der Pal, Patrik Thituson, Maximilian Steudel) and investors/backers including OpenOcean, Peak Capital, SquareOne, One Peak, plus individual backers (Evan Weaver, Emma Tracey, Mirko Novakovic, Boris Lokschin).",
       "founded": "",
       "openSource": false,
-      "sourceUrl": "https://contentstack.com",
-      "confidence": 1
-    },
-    {
-      "name": "Payload",
-      "domain": "payloadcms.com",
-      "oneLiner": "The open-source Next.js backend and headless CMS for building modern web applications with full control and extensibility.",
-      "tagline": "The Next.js Headless CMS and App Framework",
-      "tags": [
-        "headless cms",
-        "next.js",
-        "open-source",
-        "enterprise app builder",
-        "digital asset management",
-        "headless e-commerce",
-        "typescript",
-        "developer-friendly"
-      ],
-      "features": [
-        "Next.js native backend and admin panel",
-        "Code-first configuration with TypeScript",
-        "Built-in authentication and access control",
-        "REST and GraphQL APIs generated from config",
-        "Visual editing with point-and-click interface",
-        "Multi-tenancy support",
-        "White label admin panel",
-        "Localization on a field-by-field basis",
-        "File uploads with local and cloud storage",
-        "Hooks for custom logic",
-        "Local API for direct server data access",
-        "Support for React Server Components",
-        "Turbopack support for fast development",
-        "Serverless deployment compatibility",
-        "Publishing workflows and static A/B testing",
-        "AI auto-embedding and AI features"
-      ],
-      "positioning": "Payload positions itself as a modern, fully open-source, code-first headless CMS and app framework built natively for Next.js, offering developers full control and extensibility with a seamless developer experience and marketers a powerful content editing interface. It emphasizes ownership, flexibility, and future-proofing over GUI-based or pseudo no-code competitors.",
-      "links": {
-        "site": "https://payloadcms.com/",
-        "docs": "https://payloadcms.com/docs",
-        "pricing": "https://payloadcms.com/get-started"
-      },
-      "pricing": {
-        "free": true,
-        "startingPrice": null,
-        "model": "Open-source under MIT License; enterprise features available via demo and custom pricing"
-      },
-      "targetSegment": "Developers, marketing teams, enterprise companies, agencies and consultancies seeking a modern, extensible headless CMS and app framework tightly integrated with Next.js.",
-      "differentiators": [
-        "Native Next.js integration for seamless fullstack development",
-        "Code-first, TypeScript-based configuration for maximum developer control",
-        "Visual editing that allows direct content interaction without switching to CMS UI",
-        "Open-source with no vendor lock-in and full ownership",
-        "Extensible with hooks and custom endpoints",
-        "Supports modern development tools like Turbopack and React Server Components",
-        "Faster performance compared to competitors like Strapi",
-        "Enterprise-grade features including SSO, publishing workflows, AI embedding, and A/B testing"
-      ],
-      "socialProof": "Used in production by innovative companies including Microsoft, Blue Origin, ASICS, Hello Bello, and Tekton. Praised by engineers and directors for speed, flexibility, and developer experience.",
-      "founded": "",
-      "openSource": true,
-      "sourceUrl": "https://payloadcms.com",
-      "confidence": 1
-    },
-    {
-      "name": "Cosmic",
-      "domain": "cosmicjs.com",
-      "oneLiner": "AI-Powered Headless CMS to build, deploy, and scale digital experiences faster with AI agents, CLI, and workflows.",
-      "tagline": "Agents That Help You Build, Ship, and Grow",
-      "tags": [
-        "headless cms",
-        "ai-powered cms",
-        "content management",
-        "api",
-        "cli",
-        "ai agents",
-        "automation",
-        "content collaboration"
-      ],
-      "features": [
-        "AI agents that create content, build features, fix bugs, and ship code within team chat platforms like Slack, WhatsApp, and Telegram",
-        "AI-powered CLI for content creation, app generation, and deployment",
-        "RESTful API with sub-100ms response times and TypeScript SDK supporting AI generation of text, images, and video",
-        "AI Studio for generating text, images, and video with SEO and translation features",
-        "Flexible content modeling with 20+ field types including repeaters and relationships",
-        "Media management with imgix CDN and image optimization",
-        "Automated workflows chaining AI agents for content, code, and browser automation",
-        "Enterprise-grade security including 2FA, audit logs, role-based access control, and API key management",
-        "Global CDN with edge caching and auto-scaling infrastructure",
-        "Open source SDKs and tools with full TypeScript support",
-        "Data portability with full import/export capabilities",
-        "Granular roles and permissions, revision history, comments, and usage analytics"
-      ],
-      "positioning": "Cosmic positions itself as an AI-native, modern headless CMS platform designed to empower teams to collaborate better and ship digital experiences faster by integrating AI agents, automation workflows, and developer-friendly tools in a secure, scalable environment.",
-      "links": {
-        "site": "https://cosmicjs.com/",
-        "docs": "https://cosmicjs.com/docs",
-        "pricing": "https://cosmicjs.com/pricing"
-      },
-      "pricing": {
-        "free": true,
-        "startingPrice": "$0/mo",
-        "model": "Subscription with tiered plans including Free, Builder, Team, Business, and Enterprise, plus token packs for AI usage"
-      },
-      "targetSegment": "Development teams, marketing teams, and enterprises seeking a modern, AI-powered headless CMS to accelerate content creation, app development, and deployment with automation and collaboration features.",
-      "differentiators": [
-        "AI-native platform with autonomous AI agents integrated into team chat tools",
-        "All-in-one CLI tool for content, app generation, and deployment",
-        "Built-in AI generation for text, images, and video via API and SDK",
-        "Automated workflows chaining multiple AI agents for complex tasks",
-        "Enterprise-grade security and scalability with global CDN and auto-scaling",
-        "Open source SDKs and extensible platform",
-        "Data portability ensuring no vendor lock-in"
-      ],
-      "socialProof": "\"I'm constantly testing CMSs, and many headless CMSs, while great for developers, aren't that great for users. Cosmic has hit the perfect balance.\" – Maciek Palmowski, DX at Kinsta; \"Cosmic allowed us to easily integrate a secure and fast back-end API into our React app.\" – Owen Liversidge, Lead Developer, Tripwire Interactive; \"Cosmic frees up more time for our developers and makes our workflow more flexible.\" – Katie Prowd, COO at Cipher Sports Technology Group; \"Cosmic is: us never having to ask a developer to change anything on the backend of our website.\" – Maximilian Wühr, Co-Founder at FINN",
-      "founded": "",
-      "openSource": true,
-      "sourceUrl": "https://cosmicjs.com",
+      "sourceUrl": "https://hygraph.com",
       "confidence": 1
     }
   ],
@@ -352,22 +294,27 @@
       "reason": "off_category"
     },
     {
-      "url": "https://aws.amazon.com",
-      "domain": "aws.amazon.com",
+      "url": "https://sitecore.com",
+      "domain": "sitecore.com",
+      "reason": "off_category"
+    },
+    {
+      "url": "https://en.wikipedia.org",
+      "domain": "en.wikipedia.org",
       "reason": "off_category"
     }
   ],
   "comparison": {
     "dimensions": [
       "headless cms",
-      "content management",
-      "api",
       "api-first",
-      "digital experience platform",
-      "open-source"
+      "graphql",
+      "ai",
+      "content platform",
+      "enterprise"
     ]
   },
-  "brief": "Mapped 6 players in \"headless CMS\" (2 couldn't be profiled). Most common capabilities: headless cms, content management, api. Players: Contentful, Strapi, Storyblok, Contentstack, Payload, Cosmic.",
+  "brief": "Mapped 5 players in \"headless CMS\" (3 couldn't be profiled). Most common capabilities: headless cms, api-first, graphql. Players: Contentful, Storyblok, Strapi, Sanity, Hygraph.",
   "citations": [
     {
       "n": 1,
@@ -376,143 +323,128 @@
     },
     {
       "n": 2,
-      "title": "Strapi — strapi.io",
-      "url": "https://strapi.io"
-    },
-    {
-      "n": 3,
       "title": "Storyblok — storyblok.com",
       "url": "https://storyblok.com"
     },
     {
+      "n": 3,
+      "title": "Strapi — strapi.io",
+      "url": "https://strapi.io"
+    },
+    {
       "n": 4,
-      "title": "Contentstack — contentstack.com",
-      "url": "https://contentstack.com"
+      "title": "Sanity — sanity.io",
+      "url": "https://sanity.io"
     },
     {
       "n": 5,
-      "title": "Payload — payloadcms.com",
-      "url": "https://payloadcms.com"
-    },
-    {
-      "n": 6,
-      "title": "Cosmic — cosmicjs.com",
-      "url": "https://cosmicjs.com"
+      "title": "Hygraph — hygraph.com",
+      "url": "https://hygraph.com"
     }
   ],
-  "creditsUsed": 98,
-  "latencyMs": 69080,
+  "creditsUsed": 108,
+  "latencyMs": 41011,
   "analyst": {
-    "overview": "The headless CMS market is mature and competitive, with a clear split between developer-centric open-source tools and enterprise-grade digital experience platforms. API-first architecture and multi-framework frontend support have become table stakes, pushing differentiation toward AI integration, agentic capabilities, and visual editing. The market is actively consolidating around AI-native features, with several players repositioning from pure CMS to broader experience or application platforms. Demand spans developers, marketers, and enterprise buyers, creating pressure on vendors to serve multiple personas simultaneously.",
+    "overview": "The headless CMS market is mature and increasingly converging around API-first, composable architectures targeting both developers and non-technical content teams. All five players offer free tiers and REST/GraphQL APIs, signaling strong commoditization at the baseline level. The competitive frontier has shifted toward AI and agent integration, visual editing, and enterprise-grade workflow orchestration. Vendors are differentiating through developer experience, AI-native capabilities, and content operations tooling rather than core CMS functionality alone.",
     "segments": [
       {
-        "name": "Enterprise Digital Experience Platforms",
+        "name": "Enterprise DXP & AI Personalization",
         "members": [
           "Contentful",
-          "Contentstack"
+          "Hygraph"
         ],
-        "note": "These players have moved beyond CMS into AI-powered personalization, real-time data, and omnichannel experience orchestration targeting large organizations."
+        "note": "These players emphasize enterprise-scale content orchestration, composable architecture, and AI or LLM workflow integration alongside strong governance and multi-channel delivery."
       },
       {
-        "name": "Collaboration-First Headless CMS",
+        "name": "Developer-First Content Platforms",
+        "members": [
+          "Sanity",
+          "Strapi"
+        ],
+        "note": "These platforms lead with developer experience, schema-as-code or open-source customization, and deep extensibility for teams that want full control over their content infrastructure."
+      },
+      {
+        "name": "Visual Editing Headless CMS",
         "members": [
           "Storyblok"
         ],
-        "note": "Storyblok differentiates by balancing developer and marketer needs through a visual editor combined with emerging agentic AI orchestration capabilities."
-      },
-      {
-        "name": "Open-Source Developer Tools",
-        "members": [
-          "Strapi",
-          "Payload"
-        ],
-        "note": "Both offer self-hosted, code-first CMS solutions with strong TypeScript support and full customization, targeting developers and agencies who want maximum control."
-      },
-      {
-        "name": "AI-Native Modern CMS",
-        "members": [
-          "Cosmic"
-        ],
-        "note": "Cosmic positions itself as an AI-first platform with autonomous agents embedded in team chat tools and an all-in-one CLI for content and app deployment."
+        "note": "Storyblok occupies a distinct niche by combining a true on-page visual editor with headless architecture, bridging the gap between marketer usability and developer flexibility."
       }
     ],
     "leaders": [
       {
         "name": "Contentful",
-        "why": "Contentful offers the broadest combination of modular content architecture, AI-powered workflows, personalization, localization, and an extensive partner ecosystem, making it the most comprehensive platform in the set."
+        "why": "The most comprehensive platform offering combining AI-native personalization, a large marketplace ecosystem, and deep enterprise adoption across marketing, product, and developer teams."
       },
       {
-        "name": "Contentstack",
-        "why": "Contentstack claims the industry's first Agentic Experience Platform, uniquely combining a headless CMS with real-time customer data activation and a no-code Agent OS for enterprise-scale personalization."
+        "name": "Sanity",
+        "why": "Strongly positioned as the content operating system for the AI era with schema-as-code developer experience, a managed Content Lake, and built-in agent and automation capabilities."
       },
       {
         "name": "Storyblok",
-        "why": "Storyblok stands out as the most balanced platform for multi-persona teams, offering a native MCP Server for agentic content access and FlowMotion AI orchestration alongside its established visual editor."
+        "why": "Leads in bridging developer and marketer needs through its unique visual editor plus headless architecture combination, further strengthened by native MCP server and FlowMotion orchestration."
       }
     ],
     "tableStakes": [
-      "API-first architecture (REST and/or GraphQL)",
-      "Content modeling and structured content management",
-      "Multi-framework frontend support (Next.js, Nuxt, Astro, etc.)",
-      "Role-based access control and security",
-      "Free tier or open-source entry point",
-      "TypeScript support",
-      "Media management"
+      "REST and/or GraphQL content APIs",
+      "API-first architecture",
+      "Free tier availability",
+      "Content modeling and type builders",
+      "Enterprise and developer targeting",
+      "Headless multi-channel delivery",
+      "Some form of AI or automation capability"
     ],
     "differentiators": [
       {
         "player": "Contentful",
-        "edge": "Composable modular content architecture combined with AI-driven personalization, segmentation, and experimentation at enterprise scale."
-      },
-      {
-        "player": "Contentstack",
-        "edge": "First mover in Agentic Experience Platform positioning, integrating real-time customer data activation directly with a no-code Agent OS and brand-aware AI."
+        "edge": "AI-native personalization with BYOM connectors and AI Actions automation embedded directly into the content platform, backed by the largest marketplace and partner ecosystem in the set."
       },
       {
         "player": "Storyblok",
-        "edge": "Native MCP Server enabling AI agents to directly access and understand structured content, paired with FlowMotion for AI-orchestrated collaborative workflows."
+        "edge": "The only player offering a native on-page visual editor combined with a headless architecture, plus a native MCP Server and FlowMotion for AI-agent and team workflow orchestration."
       },
       {
         "player": "Strapi",
-        "edge": "MIT-licensed open-source CMS with full TypeScript support and integrated AI for content modeling and translations, giving teams complete ownership with no vendor lock-in."
+        "edge": "MIT-licensed open-source codebase providing full code ownership and framework-level backend customization not available in any other player in this set."
       },
       {
-        "player": "Payload",
-        "edge": "Native Next.js backend integration allows developers to build a fullstack application and CMS from a single codebase using code-first TypeScript configuration."
+        "player": "Sanity",
+        "edge": "Schema-as-code with a structured Content Lake optimized for AI ingestion, plus serverless Functions and a Content Agent purpose-built for agentic content operations workflows."
       },
       {
-        "player": "Cosmic",
-        "edge": "Autonomous AI agents embedded directly into team chat platforms like Slack and WhatsApp can create content, generate apps, fix bugs, and deploy code without leaving the team's workflow."
+        "player": "Hygraph",
+        "edge": "The only GraphQL-native CMS in the set with auto-generated queries and mutations, combined with a Management SDK for programmatic schema migrations and an MCP Server for secure LLM-to-content connectivity."
       }
     ],
     "gaps": [
-      "Native offline or edge-local content delivery without third-party CDN dependency",
-      "Built-in analytics and content performance measurement beyond A/B experimentation",
-      "Dedicated non-developer persona onboarding and CMS management without engineering involvement",
-      "Transparent, predictable pricing for mid-market teams scaling content volume",
-      "Deep e-commerce-native content modeling beyond generic composable commerce positioning",
-      "Compliance and data residency controls explicitly surfaced for regulated industries"
+      "Native built-in analytics and content performance measurement beyond beta offerings",
+      "No-code or low-code content modeling for non-developer teams without reliance on developers",
+      "First-party DAM (digital asset management) deeply integrated into the CMS",
+      "Out-of-the-box A/B testing and experimentation tooling",
+      "Transparent, published pricing for enterprise tiers without requiring sales contact",
+      "Built-in localization and translation workflow management at the platform level",
+      "Offline or edge-native content editing and sync capabilities"
     ],
     "picks": [
       {
-        "useCase": "Large enterprise needing AI-powered personalization and omnichannel experience orchestration",
-        "player": "Contentstack",
-        "why": "Its Agentic Experience Platform combining real-time data activation, Agent OS, and a personalization engine is the most purpose-built solution for hyper-personalized enterprise digital experiences."
+        "useCase": "Enterprise marketing team needing AI-driven personalization across multiple digital channels",
+        "player": "Contentful",
+        "why": "Contentful's AI-native personalization, AI Actions with BYOM connectors, and large marketplace ecosystem make it the most complete solution for enterprise marketing teams at scale."
       },
       {
-        "useCase": "Developer or agency building a Next.js-powered fullstack web application",
-        "player": "Payload",
-        "why": "Payload's native Next.js backend integration and code-first TypeScript configuration allow developers to manage both application logic and content from a single unified codebase."
-      },
-      {
-        "useCase": "Marketing and developer teams needing strong collaboration with visual editing and AI workflow automation",
-        "player": "Storyblok",
-        "why": "Storyblok's visual editor combined with FlowMotion AI orchestration and native MCP Server support makes it the strongest option for teams that need both marketer usability and developer flexibility."
-      },
-      {
-        "useCase": "Startup or agency wanting a self-hosted, fully customizable CMS with no licensing costs",
+        "useCase": "Development team wanting full control and self-hostable open-source CMS with custom API logic",
         "player": "Strapi",
-        "why": "Strapi's MIT-licensed open-source model with full TypeScript support and integrated AI features provides maximum customization and ownership with no vendor lock-in."
+        "why": "Strapi's MIT-licensed open-source codebase and framework-level extensibility give development teams complete ownership and customization freedom unavailable in SaaS-only alternatives."
+      },
+      {
+        "useCase": "Marketer and developer team that needs non-technical editors to manage content visually without sacrificing headless flexibility",
+        "player": "Storyblok",
+        "why": "Storyblok's unique on-page visual editor combined with a full headless API architecture is the only solution in the set purpose-built to serve both audiences simultaneously."
+      },
+      {
+        "useCase": "Product team building AI-powered or agentic applications that require structured content as a data layer",
+        "player": "Sanity",
+        "why": "Sanity's Content Lake, schema-as-code approach, Content Agent, and serverless Functions are explicitly designed for structured content consumption by AI and agent-driven workflows."
       }
     ]
   }

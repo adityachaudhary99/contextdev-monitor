@@ -111,5 +111,115 @@
         "oneLiner": "AI-Powered Headless CMS to build, deploy, and scale digital experiences faster with AI agents, CLI, and workflows."
       }
     ]
+  },
+  {
+    "category": "headless CMS",
+    "capturedAt": "2026-07-09T00:00:00.000Z",
+    "players": [
+      {
+        "name": "Contentful",
+        "domain": "contentful.com",
+        "tags": [
+          "content platform",
+          "headless cms",
+          "dxp",
+          "personalization",
+          "ai",
+          "api-first",
+          "extensibility",
+          "marketplace"
+        ],
+        "startingPrice": null,
+        "free": true,
+        "openSource": false,
+        "oneLiner": "Composable, API-first content platform to create, manage, personalize, and deliver content across channels at scale"
+      },
+      {
+        "name": "Storyblok",
+        "domain": "storyblok.com",
+        "tags": [
+          "headless cms",
+          "visual editor",
+          "api-first",
+          "graphql",
+          "image service",
+          "mcp server",
+          "flowmotion",
+          "enterprise"
+        ],
+        "startingPrice": null,
+        "free": true,
+        "openSource": false,
+        "oneLiner": "Headless CMS with visual editor — API-first, component-based CMS built for developers and marketers"
+      },
+      {
+        "name": "Strapi",
+        "domain": "strapi.io",
+        "tags": [
+          "headless cms",
+          "open-source",
+          "typescript",
+          "api-first",
+          "graphql",
+          "rest",
+          "pim",
+          "enterprise"
+        ],
+        "startingPrice": null,
+        "free": true,
+        "openSource": true,
+        "oneLiner": "Open-source TypeScript headless CMS / content framework"
+      },
+      {
+        "name": "Sanity",
+        "domain": "sanity.io",
+        "tags": [
+          "headless cms",
+          "content platform",
+          "content operations",
+          "ai",
+          "automation",
+          "content lake",
+          "developer tools",
+          "multiplayer editing"
+        ],
+        "startingPrice": null,
+        "free": true,
+        "openSource": null,
+        "oneLiner": "The Content Operating System for the AI era — a platform for structured content, automation, and content operations"
+      },
+      {
+        "name": "Hygraph",
+        "domain": "hygraph.com",
+        "tags": [
+          "headless cms",
+          "graphql",
+          "api-first",
+          "ai automation",
+          "content modeling",
+          "content federation",
+          "omnichannel",
+          "composable"
+        ],
+        "startingPrice": null,
+        "free": true,
+        "openSource": false,
+        "oneLiner": "GraphQL-native, API-first headless CMS for enterprise content architecture, developer velocity, and AI workflows"
+      }
+    ],
+    "failed": [
+      {
+        "domain": "jamstack.org",
+        "reason": "off_category"
+      },
+      {
+        "domain": "sitecore.com",
+        "reason": "off_category"
+      },
+      {
+        "domain": "en.wikipedia.org",
+        "reason": "off_category"
+      }
+    ]
   }
 ]
