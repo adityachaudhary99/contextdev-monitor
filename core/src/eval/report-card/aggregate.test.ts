@@ -6,7 +6,12 @@ import type { CorpusCase } from "./types.js";
 const good: CorpusCase = {
   url: "https://a.com", domain: "a.com", latencyMs: 1000, credits: 11,
   groundTruth: { name: "A", oneLiner: "alpha beta gamma", tags: ["x"], features: ["feature one"], positioning: "delta epsilon", links: { site: "https://a.com", docs: null, pricing: null } },
-  extracted: { name: "A", oneLiner: "alpha beta gamma", tagline: null, tags: ["x"], features: ["feature one"], positioning: "delta epsilon", links: { site: "https://a.com", docs: null, pricing: null } },
+  extracted: {
+    name: "A", oneLiner: "alpha beta gamma", tagline: null, tags: ["x"], features: ["feature one"], positioning: "delta epsilon",
+    links: { site: "https://a.com", docs: null, pricing: null },
+    pricing: { free: null, startingPrice: null, model: null }, targetSegment: "",
+    differentiators: [], socialProof: "", founded: "", openSource: null,
+  },
 };
 const failed: CorpusCase = {
   url: "https://b.com", domain: "b.com", latencyMs: 3000, credits: 1, failureReason: "http_403",

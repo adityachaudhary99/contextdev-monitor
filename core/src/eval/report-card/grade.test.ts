@@ -5,7 +5,9 @@ import type { CorpusCase, ProfileExtractLike } from "./grade-test-helpers.js";
 const ex = (over: Partial<ProfileExtractLike> = {}): CorpusCase["extracted"] => ({
   name: "Firecrawl", oneLiner: "Turn websites into LLM-ready markdown data", tagline: null,
   tags: ["api", "markdown"], features: ["Markdown output", "JS rendering"], positioning: "Developer scraping for AI",
-  links: { site: "https://firecrawl.dev", docs: "https://docs.firecrawl.dev", pricing: null }, ...over,
+  links: { site: "https://firecrawl.dev", docs: "https://docs.firecrawl.dev", pricing: null },
+  pricing: { free: null, startingPrice: null, model: null }, targetSegment: "",
+  differentiators: [], socialProof: "", founded: "", openSource: null, ...over,
 });
 const gt: CorpusCase["groundTruth"] = {
   name: "Firecrawl", oneLiner: "Turn any website into clean LLM-ready markdown", tags: ["api", "markdown", "crawl"],

@@ -10,7 +10,12 @@ const inline: CorpusCase[] = [
   {
     url: "https://a.com", domain: "a.com", latencyMs: 1000, credits: 11,
     groundTruth: { name: "A", oneLiner: "alpha beta gamma delta", tags: ["x", "y"], features: ["feature one"], positioning: "epsilon zeta", links: { site: "https://a.com", docs: null, pricing: null } },
-    extracted: { name: "A", oneLiner: "alpha beta gamma delta", tagline: null, tags: ["x", "y"], features: ["feature one"], positioning: "epsilon zeta", links: { site: "https://a.com", docs: null, pricing: null } },
+    extracted: {
+      name: "A", oneLiner: "alpha beta gamma delta", tagline: null, tags: ["x", "y"], features: ["feature one"], positioning: "epsilon zeta",
+      links: { site: "https://a.com", docs: null, pricing: null },
+      pricing: { free: null, startingPrice: null, model: null }, targetSegment: "",
+      differentiators: [], socialProof: "", founded: "", openSource: null,
+    },
   },
   {
     url: "https://b.com", domain: "b.com", latencyMs: 3000, credits: 1, failureReason: "http_403",
