@@ -4,7 +4,7 @@ export type PlayerSnapshot = {
   name: string; domain: string; tags: string[];
   startingPrice: string | null; free: boolean | null; openSource: boolean | null; oneLiner: string;
 };
-export type LandscapeSnapshot = { category: string; capturedAt: string; players: PlayerSnapshot[] };
+export type LandscapeSnapshot = { category: string; capturedAt: string; players: PlayerSnapshot[]; failed?: { domain: string; reason: string }[] };
 
 export type PricingChange = { domain: string; name: string; field: "price" | "freeTier"; from: string; to: string };
 export type CapabilityChange = { domain: string; name: string; added: string[]; removed: string[] };
@@ -12,6 +12,7 @@ export type LandscapeDiff = {
   fromCapturedAt: string; toCapturedAt: string;
   entered: { name: string; domain: string }[];
   exited: { name: string; domain: string }[];
+  lostFromMap: { name: string; domain: string; reason: string }[];
   pricingChanges: PricingChange[];
   capabilityChanges: CapabilityChange[];
   hasChanges: boolean;
@@ -32,6 +33,7 @@ export function snapshotLandscape(ls: Landscape, capturedAt: string): LandscapeS
       openSource: p.openSource ?? null,
       oneLiner: p.oneLiner,
     })),
+    failed: ls.failures.map((f) => ({ domain: f.domain, reason: f.reason })),
   };
 }
 
@@ -41,7 +43,14 @@ export function diffLandscapes(prev: LandscapeSnapshot, curr: LandscapeSnapshot)
   const currBy = new Map(curr.players.map((p) => [norm(p.domain), p]));
 
   const entered = curr.players.filter((p) => !prevBy.has(norm(p.domain))).map((p) => ({ name: p.name, domain: p.domain }));
-  const exited = prev.players.filter((p) => !currBy.has(norm(p.domain))).map((p) => ({ name: p.name, domain: p.domain }));
+  const failedBy = new Map((curr.failed ?? []).map((f) => [norm(f.domain), f]));
+  const exited: { name: string; domain: string }[] = [];
+  const lostFromMap: { name: string; domain: string; reason: string }[] = [];
+  for (const p of prev.players.filter((player) => !currBy.has(norm(player.domain)))) {
+    const failed = failedBy.get(norm(p.domain));
+    if (failed) lostFromMap.push({ name: p.name, domain: p.domain, reason: failed.reason });
+    else exited.push({ name: p.name, domain: p.domain });
+  }
 
   const pricingChanges: PricingChange[] = [];
   const capabilityChanges: CapabilityChange[] = [];
@@ -61,5 +70,5 @@ export function diffLandscapes(prev: LandscapeSnapshot, curr: LandscapeSnapshot)
     if (added.length || removed.length) capabilityChanges.push({ domain: cp.domain, name: cp.name, added, removed });
   }
   const hasChanges = entered.length > 0 || exited.length > 0 || pricingChanges.length > 0 || capabilityChanges.length > 0;
-  return { fromCapturedAt: prev.capturedAt, toCapturedAt: curr.capturedAt, entered, exited, pricingChanges, capabilityChanges, hasChanges };
+  return { fromCapturedAt: prev.capturedAt, toCapturedAt: curr.capturedAt, entered, exited, lostFromMap, pricingChanges, capabilityChanges, hasChanges };
 }

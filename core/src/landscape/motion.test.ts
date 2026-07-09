@@ -37,4 +37,12 @@ describe("diffToMarkdown", () => {
     const b = snap("2026-07-10T00:00:00.000Z", [{ name: "X", domain: "x.dev" }]);
     expect(diffToMarkdown("c", diffLandscapes(a, b))).toContain("No material changes");
   });
+  it("renders extraction losses separately from market exits", () => {
+    const prev = snap("2026-06-22T00:00:00.000Z", [{ name: "Lost", domain: "lost.dev" }, { name: "Gone", domain: "gone.dev" }]);
+    const curr = { ...snap("2026-07-10T00:00:00.000Z", []), failed: [{ domain: "lost.dev", reason: "off_category" }] };
+    const md = diffToMarkdown("web scraping APIs", diffLandscapes(prev, curr));
+    expect(md.indexOf("**Gone** (gone.dev) dropped out")).toBeLessThan(md.indexOf("**Lost** (lost.dev) left the map this check"));
+    expect(md).toContain("**Lost** (lost.dev) left the map this check (off_category)");
+    expect(md).toContain("extraction loss, not necessarily a market exit");
+  });
 });

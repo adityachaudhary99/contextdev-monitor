@@ -18,9 +18,12 @@ const day = (iso: string) => iso.slice(0, 10);
 /** GitHub-flavored markdown rendering of one landscape diff. Pure; used by the web page, the market-watch issue body, and the agent skill. */
 export function diffToMarkdown(category: string, diff: LandscapeDiff): string {
   const lines: string[] = [`### ${category} — market motion (${day(diff.fromCapturedAt)} → ${day(diff.toCapturedAt)})`, ""];
-  if (!diff.hasChanges) { lines.push("No material changes."); return lines.join("\n"); }
+  const lostFromMap = diff.lostFromMap ?? [];
+  if (!diff.hasChanges && lostFromMap.length === 0) { lines.push("No material changes."); return lines.join("\n"); }
+  if (!diff.hasChanges) lines.push("No material changes.");
   for (const p of diff.entered) lines.push(`- 🟢 **${p.name}** (${p.domain}) entered the market`);
   for (const p of diff.exited) lines.push(`- 🔴 **${p.name}** (${p.domain}) dropped out`);
+  for (const p of lostFromMap) lines.push(`- ⚪ **${p.name}** (${p.domain}) left the map this check (${p.reason}) — extraction loss, not necessarily a market exit`);
   for (const c of diff.pricingChanges)
     lines.push(`- 💰 **${c.name}** ${c.field === "price" ? "starting price" : "free tier"}: \`${c.from}\` → \`${c.to}\``);
   for (const c of diff.capabilityChanges) {

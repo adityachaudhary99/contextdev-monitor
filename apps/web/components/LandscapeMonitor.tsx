@@ -1,5 +1,5 @@
 import type { LandscapeDiff, MotionEntry } from "@contextdev/core";
-import { Activity, ArrowUpRight, ArrowDownRight, DollarSign, Tags } from "lucide-react";
+import { Activity, ArrowUpRight, ArrowDownRight, DollarSign, Tags, CircleDashed } from "lucide-react";
 
 const day = (iso: string) => iso.slice(0, 10);
 
@@ -13,6 +13,8 @@ function ChangeRow({ icon, tone, children }: { icon: React.ReactNode; tone: stri
 }
 
 function DiffRows({ diff }: { diff: LandscapeDiff }) {
+  const lostFromMap = diff.lostFromMap ?? [];
+
   return (
     <>
       {diff.entered.map((p) => (
@@ -22,7 +24,7 @@ function DiffRows({ diff }: { diff: LandscapeDiff }) {
       ))}
       {diff.exited.map((p) => (
         <ChangeRow key={`out-${p.domain}`} icon={<ArrowDownRight size={14} />} tone="text-danger">
-          <span className="font-medium text-fg">{p.name}</span> dropped out
+          <span className="font-medium text-fg">{p.name}</span> left the map
         </ChangeRow>
       ))}
       {diff.pricingChanges.map((c, i) => (
@@ -36,6 +38,11 @@ function DiffRows({ diff }: { diff: LandscapeDiff }) {
           <span className="font-medium text-fg">{c.name}</span>
           {c.added.length > 0 && <> +{c.added.join(", ")}</>}
           {c.removed.length > 0 && <> −{c.removed.join(", ")}</>}
+        </ChangeRow>
+      ))}
+      {lostFromMap.map((p) => (
+        <ChangeRow key={`lost-${p.domain}`} icon={<CircleDashed size={14} />} tone="text-muted">
+          <span className="font-medium text-fg">{p.name}</span> lost from map ({p.reason}) — extraction, not a confirmed exit
         </ChangeRow>
       ))}
     </>
@@ -69,9 +76,16 @@ export default function LandscapeMonitor({
       )}
 
       {latest.diff && !latest.diff.hasChanges && (
-        <p className="text-sm text-muted">
-          <span className="font-medium text-fg">No material changes</span> since {day(latest.diff.fromCapturedAt)}. Last checked {day(latest.capturedAt)}.
-        </p>
+        <div className="flex flex-col gap-2">
+          <p className="text-sm text-muted">
+            <span className="font-medium text-fg">No material changes</span> since {day(latest.diff.fromCapturedAt)}. Last checked {day(latest.capturedAt)}.
+          </p>
+          {(latest.diff.lostFromMap ?? []).length > 0 && (
+            <ul className="flex flex-col gap-1.5">
+              <DiffRows diff={latest.diff} />
+            </ul>
+          )}
+        </div>
       )}
 
       {latest.diff && latest.diff.hasChanges && (

@@ -30,6 +30,13 @@ describe("snapshotLandscape", () => {
     expect(snap.players[0].free).toBeNull();
     expect(snap.players[0].openSource).toBeNull();
   });
+  it("copies profile failures into optional failed snapshot entries", () => {
+    const snap = snapshotLandscape({
+      ...mkLs([]),
+      failures: [{ url: "https://lost.dev", domain: "lost.dev", reason: "off_category" }],
+    }, "t");
+    expect(snap).toMatchObject({ failed: [{ domain: "lost.dev", reason: "off_category" }] });
+  });
 });
 
 describe("diffLandscapes", () => {
@@ -46,6 +53,37 @@ describe("diffLandscapes", () => {
     const d = diffLandscapes(prev, curr);
     expect(d.entered).toEqual([{ name: "Initech", domain: "initech.com" }]);
     expect(d.exited).toEqual([{ name: "Globex", domain: "globex.com" }]);
+  });
+  it("splits extraction losses out of market exits", () => {
+    const older = snapshotLandscape(mkLs([
+      mkPlayer({ name: "Lost", domain: "lost.dev" }),
+      mkPlayer({ name: "Gone", domain: "gone.dev" }),
+    ]), "2026-06-01T00:00:00.000Z");
+    const newer = {
+      ...snapshotLandscape(mkLs([]), "2026-06-22T00:00:00.000Z"),
+      failed: [{ domain: "www.lost.dev", reason: "off_category" }],
+    };
+    const d = diffLandscapes(older, newer);
+    expect(d.exited).toEqual([{ name: "Gone", domain: "gone.dev" }]);
+    expect(d).toMatchObject({ lostFromMap: [{ name: "Lost", domain: "lost.dev", reason: "off_category" }] });
+  });
+  it("keeps old-format snapshots without failed behaving as market exits", () => {
+    const older = snapshotLandscape(mkLs([mkPlayer({ name: "Gone", domain: "gone.dev" })]), "2026-06-01T00:00:00.000Z");
+    const newer = snapshotLandscape(mkLs([]), "2026-06-22T00:00:00.000Z");
+    const d = diffLandscapes(older, newer);
+    expect(d.exited).toEqual([{ name: "Gone", domain: "gone.dev" }]);
+    expect(d).toMatchObject({ lostFromMap: [] });
+  });
+  it("does not set hasChanges for extraction loss alone", () => {
+    const older = snapshotLandscape(mkLs([mkPlayer({ name: "Lost", domain: "lost.dev" })]), "2026-06-01T00:00:00.000Z");
+    const newer = {
+      ...snapshotLandscape(mkLs([]), "2026-06-22T00:00:00.000Z"),
+      failed: [{ domain: "lost.dev", reason: "off_category" }],
+    };
+    const d = diffLandscapes(older, newer);
+    expect(d.exited).toEqual([]);
+    expect(d).toMatchObject({ lostFromMap: [{ name: "Lost", domain: "lost.dev", reason: "off_category" }] });
+    expect(d.hasChanges).toBe(false);
   });
   it("detects pricing changes (price and free-tier)", () => {
     const d = diffLandscapes(prev, curr);
