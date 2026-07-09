@@ -154,6 +154,14 @@ CONTEXTDEV_API_KEY=<key> npx tsx apps/web/scripts/gen-landscapes.ts "headless CM
 CONTEXTDEV_API_KEY=<key> npm run report-card -w core -- --collect
 ```
 
+#### Watch a market on autopilot
+
+Fork the repo, enable GitHub Actions on the fork, then add `CONTEXTDEV_API_KEY` under
+**Settings -> Secrets and variables -> Actions**. `ANTHROPIC_API_KEY` is optional. Edit
+`apps/web/lib/landscape-catalog.ts` to choose the curated markets; the weekly Action
+re-maps those categories, commits refreshed snapshots/history, and opens an issue when
+the market diff has confirmed movement. Budget about 105cr per category per week.
+
 ### Tests
 
 ```bash

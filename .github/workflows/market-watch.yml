@@ -1,0 +1,47 @@
+name: Market watch
+on:
+  schedule:
+    - cron: "0 6 * * 1"   # Mondays 06:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency: market-watch
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci
+      - name: Re-map curated markets
+        id: watch
+        env:
+          CONTEXTDEV_API_KEY: ${{ secrets.CONTEXTDEV_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: npx tsx apps/web/scripts/market-watch.ts
+      - name: Commit refreshed snapshots
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps/web/data
+          git diff --cached --quiet || git commit -m "data: weekly market-watch snapshots"
+          git push
+      - name: Open motion issue
+        if: steps.watch.outputs.has_changes == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const body = fs.readFileSync("motion-report.md", "utf8");
+            const date = new Date().toISOString().slice(0, 10);
+            await github.rest.issues.create({
+              ...context.repo,
+              title: `Market motion — ${date}`,
+              labels: ["market-motion"],
+              body,
+            });
