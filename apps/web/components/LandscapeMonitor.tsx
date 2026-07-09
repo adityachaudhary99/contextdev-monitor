@@ -24,7 +24,7 @@ function DiffRows({ diff }: { diff: LandscapeDiff }) {
       ))}
       {diff.exited.map((p) => (
         <ChangeRow key={`out-${p.domain}`} icon={<ArrowDownRight size={14} />} tone="text-danger">
-          <span className="font-medium text-fg">{p.name}</span> left the map
+          <span className="font-medium text-fg">{p.name}</span> no longer found — possible exit
         </ChangeRow>
       ))}
       {diff.pricingChanges.map((c, i) => (
@@ -33,6 +33,14 @@ function DiffRows({ diff }: { diff: LandscapeDiff }) {
           {c.field === "price" ? "price" : "free tier"}: <span className="font-mono">{c.from}</span> → <span className="font-mono text-fg">{c.to}</span>
         </ChangeRow>
       ))}
+      {lostFromMap.map((p) => (
+        <ChangeRow key={`lost-${p.domain}`} icon={<CircleDashed size={14} />} tone="text-muted">
+          <span className="font-medium text-fg">{p.name}</span> lost from map ({p.reason}) — extraction, not a confirmed exit
+        </ChangeRow>
+      ))}
+      {diff.capabilityChanges.length > 0 && (
+        <li className="pt-1 text-xs text-muted">Capability mix (indicative)</li>
+      )}
       {diff.capabilityChanges.map((c) => (
         <ChangeRow key={`cap-${c.domain}`} icon={<Tags size={14} />} tone="text-accent">
           <span className="font-medium text-fg">{c.name}</span>
@@ -40,14 +48,11 @@ function DiffRows({ diff }: { diff: LandscapeDiff }) {
           {c.removed.length > 0 && <> −{c.removed.join(", ")}</>}
         </ChangeRow>
       ))}
-      {lostFromMap.map((p) => (
-        <ChangeRow key={`lost-${p.domain}`} icon={<CircleDashed size={14} />} tone="text-muted">
-          <span className="font-medium text-fg">{p.name}</span> lost from map ({p.reason}) — extraction, not a confirmed exit
-        </ChangeRow>
-      ))}
     </>
   );
 }
+
+const hasIndicativeRows = (diff: LandscapeDiff) => (diff.lostFromMap ?? []).length > 0 || diff.capabilityChanges.length > 0;
 
 export default function LandscapeMonitor({
   category, entries,
@@ -78,9 +83,11 @@ export default function LandscapeMonitor({
       {latest.diff && !latest.diff.hasChanges && (
         <div className="flex flex-col gap-2">
           <p className="text-sm text-muted">
-            <span className="font-medium text-fg">No material changes</span> since {day(latest.diff.fromCapturedAt)}. Last checked {day(latest.capturedAt)}.
+            {hasIndicativeRows(latest.diff)
+              ? <><span className="font-medium text-fg">No confirmed changes</span> since {day(latest.diff.fromCapturedAt)}. Last checked {day(latest.capturedAt)}.</>
+              : <><span className="font-medium text-fg">No material changes</span> since {day(latest.diff.fromCapturedAt)}. Last checked {day(latest.capturedAt)}.</>}
           </p>
-          {(latest.diff.lostFromMap ?? []).length > 0 && (
+          {hasIndicativeRows(latest.diff) && (
             <ul className="flex flex-col gap-1.5">
               <DiffRows diff={latest.diff} />
             </ul>
@@ -104,7 +111,7 @@ export default function LandscapeMonitor({
             {older.map((e) => (
               <li key={e.capturedAt} className="flex flex-col gap-1.5">
                 <span className="font-mono text-xs text-muted">{e.capturedAt.slice(0, 10)} · {e.playerCount} players</span>
-                {e.diff && e.diff.hasChanges
+                {e.diff && (e.diff.hasChanges || hasIndicativeRows(e.diff))
                   ? <ul className="flex flex-col gap-1"><DiffRows diff={e.diff} /></ul>
                   : <span className="text-xs text-muted">{e.diff ? "No material changes" : "Baseline captured"}</span>}
               </li>

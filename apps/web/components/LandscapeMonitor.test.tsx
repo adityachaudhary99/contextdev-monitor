@@ -21,25 +21,46 @@ describe("LandscapeMonitor", () => {
     expect(screen.getByText(/history/i)).toBeInTheDocument();
   });
 
-  it("renders market exits as left the map and extraction losses as muted rows", () => {
+  it("renders market exits as possible exits and extraction losses as muted rows", () => {
     const second: MotionEntry = { capturedAt: "2026-07-10T00:00:00.000Z", playerCount: 7,
       diff: { fromCapturedAt: baseline.capturedAt, toCapturedAt: "2026-07-10T00:00:00.000Z",
         entered: [], exited: [{ name: "GoneCo", domain: "gone.co" }], pricingChanges: [], capabilityChanges: [],
         lostFromMap: [{ name: "VarianceAPI", domain: "variance.dev", reason: "off_category" }], hasChanges: true } };
     render(<LandscapeMonitor category="web scraping APIs" entries={[baseline, second]} />);
     expect(screen.getByText(/GoneCo/)).toBeInTheDocument();
-    expect(screen.getByText(/left the map/i)).toBeInTheDocument();
+    expect(screen.getByText(/no longer found/i)).toBeInTheDocument();
+    expect(screen.getByText(/possible exit/i)).toBeInTheDocument();
     expect(screen.queryByText(/dropped out/i)).not.toBeInTheDocument();
     expect(screen.getByText("VarianceAPI").closest("li")).toHaveTextContent(/VarianceAPI lost from map \(off_category\).*extraction, not a confirmed exit/);
   });
 
-  it("keeps no-material-changes copy and still shows extraction losses", () => {
+  it("shows no-confirmed-changes copy and still shows extraction losses", () => {
     const second: MotionEntry = { capturedAt: "2026-07-10T00:00:00.000Z", playerCount: 8,
       diff: { fromCapturedAt: baseline.capturedAt, toCapturedAt: "2026-07-10T00:00:00.000Z",
         entered: [], exited: [], pricingChanges: [], capabilityChanges: [],
         lostFromMap: [{ name: "GateVariance", domain: "gate.dev", reason: "off_category" }], hasChanges: false } };
     render(<LandscapeMonitor category="web scraping APIs" entries={[baseline, second]} />);
-    expect(screen.getByText(/No material changes/i)).toBeInTheDocument();
+    expect(screen.getByText(/No confirmed changes/i).closest("p")).toHaveTextContent(/No confirmed changes since 2026-06-22/);
     expect(screen.getByText("GateVariance").closest("li")).toHaveTextContent(/GateVariance lost from map \(off_category\).*extraction, not a confirmed exit/);
+  });
+
+  it("renders indicative capability rows under a muted prefix", () => {
+    const second: MotionEntry = { capturedAt: "2026-07-10T00:00:00.000Z", playerCount: 8,
+      diff: { fromCapturedAt: baseline.capturedAt, toCapturedAt: "2026-07-10T00:00:00.000Z",
+        entered: [], exited: [], pricingChanges: [],
+        capabilityChanges: [{ domain: "acme.com", name: "Acme", added: ["captcha handling"], removed: [] }],
+        lostFromMap: [], hasChanges: false } };
+    render(<LandscapeMonitor category="web scraping APIs" entries={[baseline, second]} />);
+    expect(screen.getByText(/No confirmed changes/i).closest("p")).toHaveTextContent(/No confirmed changes since 2026-06-22/);
+    expect(screen.getByText(/Capability mix \(indicative\)/i)).toBeInTheDocument();
+    expect(screen.getByText("Acme").closest("li")).toHaveTextContent(/\+captcha handling/);
+  });
+
+  it("renders no-material-changes copy when nothing changed at all", () => {
+    const second: MotionEntry = { capturedAt: "2026-07-10T00:00:00.000Z", playerCount: 8,
+      diff: { fromCapturedAt: baseline.capturedAt, toCapturedAt: "2026-07-10T00:00:00.000Z",
+        entered: [], exited: [], pricingChanges: [], capabilityChanges: [], lostFromMap: [], hasChanges: false } };
+    render(<LandscapeMonitor category="web scraping APIs" entries={[baseline, second]} />);
+    expect(screen.getByText(/No material changes/i)).toBeInTheDocument();
   });
 });

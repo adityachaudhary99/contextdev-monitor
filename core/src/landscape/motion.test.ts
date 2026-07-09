@@ -28,8 +28,9 @@ describe("diffToMarkdown", () => {
     const md = diffToMarkdown("web scraping APIs", diffLandscapes(prev, curr));
     expect(md).toContain("web scraping APIs");
     expect(md).toContain("**New** (new.dev) entered the market");
-    expect(md).toContain("**Gone** (gone.dev) dropped out");
+    expect(md).toContain("**Gone** (gone.dev) no longer found — possible market exit");
     expect(md).toContain("`$49` → `$79`");
+    expect(md).toContain("**Capability mix** (indicative — extraction-sensitive):");
     expect(md).toContain("+ai");
   });
   it("renders a calm line when nothing changed", () => {
@@ -41,8 +42,17 @@ describe("diffToMarkdown", () => {
     const prev = snap("2026-06-22T00:00:00.000Z", [{ name: "Lost", domain: "lost.dev" }, { name: "Gone", domain: "gone.dev" }]);
     const curr = { ...snap("2026-07-10T00:00:00.000Z", []), failed: [{ domain: "lost.dev", reason: "off_category" }] };
     const md = diffToMarkdown("web scraping APIs", diffLandscapes(prev, curr));
-    expect(md.indexOf("**Gone** (gone.dev) dropped out")).toBeLessThan(md.indexOf("**Lost** (lost.dev) left the map this check"));
+    expect(md.indexOf("**Gone** (gone.dev) no longer found")).toBeLessThan(md.indexOf("**Lost** (lost.dev) left the map this check"));
     expect(md).toContain("**Lost** (lost.dev) left the map this check (off_category)");
     expect(md).toContain("extraction loss, not necessarily a market exit");
+  });
+  it("renders no confirmed market changes before indicative sections", () => {
+    const prev = snap("2026-06-22T00:00:00.000Z", [{ name: "Acme", domain: "acme.com", tags: ["api"] }]);
+    const curr = snap("2026-07-10T00:00:00.000Z", [{ name: "Acme", domain: "acme.com", tags: ["api", "captcha handling"] }]);
+    const md = diffToMarkdown("web scraping APIs", diffLandscapes(prev, curr));
+    expect(md).toContain("No confirmed market changes.");
+    expect(md).toContain("**Capability mix** (indicative — extraction-sensitive):");
+    expect(md).toContain("+captcha handling");
+    expect(md).not.toContain("No material changes.");
   });
 });

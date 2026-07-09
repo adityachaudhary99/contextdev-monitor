@@ -19,13 +19,15 @@ const day = (iso: string) => iso.slice(0, 10);
 export function diffToMarkdown(category: string, diff: LandscapeDiff): string {
   const lines: string[] = [`### ${category} — market motion (${day(diff.fromCapturedAt)} → ${day(diff.toCapturedAt)})`, ""];
   const lostFromMap = diff.lostFromMap ?? [];
-  if (!diff.hasChanges && lostFromMap.length === 0) { lines.push("No material changes."); return lines.join("\n"); }
-  if (!diff.hasChanges) lines.push("No material changes.");
+  const hasIndicativeRows = lostFromMap.length > 0 || diff.capabilityChanges.length > 0;
+  if (!diff.hasChanges && !hasIndicativeRows) { lines.push("No material changes."); return lines.join("\n"); }
+  if (!diff.hasChanges) lines.push("No confirmed market changes.");
   for (const p of diff.entered) lines.push(`- 🟢 **${p.name}** (${p.domain}) entered the market`);
-  for (const p of diff.exited) lines.push(`- 🔴 **${p.name}** (${p.domain}) dropped out`);
+  for (const p of diff.exited) lines.push(`- 🔴 **${p.name}** (${p.domain}) no longer found — possible market exit`);
   for (const p of lostFromMap) lines.push(`- ⚪ **${p.name}** (${p.domain}) left the map this check (${p.reason}) — extraction loss, not necessarily a market exit`);
   for (const c of diff.pricingChanges)
     lines.push(`- 💰 **${c.name}** ${c.field === "price" ? "starting price" : "free tier"}: \`${c.from}\` → \`${c.to}\``);
+  if (diff.capabilityChanges.length) lines.push("**Capability mix** (indicative — extraction-sensitive):");
   for (const c of diff.capabilityChanges) {
     const parts: string[] = [];
     if (c.added.length) parts.push(c.added.map((t) => `+${t}`).join(" "));

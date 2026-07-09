@@ -93,11 +93,56 @@ describe("diffLandscapes", () => {
       expect.objectContaining({ field: "freeTier", from: "free tier", to: "no free tier" }),
     ]));
   });
+  it("does not report price rows for equivalent formatted numeric prices", () => {
+    const older = snapshotLandscape(mkLs([mkPlayer({ name: "ScraperAPI", domain: "scraperapi.com", pricing: { free: null, startingPrice: "$49/month", model: null } })]), "2026-06-01T00:00:00.000Z");
+    const newer = snapshotLandscape(mkLs([mkPlayer({ name: "ScraperAPI", domain: "scraperapi.com", pricing: { free: null, startingPrice: "49", model: null } })]), "2026-06-22T00:00:00.000Z");
+    expect(diffLandscapes(older, newer).pricingChanges).toEqual([]);
+  });
+  it("reports price rows when canonical numeric prices differ", () => {
+    const older = snapshotLandscape(mkLs([mkPlayer({ name: "Acme", domain: "acme.com", pricing: { free: null, startingPrice: "$49", model: null } })]), "2026-06-01T00:00:00.000Z");
+    const newer = snapshotLandscape(mkLs([mkPlayer({ name: "Acme", domain: "acme.com", pricing: { free: null, startingPrice: "$79", model: null } })]), "2026-06-22T00:00:00.000Z");
+    expect(diffLandscapes(older, newer).pricingChanges).toEqual([
+      expect.objectContaining({ field: "price", from: "$49", to: "$79" }),
+    ]);
+  });
+  it("reports price rows when exactly one side is parseable and raw strings differ", () => {
+    const older = snapshotLandscape(mkLs([mkPlayer({ name: "Acme", domain: "acme.com", pricing: { free: null, startingPrice: "$49", model: null } })]), "2026-06-01T00:00:00.000Z");
+    const newer = snapshotLandscape(mkLs([mkPlayer({ name: "Acme", domain: "acme.com", pricing: { free: null, startingPrice: "custom pricing", model: null } })]), "2026-06-22T00:00:00.000Z");
+    expect(diffLandscapes(older, newer).pricingChanges).toEqual([
+      expect.objectContaining({ field: "price", from: "$49", to: "custom pricing" }),
+    ]);
+  });
+  it("ignores free-tier rows when either side is unknown", () => {
+    const older = snapshotLandscape(mkLs([mkPlayer({ name: "Acme", domain: "acme.com", pricing: { free: null, startingPrice: null, model: null } })]), "2026-06-01T00:00:00.000Z");
+    const newer = snapshotLandscape(mkLs([mkPlayer({ name: "Acme", domain: "acme.com", pricing: { free: false, startingPrice: null, model: null } })]), "2026-06-22T00:00:00.000Z");
+    expect(diffLandscapes(older, newer).pricingChanges).toEqual([]);
+  });
+  it("reports free-tier rows when both sides are known booleans and differ", () => {
+    const older = snapshotLandscape(mkLs([mkPlayer({ name: "Acme", domain: "acme.com", pricing: { free: false, startingPrice: null, model: null } })]), "2026-06-01T00:00:00.000Z");
+    const newer = snapshotLandscape(mkLs([mkPlayer({ name: "Acme", domain: "acme.com", pricing: { free: true, startingPrice: null, model: null } })]), "2026-06-22T00:00:00.000Z");
+    expect(diffLandscapes(older, newer).pricingChanges).toEqual([
+      expect.objectContaining({ field: "freeTier", from: "no free tier", to: "free tier" }),
+    ]);
+  });
   it("detects capability changes (tags added/removed)", () => {
     const d = diffLandscapes(prev, curr);
     const cap = d.capabilityChanges.find((c) => c.domain === "acme.com");
     expect(cap?.added).toEqual(["proxies"]);
     expect(cap?.removed).toEqual(["cloud"]);
+  });
+  it("cancels fuzzy capability vocabulary drift", () => {
+    const older = snapshotLandscape(mkLs([mkPlayer({ name: "Acme", domain: "acme.com", tags: ["proxy rotation"] })]), "2026-06-01T00:00:00.000Z");
+    const newer = snapshotLandscape(mkLs([mkPlayer({ name: "Acme", domain: "acme.com", tags: ["proxies"] })]), "2026-06-22T00:00:00.000Z");
+    expect(diffLandscapes(older, newer).capabilityChanges).toEqual([]);
+  });
+  it("keeps genuinely new capabilities after fuzzy cancellation", () => {
+    const older = snapshotLandscape(mkLs([mkPlayer({ name: "Acme", domain: "acme.com", tags: ["api"] })]), "2026-06-01T00:00:00.000Z");
+    const newer = snapshotLandscape(mkLs([mkPlayer({ name: "Acme", domain: "acme.com", tags: ["api", "captcha handling"] })]), "2026-06-22T00:00:00.000Z");
+    const d = diffLandscapes(older, newer);
+    expect(d.capabilityChanges).toEqual([
+      expect.objectContaining({ added: ["captcha handling"], removed: [] }),
+    ]);
+    expect(d.hasChanges).toBe(false);
   });
   it("carries the capture dates and a hasChanges flag", () => {
     const d = diffLandscapes(prev, curr);
