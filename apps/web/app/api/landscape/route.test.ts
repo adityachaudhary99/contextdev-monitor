@@ -6,6 +6,7 @@ vi.mock("../../../lib/landscape-action.js", () => ({
 }));
 
 import * as action from "../../../lib/landscape-action.js";
+import * as storeModule from "../../../lib/landscape-store.js";
 import { POST } from "./route.js";
 
 const fakeLandscape = {
@@ -52,9 +53,23 @@ describe("POST /api/landscape", () => {
     const res = await POST(makeRequest({ category: "scraping apis" }));
     expect(res.status).toBe(200);
     const body = await res.json();
-    expect(body).toEqual({ landscape: fakeLandscape });
+    expect(body).toEqual({ landscape: fakeLandscape, slug: "scraping-apis" });
     // byoKey must NOT appear in response
     expect(JSON.stringify(body)).not.toContain("byoKey");
+  });
+
+  it("persists the landscape under its slug and returns the slug", async () => {
+    const landscape = { ...fakeLandscape, category: "Web Scraping APIs" };
+    vi.mocked(action.runLandscapeReport).mockResolvedValueOnce({
+      ok: true,
+      landscape,
+    });
+    const saveSpy = vi.spyOn(storeModule.landscapeStore, "save").mockResolvedValueOnce(undefined);
+
+    const res = await POST(makeRequest({ category: "Web Scraping APIs" }));
+    const body = await res.json();
+    expect(body.slug).toBe("web-scraping-apis");
+    expect(saveSpy).toHaveBeenCalledWith("web-scraping-apis", expect.objectContaining({ category: "Web Scraping APIs" }));
   });
 
   it("returns 400 on bad_category", async () => {

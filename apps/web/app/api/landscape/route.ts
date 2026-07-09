@@ -1,7 +1,9 @@
 export const runtime = "nodejs";
 
 import { randomUUID } from "node:crypto";
+import { slugify } from "@contextdev/core";
 import * as action from "../../../lib/landscape-action.js";
+import { landscapeStore } from "../../../lib/landscape-store.js";
 
 export async function POST(request: Request): Promise<Response> {
   // Parse body
@@ -41,7 +43,9 @@ export async function POST(request: Request): Promise<Response> {
 
   if (result.ok) {
     status = 200;
-    responseBody = { landscape: result.landscape };
+    const slug = slugify(result.landscape.category);
+    await landscapeStore.save(slug, result.landscape); // never-throws by store contract
+    responseBody = { landscape: result.landscape, slug };
   } else {
     responseBody = { error: result.error };
     switch (result.error) {
