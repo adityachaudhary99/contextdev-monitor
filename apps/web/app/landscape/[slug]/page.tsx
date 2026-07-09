@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { deslugify } from "@contextdev/core";
 import { curatedSlugs, getCurated } from "../../../lib/landscape-catalog.js";
 import { getOrGenerateLandscape } from "../../../lib/landscape-pages.js";
-import { getLandscapeMonitor } from "../../../lib/landscape-history.js";
+import { getMarketMotion } from "../../../lib/landscape-history.js";
 import LandscapeMap from "../../../components/LandscapeMap.js";
 import LandscapeMonitor from "../../../components/LandscapeMonitor.js";
 import LandscapeView from "../../../components/LandscapeView.js";
@@ -36,7 +36,7 @@ export default async function LandscapePage({ params }: { params: Promise<{ slug
   const { slug } = await params;
   const landscape = await getOrGenerateLandscape(slug);
   const category = landscape?.category ?? deslugify(slug);
-  const monitor = getLandscapeMonitor(slug);
+  const motion = getMarketMotion(slug);
 
   return (
     <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-10">
@@ -48,7 +48,7 @@ export default async function LandscapePage({ params }: { params: Promise<{ slug
       </div>
       {landscape ? (
         <div className="flex flex-col gap-8">
-          {monitor && <LandscapeMonitor {...monitor} />}
+          {motion && <LandscapeMonitor category={motion.category} entries={motion.entries} />}
           <LandscapeMap landscape={landscape} />
           <LandscapeView landscape={landscape} />
         </div>
