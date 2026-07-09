@@ -4,12 +4,7 @@
 //
 // Writes apps/web/data/landscapes/<slug>.json for each category (real context.dev data).
 // After running, register the new slugs in apps/web/lib/landscape-catalog.ts.
-import { writeFileSync, existsSync, readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-import {
-  runLandscape, slugify, snapshotLandscape, type LandscapeSnapshot,
-  ContextClient, CreditLedger, InMemoryBudgetStore, anthropicFromEnv,
-} from "@contextdev/core";
+import { generateAndPersist } from "./lib/watch.js";
 
 async function main() {
   const categories = process.argv.slice(2);
@@ -25,16 +20,7 @@ async function main() {
   const day = new Date().toISOString().slice(0, 10);
 
   for (const category of categories) {
-    const ledger = new CreditLedger();
-    const client = new ContextClient({ apiKey, ledger, budget: new InMemoryBudgetStore(100_000), day });
-    const landscape = await runLandscape({ category, client, ledger, maxPlayers: 8, llm: anthropicFromEnv() });
-    const slug = slugify(category);
-    const path = fileURLToPath(new URL(`../data/landscapes/${slug}.json`, import.meta.url));
-    writeFileSync(path, JSON.stringify(landscape, null, 2) + "\n");
-    const histPath = fileURLToPath(new URL(`../data/landscape-history/${slug}.json`, import.meta.url));
-    const prior: LandscapeSnapshot[] = existsSync(histPath) ? JSON.parse(readFileSync(histPath, "utf8")) : [];
-    prior.push(snapshotLandscape(landscape, day + "T00:00:00.000Z"));
-    writeFileSync(histPath, JSON.stringify(prior, null, 2) + "\n");
+    const { slug, landscape } = await generateAndPersist(category, { capturedAt: day + "T00:00:00.000Z" });
     console.log(
       `${slug}: ${landscape.players.length} players, ${landscape.failures.length} failures, ` +
       `${landscape.creditsUsed}cr, ${(landscape.latencyMs / 1000).toFixed(1)}s -> data/landscapes/${slug}.json`,
