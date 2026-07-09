@@ -21,6 +21,7 @@ Frontend tooling (global rule): `ui-ux-pro-max` skill + 21st.dev community compo
 ### v2 shipped (2026-06-20)
 - **Report-card** — reproducible, honest eval of context.dev extraction → `core/REPORT-CARD.md` (`npm -w @contextdev/core run report-card`; `--collect` for a live run).
 - **Public landscape pages + visual map** — static curated + on-demand `/landscape/<slug>` pages with a positioning map; `apps/web/scripts/gen-landscapes.ts` adds curated snapshots.
+- On-demand landscape results are persisted under shareable `/landscape/<slug>` URLs; KV is optional and the web app falls back to session-lifetime memory.
 - **Agent skill** — see below.
 
 ## Agent skill: Landscape Cartographer

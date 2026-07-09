@@ -17,7 +17,7 @@ web-intelligence API.
 | Tool | What it does |
 |------|--------------|
 | **Landscape Cartographer** | A category → a cited, structured `Landscape` (discover players → profile each → synthesize a comparison + brief). The web headline ("Map a market"). |
-| **Public landscape pages** | Shareable, indexable `/landscape/<category>` pages with a **positioning map** — statically pre-rendered for a curated set, generated on-demand (and cached) for any other category. |
+| **Public landscape pages** | Shareable, indexable `/landscape/<category>` pages with a **positioning map** — statically pre-rendered for a curated set, generated on-demand (and cached) for any other category. Every generated landscape gets a shareable `/landscape/<slug>` URL. |
 | **Pricing tracker** | A competitor domain → a typed pricing snapshot + an evidence-cited diff ("what changed since last check"). |
 | **Extraction report-card** | A reproducible, **honest** evaluation of how well context.dev extracts profiles — accuracy vs hand-checked truth, latency, cost/page, and a failure taxonomy. See [`core/REPORT-CARD.md`](core/REPORT-CARD.md). |
 | **Agent-skill** | A Claude-Code skill (+ portable prompt) that runs the cartographer over context.dev's MCP server, with the `cartographer` CLI as the proven fallback. See [`skills/landscape-cartographer/`](skills/landscape-cartographer/). |
@@ -116,6 +116,10 @@ cp apps/web/.env.example apps/web/.env.local
 # then edit apps/web/.env.local and set CONTEXTDEV_API_KEY=<your key>
 ```
 
+Optional: durable cache for on-demand landscapes. Set `KV_REST_API_URL` and
+`KV_REST_API_TOKEN` (Vercel KV / Upstash) and shared maps survive cold starts.
+Without them, share links use the session-lifetime in-memory cache.
+
 Start the web app (the workspace lives at `apps/web`):
 
 ```bash
@@ -155,7 +159,8 @@ npm run test -w apps/web -- --poolOptions.threads.maxThreads=1   # web (single-t
 **Deploy to Vercel:** import the GitHub repo, set the project's **Root Directory to `apps/web`**
 (Vercel detects Next.js there and auto-installs the npm workspace from the repo root), add
 `CONTEXTDEV_API_KEY` as a server-only env var (do **not** prefix with `NEXT_PUBLIC_`), and deploy.
-Every push then auto-deploys.
+Optional: set `KV_REST_API_URL`/`KV_REST_API_TOKEN` (Vercel KV / Upstash) so generated
+`/landscape/<slug>` share links survive cold starts. Every push then auto-deploys.
 
 ---
 
