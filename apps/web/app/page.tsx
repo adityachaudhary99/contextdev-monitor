@@ -9,6 +9,7 @@ import DomainForm from "../components/DomainForm.js";
 import ReportView from "../components/ReportView.js";
 import LandscapeView from "../components/LandscapeView.js";
 import ModeToggle from "../components/ModeToggle.js";
+import ShareButton from "../components/ShareButton.js";
 import type { Mode as ApiMode } from "../components/ModeToggle.js";
 
 type PrimaryMode = "map" | "pricing";
@@ -92,7 +93,7 @@ function ErrorPanel({ error, isCapError, onReset }: ErrorPanelProps) {
 }
 
 function MapModePanel() {
-  const { status, landscape, error, errorCode, run, reset } = useLandscape();
+  const { status, landscape, slug, error, errorCode, run, reset } = useLandscape();
   const [category, setCategory] = useState("");
   const [apiMode, setApiMode] = useState<ApiMode>("demo");
   const [byoKey, setByoKey] = useState("");
@@ -212,6 +213,11 @@ function MapModePanel() {
       {/* Done state */}
       {status === "done" && landscape && (
         <div className="mt-8">
+          {slug && (
+            <div className="mb-4 flex justify-end">
+              <ShareButton slug={slug} />
+            </div>
+          )}
           <LandscapeView landscape={landscape} />
         </div>
       )}

@@ -22,6 +22,7 @@ export type LandscapeStatus = "idle" | "loading" | "done" | "error";
 export interface LandscapeState {
   status: LandscapeStatus;
   landscape?: Landscape;
+  slug?: string;
   error?: string;
   errorCode?: string;
 }
@@ -49,8 +50,8 @@ export function useLandscape(): UseLandscapeReturn {
       });
 
       if (res.ok) {
-        const data = (await res.json()) as { landscape: Landscape };
-        setState({ status: "done", landscape: data.landscape });
+        const data = (await res.json()) as { landscape: Landscape; slug?: string };
+        setState({ status: "done", landscape: data.landscape, slug: data.slug });
       } else {
         const data = (await res.json()) as { error?: string };
         const code = data.error ?? "";

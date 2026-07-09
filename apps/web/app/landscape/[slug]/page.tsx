@@ -8,6 +8,7 @@ import { getLandscapeMonitor } from "../../../lib/landscape-history.js";
 import LandscapeMap from "../../../components/LandscapeMap.js";
 import LandscapeMonitor from "../../../components/LandscapeMonitor.js";
 import LandscapeView from "../../../components/LandscapeView.js";
+import ShareButton from "../../../components/ShareButton.js";
 
 export const dynamicParams = true;
 
@@ -39,9 +40,12 @@ export default async function LandscapePage({ params }: { params: Promise<{ slug
 
   return (
     <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-10">
-      <Link href="/landscape" className="mb-6 inline-flex items-center gap-1.5 text-sm text-muted hover:text-fg">
-        <ArrowLeft size={14} aria-hidden="true" /> All landscapes
-      </Link>
+      <div className="mb-6 flex items-center justify-between">
+        <Link href="/landscape" className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-fg">
+          <ArrowLeft size={14} aria-hidden="true" /> All landscapes
+        </Link>
+        {landscape && <ShareButton slug={slug} />}
+      </div>
       {landscape ? (
         <div className="flex flex-col gap-8">
           {monitor && <LandscapeMonitor {...monitor} />}
