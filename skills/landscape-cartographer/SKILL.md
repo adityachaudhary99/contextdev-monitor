@@ -81,6 +81,8 @@ When MCP tools aren't available, run the proven `core/` pipeline:
 CONTEXTDEV_API_KEY=… npm -w @contextdev/core run cartographer -- "<category>" [--max N] [--json out.json] [--seed <domain> ...]
 ```
 
+After mapping, optionally emit a Webdog watch-list by adding `--export-webdog webdog-watchlist.json` to the CLI command.
+
 It prints a cited, human-readable summary (see [EXAMPLE.md](./EXAMPLE.md)) and, with `--json`,
 writes the full typed `Landscape` to disk. Setting `ANTHROPIC_API_KEY` too enables the sharper
 LLM category-fit gate; `--seed` (repeatable) force-includes a known player. This is the reliable

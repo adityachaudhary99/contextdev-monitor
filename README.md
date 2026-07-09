@@ -154,6 +154,20 @@ CONTEXTDEV_API_KEY=<key> npx tsx apps/web/scripts/gen-landscapes.ts "headless CM
 CONTEXTDEV_API_KEY=<key> npm run report-card -w core -- --collect
 ```
 
+### Works with Webdog
+
+[Webdog](https://github.com/context-dot-dev/webdog) watches pages for changes. **Cartographer
+tells you who to watch; Webdog watches them.**
+
+Export the watch-list from the CLI with `--export-webdog webdog-watchlist.json`, or open any
+generated landscape in the UI and click **Webdog watch-list** to download the same JSON. It
+contains each player's URLs and up to three monitor kinds: `site_links` for new or removed site
+pages, `product_price` when a pricing URL is available, and `page_content` when a docs URL is
+available. Every target includes a human-readable `watchNote` describing what to watch for.
+
+Paste the exported URLs and watch notes into your Webdog instance; a native import is on
+Webdog's side of the fence.
+
 #### Watch a market on autopilot
 
 Fork the repo, enable GitHub Actions on the fork, then add `CONTEXTDEV_API_KEY` under
