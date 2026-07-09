@@ -1,5 +1,10 @@
-import { InMemoryLandscapeStore } from "@contextdev/core";
+import { InMemoryLandscapeStore, type LandscapeStore } from "@contextdev/core";
+import { KvLandscapeStore } from "./kv-landscape-store.js";
 
-// Runtime cache for on-demand landscapes. Resets on serverless cold start —
-// a durable KV store is the hosted follow-up (same caveat as the snapshot store).
-export const landscapeStore = new InMemoryLandscapeStore();
+/** KV (Vercel KV / Upstash REST) when configured - on-demand landscapes then survive cold starts
+ *  and share links stay live. In-memory otherwise (session-lifetime cache). */
+export function selectLandscapeStore(env: NodeJS.ProcessEnv): LandscapeStore {
+  const url = env.KV_REST_API_URL, token = env.KV_REST_API_TOKEN;
+  return url && token ? new KvLandscapeStore({ url, token }) : new InMemoryLandscapeStore();
+}
+export const landscapeStore: LandscapeStore = selectLandscapeStore(process.env);
