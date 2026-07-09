@@ -289,7 +289,7 @@ export default function Page() {
   return (
     <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-10">
       <p className="mb-6 max-w-2xl text-sm text-muted">
-        Map an entire market into a cited competitive landscape — or track a competitor&apos;s pricing — on demand.
+        Map a market — and watch it move. Build a cited competitive landscape now, then compare future checks for new entrants, exits, pricing, and capability moves.
       </p>
       {/* Primary mode switch */}
       <div

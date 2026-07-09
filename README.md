@@ -1,9 +1,13 @@
 # context.dev Intelligence Monitor
 
-Type a **market category** → get an auto-built, **cited, structured competitive landscape**:
-the players in that market, each with a typed profile, a positioning map, a shared-capability
-comparison, and a short brief — every claim evidence-linked to its source. Plus a pricing
-tracker, an honest extraction report-card, and a Claude-Code agent-skill.
+Map a market — and watch it move. Type a **market category** → get an auto-built,
+**cited, structured competitive landscape**: the players in that market, each with a typed
+profile, a positioning map, a shared-capability comparison, a short brief, and an over-time
+market-motion timeline — every claim evidence-linked to its source. Plus a pricing tracker,
+an honest extraction report-card, and a Claude-Code agent-skill.
+
+Webdog (by the context.dev team) tells you when a page changes — this tells you who the players
+are and how the market moved. Pair them: map here, watch there.
 
 Built on the [context.dev](https://context.dev?utm_source=contextdev-monitor&utm_medium=readme&utm_campaign=oss)
 web-intelligence API.
@@ -18,6 +22,7 @@ web-intelligence API.
 |------|--------------|
 | **Landscape Cartographer** | A category → a cited, structured `Landscape` (discover players → profile each → synthesize a comparison + brief). The web headline ("Map a market"). |
 | **Public landscape pages** | Shareable, indexable `/landscape/<category>` pages with a **positioning map** — statically pre-rendered for a curated set, generated on-demand (and cached) for any other category. Every generated landscape gets a shareable `/landscape/<slug>` URL. |
+| **Market motion timeline** | Snapshot history becomes a chronological market-motion feed: baseline, new entrants, exits, pricing moves, and capability changes for curated landscapes. |
 | **Pricing tracker** | A competitor domain → a typed pricing snapshot + an evidence-cited diff ("what changed since last check"). |
 | **Extraction report-card** | A reproducible, **honest** evaluation of how well context.dev extracts profiles — accuracy vs hand-checked truth, latency, cost/page, and a failure taxonomy. See [`core/REPORT-CARD.md`](core/REPORT-CARD.md). |
 | **Agent-skill** | A Claude-Code skill (+ portable prompt) that runs the cartographer over context.dev's MCP server, with the `cartographer` CLI as the proven fallback. See [`skills/landscape-cartographer/`](skills/landscape-cartographer/). |

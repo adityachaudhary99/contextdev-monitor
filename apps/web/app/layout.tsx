@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://contextdev-monitor.vercel.app"),
   title: "Context.dev Intelligence Monitor",
   description:
-    "Track a competitor's pricing page and get evidence-linked diffs on demand. Powered by context.dev.",
+    "Map a market — and watch it move. Auto-build cited competitive landscapes and evidence-linked market-motion timelines with context.dev.",
   keywords: [
     "competitor pricing",
     "pricing intelligence",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     type: "website",
     title: "Context.dev Intelligence Monitor",
     description:
-      "Enter a competitor domain — get a typed pricing snapshot, a diff against the prior one, and an evidence-cited report. No scrapers to maintain.",
+      "Map a market — and watch it move. Auto-build cited competitive landscapes and evidence-linked market-motion timelines with context.dev.",
   },
 };
 
