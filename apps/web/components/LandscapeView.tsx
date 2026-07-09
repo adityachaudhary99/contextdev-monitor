@@ -8,6 +8,7 @@ import ComparisonTable from "./ComparisonTable.js";
 import PlayerCard from "./PlayerCard.js";
 import AnalystReport from "./AnalystReport.js";
 import MarketAnalytics from "./MarketAnalytics.js";
+import ExportWebdogButton from "./ExportWebdogButton.js";
 
 interface LandscapeViewProps {
   landscape: Landscape;
@@ -40,6 +41,9 @@ export default function LandscapeView({ landscape }: LandscapeViewProps) {
           {category} <span className="text-muted">· {players.length} player{players.length === 1 ? "" : "s"} mapped</span>
         </h1>
         <p className="max-w-3xl text-sm leading-relaxed text-muted">{brief}</p>
+        <div>
+          <ExportWebdogButton landscape={landscape} />
+        </div>
       </header>
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
