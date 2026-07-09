@@ -10,6 +10,9 @@
     },
     "./analytics": {
       "import": "./src/landscape/analytics.ts"
+    },
+    "./webdog": {
+      "import": "./src/landscape/webdog.ts"
     }
   },
   "scripts": {

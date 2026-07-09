@@ -24,3 +24,4 @@ export type { MarketAnalytics, CapabilityCoverage, PricingStats, CompositionStat
 export { snapshotLandscape, diffLandscapes } from "./landscape/diff.js";
 export type { LandscapeSnapshot, PlayerSnapshot, LandscapeDiff, PricingChange, CapabilityChange } from "./landscape/diff.js";
 export { buildMotionTimeline, diffToMarkdown, type MotionEntry } from "./landscape/motion.js";
+export { toWebdogWatchlist, type WebdogTarget, type WebdogWatchlist } from "./landscape/webdog.js";
