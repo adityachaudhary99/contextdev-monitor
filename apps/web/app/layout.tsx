@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
+import { Archivo, Source_Serif_4, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
+
+const archivo = Archivo({ subsets: ["latin"], variable: "--font-archivo", display: "swap" });
+const sourceSerif = Source_Serif_4({ subsets: ["latin"], variable: "--font-source-serif", display: "swap", style: ["normal", "italic"] });
+const plexMono = IBM_Plex_Mono({ subsets: ["latin"], variable: "--font-plex-mono", display: "swap", weight: ["400", "500", "600"] });
 import { ThemeProvider } from "../components/ThemeProvider.js";
 import Header from "../components/Header.js";
 import Footer from "../components/Footer.js";
@@ -28,7 +33,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${archivo.variable} ${sourceSerif.variable} ${plexMono.variable}`}>
       <body>
         <ThemeProvider>
           <div className="flex min-h-screen flex-col bg-bg">

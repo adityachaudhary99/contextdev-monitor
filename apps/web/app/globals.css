@@ -1,20 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap');
 @tailwind base; @tailwind components; @tailwind utilities;
+
+/* THE DOSSIER — archival paper (light, default) / situation room (dark).
+   Direction doc: .project/specs/2026-07-10-dossier-design.md */
 :root {
-  --bg:#f7f8fa; --surface:#ffffff; --surface-2:#f1f4f9; --border:#e3e8ef; --fg:#0f172a; --muted:#5b6472;
-  --primary:#1e40af; --primary-strong:#1e3a8a; --primary-fg:#ffffff;
-  --accent:#d97706; --accent-fg:#ffffff;
-  --success:#0a7c42; --warn:#b45309; --danger:#dc2626; --change:#e11d48;
-  --shadow:0 1px 3px rgba(15,23,42,.08),0 4px 16px rgba(15,23,42,.06);
+  --bg:#f6f7f5; --surface:#fdfdfc; --surface-2:#eef0ec; --border:#d9ded6; --fg:#131c2e; --muted:#4c5666;
+  --primary:#1e3a8a; --primary-strong:#16295f; --primary-fg:#ffffff;
+  --accent:#b45309; --accent-fg:#ffffff;
+  --success:#0f7b4d; --warn:#b45309; --danger:#b3352c; --change:#b3352c; --ghost:#6b7280;
+  --rule:rgba(30,58,138,.24);
+  --shadow:0 1px 2px rgba(19,28,46,.06),0 3px 12px rgba(19,28,46,.05);
 }
 .dark {
-  --bg:#0a0e1a; --surface:#0f1626; --surface-2:#141d30; --border:#1f2a40; --fg:#e6edf6; --muted:#8a97ab;
-  --primary:#7aa2ff; --primary-strong:#9fbcff; --primary-fg:#0a0e1a;
-  --accent:#f0a945; --accent-fg:#0a0e1a;
-  --success:#5fd08a; --warn:#f6a96b; --danger:#ff6b6b; --change:#fb7185;
-  --shadow:0 0 0 1px rgba(255,255,255,.03),0 8px 24px rgba(0,0,0,.4);
+  --bg:#0b0f1a; --surface:#111827; --surface-2:#16203380; --border:#243048; --fg:#e6ebf2; --muted:#939dad;
+  --primary:#93b4f5; --primary-strong:#b7ccf8; --primary-fg:#0b0f1a;
+  --accent:#e79b3c; --accent-fg:#0b0f1a;
+  --success:#4ec48b; --warn:#e79b3c; --danger:#e4756c; --change:#e4756c; --ghost:#8a94a3;
+  --rule:rgba(147,180,245,.28);
+  --shadow:0 0 0 1px rgba(255,255,255,.04),0 8px 24px rgba(0,0,0,.45);
 }
-body { @apply bg-bg text-fg font-sans; font-size:16px; }
+
+body { @apply bg-bg text-fg font-sans; font-size:16px; line-height:1.6; }
+
+/* Dossier vocabulary ---------------------------------------------------- */
+
+/* Stamp: mono caps micro-label. Use sparingly (eyebrow budget: 1 per 3 sections). */
+.stamp { @apply font-mono text-[11px] font-medium uppercase tracking-[0.14em]; }
+
+/* Display: Archivo, wide + tight. */
+.display { @apply font-sans font-bold tracking-tight; font-stretch: 112%; }
+
+/* Analyst narrative: research-note serif. */
+.narrative { @apply font-serif text-[17px] leading-[1.7]; }
+
+/* Section rule: the navy hairline that separates dossier sections. */
+.rule-t { border-top: 1px solid var(--rule); }
+
+/* Exhibit: a framed artifact on recessed paper with a figure caption. */
+.exhibit { @apply rounded-md border border-border p-4 sm:p-6; background:color-mix(in srgb, var(--surface-2) 60%, transparent); }
+.exhibit-caption { @apply stamp mt-3 block text-muted; }
+
+/* Tabular figures everywhere data lives. */
+.tnum { font-variant-numeric: tabular-nums; }
+
 @keyframes reveal { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
 .reveal { animation:reveal .4s ease-out both; }
-@media (prefers-reduced-motion: reduce) { *, .reveal { transition:none !important; animation:none !important; } }
+
+/* Files-in stagger for the motion ledger (one orchestrated moment per page). */
+@keyframes file-in { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:none; } }
+.file-in { animation:file-in .35s ease-out both; animation-delay:calc(var(--i,0)*40ms); }
+
+:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+
+@media (prefers-reduced-motion: reduce) { *, .reveal, .file-in { transition:none !important; animation:none !important; } }

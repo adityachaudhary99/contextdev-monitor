@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from "react";
+import Link from "next/link";
 import { AlertCircle, Loader2, RefreshCw, ExternalLink, Map, DollarSign, Play, TriangleAlert } from "lucide-react";
+import HeroLedger from "../components/HeroLedger.js";
 import { useTrack } from "../lib/useTrack.js";
 import { useLandscape } from "../lib/useLandscape.js";
 import { CONTEXT_DEV_UTM } from "../lib/constants.js";
@@ -283,19 +285,84 @@ function PricingModePanel() {
   );
 }
 
+function HowItWorks() {
+  const steps = [
+    { verb: "Discover", body: "Web search finds the companies competing in your category; aggregators and blog posts are filtered out." },
+    { verb: "Profile", body: "Each player is scraped and extracted into a typed, confidence-scored profile with source citations." },
+    { verb: "Synthesize", body: "Profiles become a positioning map, a shared-capability matrix, and a written brief. Re-runs diff against history." },
+  ];
+  return (
+    <section className="rule-t mt-16 pt-8">
+      <h2 className="display text-xl text-fg">How a dossier is built</h2>
+      <ol className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-3">
+        {steps.map((s) => (
+          <li key={s.verb} className="flex flex-col gap-2">
+            <span className="stamp text-primary">{s.verb}</span>
+            <p className="narrative text-[15px] text-muted">{s.body}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
+function HonestNumbers() {
+  const stats = [
+    { value: "100%", label: "names & links extracted correctly" },
+    { value: "67%", label: "overall field accuracy" },
+    { value: "8.7s", label: "mean extraction latency per page" },
+    { value: "11", label: "credits per profiled page" },
+  ];
+  return (
+    <section className="rule-t mt-16 pt-8">
+      <h2 className="display text-xl text-fg">We grade our own extraction</h2>
+      <p className="narrative mt-3 max-w-[72ch] text-muted">
+        Every number below comes from a reproducible evaluation against hand-checked ground truth, published in the repository. The parts that fall short are documented, not hidden.
+      </p>
+      <dl className="mt-6 grid grid-cols-2 gap-6 sm:grid-cols-4">
+        {stats.map((s) => (
+          <div key={s.label} className="flex flex-col gap-1">
+            <dt className="order-2 text-sm text-muted">{s.label}</dt>
+            <dd className="order-1 font-mono tnum text-2xl font-semibold text-fg">{s.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <a
+        href="https://github.com/adityachaudhary99/contextdev-monitor/blob/main/core/REPORT-CARD.md"
+        target="_blank" rel="noreferrer"
+        className="stamp mt-6 inline-block text-primary hover:text-fg"
+      >
+        Read the full report card →
+      </a>
+    </section>
+  );
+}
+
 export default function Page() {
   const [primaryMode, setPrimaryMode] = useState<PrimaryMode>("map");
 
   return (
-    <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-10">
-      <p className="mb-6 max-w-2xl text-sm text-muted">
-        Map a market — and watch it move. Build a cited competitive landscape now, then compare future checks for new entrants, exits, pricing, and capability moves.
-      </p>
+    <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-12">
+      {/* Hero: thesis left, real dossier excerpt right */}
+      <section className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1fr,380px]">
+        <div className="flex flex-col gap-5">
+          <h1 className="display text-4xl leading-[1.05] text-fg sm:text-5xl">
+            Map a market.<br />Watch it move.
+          </h1>
+          <p className="narrative max-w-[52ch] text-muted">
+            Type a category. Get a cited competitive landscape, and evidence-linked diffs every time the market moves.
+          </p>
+        </div>
+        <div className="hidden lg:block">
+          <HeroLedger />
+        </div>
+      </section>
+
       {/* Primary mode switch */}
       <div
         role="group"
         aria-label="App mode"
-        className="mb-6 inline-flex rounded-md border border-border bg-surface p-0.5"
+        className="mb-6 mt-8 inline-flex rounded-md border border-border bg-surface p-0.5"
       >
         <button
           type="button"
@@ -327,6 +394,20 @@ export default function Page() {
 
       {/* Mode panels */}
       {primaryMode === "map" ? <MapModePanel /> : <PricingModePanel />}
+
+      {/* Real dossier excerpt for small screens (desktop shows it in the hero) */}
+      <div className="mt-12 lg:hidden">
+        <HeroLedger />
+      </div>
+
+      <HowItWorks />
+      <HonestNumbers />
+
+      <section className="rule-t mt-16 pt-8 pb-4">
+        <Link href="/landscape" className="display inline-flex items-center gap-2 text-lg text-primary hover:text-fg">
+          Browse the published dossiers →
+        </Link>
+      </section>
     </main>
   );
 }

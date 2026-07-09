@@ -16,9 +16,9 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-bg/90 backdrop-blur">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-6 py-3">
-        <Link href="/" className="flex items-baseline gap-1.5 font-mono font-semibold text-fg">
-          <span className="text-base">Context.dev</span>
-          <span className="hidden text-primary sm:inline">Intelligence Monitor</span>
+        <Link href="/" className="flex items-baseline gap-2 text-fg">
+          <span className="display text-[15px] uppercase tracking-[0.06em]">Intelligence Monitor</span>
+          <span className="stamp hidden text-primary sm:inline">by context.dev</span>
         </Link>
         <nav className="flex items-center gap-1">
           {NAV.map((item) => {

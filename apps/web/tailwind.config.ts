@@ -7,10 +7,14 @@ export default {
       bg:"var(--bg)", surface:"var(--surface)", "surface-2":"var(--surface-2)", border:"var(--border)", fg:"var(--fg)", muted:"var(--muted)",
       primary:"var(--primary)", "primary-strong":"var(--primary-strong)", "primary-fg":"var(--primary-fg)",
       accent:"var(--accent)", "accent-fg":"var(--accent-fg)",
-      success:"var(--success)", warn:"var(--warn)", danger:"var(--danger)", change:"var(--change)",
+      success:"var(--success)", warn:"var(--warn)", danger:"var(--danger)", change:"var(--change)", ghost:"var(--ghost)",
     },
     boxShadow: { card: "var(--shadow)" },
-    fontFamily: { sans:["Fira Sans","system-ui","sans-serif"], mono:["Fira Code","monospace"] },
+    fontFamily: {
+      sans:["var(--font-archivo)","system-ui","sans-serif"],
+      serif:["var(--font-source-serif)","Georgia","serif"],
+      mono:["var(--font-plex-mono)","monospace"],
+    },
   } },
   plugins: [],
 } satisfies Config;

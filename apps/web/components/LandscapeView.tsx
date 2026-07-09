@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import type { Landscape } from "@contextdev/core";
-import { Users, Coins, Clock, AlertTriangle, Copy, Gauge } from "lucide-react";
+import { AlertTriangle, Copy } from "lucide-react";
 import { Button } from "./ui/button.js";
 import ComparisonTable from "./ComparisonTable.js";
 import PlayerCard from "./PlayerCard.js";
@@ -12,66 +12,57 @@ import ExportWebdogButton from "./ExportWebdogButton.js";
 
 interface LandscapeViewProps {
   landscape: Landscape;
+  /** Dossier pages inject the Motion Ledger here (right after the header). */
+  motionSlot?: ReactNode;
+  /** Dossier pages inject the positioning map here (framed as an exhibit). */
+  mapSlot?: ReactNode;
 }
 
-function Kpi({ icon, label, value }: { icon: ReactNode; label: string; value: string }) {
-  return (
-    <div className="flex items-center gap-3 rounded-xl border border-border bg-surface px-4 py-3 shadow-card">
-      <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-surface-2 text-primary" aria-hidden="true">{icon}</span>
-      <span className="flex flex-col">
-        <span className="font-mono text-lg font-semibold leading-none tabular-nums text-fg">{value}</span>
-        <span className="text-[11px] uppercase tracking-wide text-muted">{label}</span>
-      </span>
-    </div>
-  );
-}
-
-export default function LandscapeView({ landscape }: LandscapeViewProps) {
+export default function LandscapeView({ landscape, motionSlot, mapSlot }: LandscapeViewProps) {
   const { category, players, failures, brief, creditsUsed, latencyMs } = landscape;
-  const avgConf = players.length ? players.reduce((s, p) => s + p.confidence, 0) / players.length : 0;
 
   return (
-    <article className="flex flex-col gap-8">
-      <header className="flex flex-col gap-3">
-        <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-accent">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
-          Market landscape
-        </div>
-        <h1 className="text-2xl font-semibold tracking-tight text-fg">
-          {category} <span className="text-muted">· {players.length} player{players.length === 1 ? "" : "s"} mapped</span>
-        </h1>
-        <p className="max-w-3xl text-sm leading-relaxed text-muted">{brief}</p>
+    <article className="flex flex-col gap-10">
+      <header className="flex flex-col gap-4">
+        <h1 className="display text-3xl text-fg sm:text-4xl">{category}</h1>
+        <p className="stamp tnum text-muted">
+          {players.length} player{players.length === 1 ? "" : "s"} mapped · {creditsUsed} credits, {(latencyMs / 1000).toFixed(1)}s
+        </p>
+        <p className="narrative max-w-[72ch] text-muted">{brief}</p>
         <div>
           <ExportWebdogButton landscape={landscape} />
         </div>
       </header>
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-        <Kpi icon={<Users size={16} />} label="players" value={String(players.length)} />
-        <Kpi icon={<Gauge size={16} />} label="avg conf" value={avgConf.toFixed(2)} />
-        <Kpi icon={<Coins size={16} />} label="credits" value={String(creditsUsed)} />
-        <Kpi icon={<Clock size={16} />} label="latency" value={`${(latencyMs / 1000).toFixed(1)}s`} />
-        <Kpi icon={<AlertTriangle size={16} />} label="failures" value={String(failures.length)} />
-      </div>
+      {motionSlot}
+
+      {mapSlot && <div className="exhibit">{mapSlot}</div>}
 
       {landscape.analyst && <AnalystReport report={landscape.analyst} />}
-      <MarketAnalytics players={players} />
 
-      <section className="flex flex-col gap-3">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">Capability matrix</h2>
+      <div className="exhibit">
+        <MarketAnalytics players={players} />
+        <p className="exhibit-caption">Derived from {players.length} profiles, no extra credits</p>
+      </div>
+
+      <section className="flex flex-col gap-3 rule-t pt-5">
+        <h2 className="display text-lg text-fg">Capability matrix</h2>
         <ComparisonTable landscape={landscape} />
       </section>
 
-      <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {players.map((player, idx) => (
-          <div key={player.domain} className="reveal" style={{ animationDelay: `${idx * 50}ms` }}>
-            <PlayerCard player={player} n={idx + 1} />
-          </div>
-        ))}
+      <section className="flex flex-col gap-4 rule-t pt-5">
+        <h2 className="display text-lg text-fg">Subject profiles</h2>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {players.map((player, idx) => (
+            <div key={player.domain} className="reveal" style={{ animationDelay: `${idx * 50}ms` }}>
+              <PlayerCard player={player} n={idx + 1} />
+            </div>
+          ))}
+        </div>
       </section>
 
       {failures.length > 0 && (
-        <section className="flex flex-col gap-2 rounded-xl border border-border bg-surface-2/40 p-4">
+        <section className="flex flex-col gap-2 rule-t pt-5">
           <p className="flex items-center gap-1.5 text-sm font-semibold text-warn">
             <AlertTriangle size={14} aria-hidden="true" /> Couldn&apos;t profile ({failures.length})
           </p>

@@ -13,6 +13,9 @@
     },
     "./webdog": {
       "import": "./src/landscape/webdog.ts"
+    },
+    "./motion": {
+      "import": "./src/landscape/motion.ts"
     }
   },
   "scripts": {
