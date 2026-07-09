@@ -11,4 +11,7 @@ describe("selectLandscapeStore", () => {
     expect(selectLandscapeStore({} as NodeJS.ProcessEnv)).toBeInstanceOf(InMemoryLandscapeStore);
     expect(selectLandscapeStore({ KV_REST_API_URL: "https://kv.example" } as NodeJS.ProcessEnv)).toBeInstanceOf(InMemoryLandscapeStore);
   });
+  it("accepts Vercel marketplace-integration prefixed names (e.g. STORAGE_)", () => {
+    expect(selectLandscapeStore({ STORAGE_KV_REST_API_URL: "https://kv.example", STORAGE_KV_REST_API_TOKEN: "t" } as NodeJS.ProcessEnv)).toBeInstanceOf(KvLandscapeStore);
+  });
 });
